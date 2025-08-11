@@ -17,9 +17,6 @@
       --accent-pastel: #a3c1d1;
     }
 
-    * {
-      box-sizing: border-box;
-    }
     body {
       font-family: 'Nunito', sans-serif;
       background-color: var(--gray-light);
@@ -29,13 +26,6 @@
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
-    }
-    a {
-      color: var(--blue-main);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
     }
 
     /* Menu */
@@ -73,7 +63,7 @@
 
     header {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
     header h1 {
       font-family: 'Montserrat', sans-serif;
@@ -84,32 +74,16 @@
     }
     header p.slogan {
       font-style: italic;
-      font-size: 1.3em;
-      color: var(--accent-pastel);
-      margin: 0;
-    }
-
-    #verseOfDay {
-      background-color: var(--blue-pastel);
-      border-left: 8px solid var(--blue-main);
-      border-radius: 6px;
-      padding: 25px 30px;
-      font-size: 1.4em;
-      line-height: 1.5em;
-      margin-bottom: 40px;
-      color: var(--blue-main);
-      box-shadow: 0 4px 8px rgba(42,110,187,0.15);
-    }
-
-    #encouragement {
-      background-color: white;
-      border-left: 8px solid var(--accent-pastel);
-      border-radius: 6px;
-      padding: 25px 30px;
       font-size: 1.2em;
-      line-height: 1.6em;
-      color: var(--gray-medium);
-      box-shadow: 0 4px 8px rgba(163,193,209,0.25);
+      color: var(--accent-pastel);
+      margin: 0 0 20px;
+    }
+
+    #daily-verse {
+      font-style: italic;
+      color: var(--blue-main);
+      font-weight: 600;
+      margin-top: 20px;
     }
 
     /* Responsive */
@@ -120,10 +94,6 @@
       }
       header h1 {
         font-size: 2.2em;
-      }
-      #verseOfDay, #encouragement {
-        font-size: 1.1em;
-        padding: 20px;
       }
     }
   </style>
@@ -141,47 +111,35 @@
   <header>
     <h1>Coeur Ouvert</h1>
     <p class="slogan">Espoir, écoute et lumière pour avancer chaque jour.</p>
+    <div id="daily-verse"></div>
   </header>
 
-  <section id="verseOfDay">
-    <!-- Verset du jour apparaîtra ici -->
-  </section>
+  <script>
+    const versesRefs = [
+      "Psaumes 23:1",
+      "Jean 3:16",
+      "Philippiens 4:13",
+      "Ésaïe 41:10",
+      "Matthieu 11:28",
+      "Romains 8:28",
+      "Proverbes 3:5",
+      "Josué 1:9"
+    ];
 
-  <section id="encouragement">
-    <!-- Message d'encouragement apparaîtra ici -->
-  </section>
-  <div id="daily-verse" style="margin-top:20px; font-style: italic; color:#2a6ebb; font-weight:600;"></div>
+    const dayIndex = new Date().getDate() % versesRefs.length;
+    const verseRef = versesRefs[dayIndex];
 
-<script>
-  // Liste de références bibliques à faire défiler (tu peux ajouter/enlever)
-  const versesRefs = [
-    "Psaumes 23:1",
-    "Jean 3:16",
-    "Philippiens 4:13",
-    "Ésaïe 41:10",
-    "Matthieu 11:28",
-    "Romains 8:28",
-    "Proverbes 3:5",
-    "Josué 1:9"
-  ];
-
-  // Calculer un index en fonction de la date pour varier le verset chaque jour
-  const dayIndex = new Date().getDate() % versesRefs.length;
-  const verseRef = versesRefs[dayIndex];
-
-  // Appel à l'API Bible pour récupérer le verset en JSON
-  fetch(`https://bible-api.com/${encodeURIComponent(verseRef)}?translation=segond`)
-    .then(response => response.json())
-    .then(data => {
-      const verseText = data.text.trim();
-      document.getElementById("daily-verse").textContent = `"${verseText}" — ${verseRef}`;
-    })
-    .catch(error => {
-      document.getElementById("daily-verse").textContent = "Impossible de charger le verset du jour.";
-      console.error(error);
-    });
-</script>
-
+    fetch(`https://bible-api.com/${encodeURIComponent(verseRef)}?translation=segond`)
+      .then(response => response.json())
+      .then(data => {
+        const verseText = data.text.trim();
+        document.getElementById("daily-verse").textContent = `"${verseText}" — ${verseRef}`;
+      })
+      .catch(error => {
+        document.getElementById("daily-verse").textContent = "Impossible de charger le verset du jour.";
+        console.error(error);
+      });
+  </script>
 
 </body>
 </html>
