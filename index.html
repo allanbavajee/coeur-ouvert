@@ -129,7 +129,7 @@
     const dayIndex = new Date().getDate() % versesRefs.length;
     const verseRef = versesRefs[dayIndex];
 
-    fetch(`https://bible-api.com/${encodeURIComponent(verseRef)}?translation=segond`)
+    fetch(`https://cors-anywhere.herokuapp.com/https://bible-api.com/${encodeURIComponent(verseRef)}?translation=segond`)
       .then(response => response.json())
       .then(data => {
         const verseText = data.text.trim();
