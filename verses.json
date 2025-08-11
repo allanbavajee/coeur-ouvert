@@ -1,8 +1,18 @@
 [
-  { "reference": "Philippiens 4:13", "text": "Je puis tout par celui qui me fortifie." },
-  { "reference": "Psaume 23:1", "text": "L'Éternel est mon berger: je ne manquerai de rien." },
-  { "reference": "Matthieu 11:28", "text": "Venez à moi, vous tous qui êtes fatigués et chargés, et je vous donnerai du repos." },
-  { "reference": "Jean 14:6", "text": "Je suis le chemin, la vérité, et la vie. Nul ne vient au Père que par moi." },
-  { "reference": "Romains 8:28", "text": "Toutes choses concourent au bien de ceux qui aiment Dieu." }
+  {
+    "reference": "Psaume 23:1",
+    "texte": "L'Éternel est mon berger: je ne manquerai de rien."
+  },
+  {
+    "reference": "Philippiens 4:13",
+    "texte": "Je puis tout par celui qui me fortifie."
+  },
+  {
+    "reference": "Ésaïe 41:10",
+    "texte": "Ne crains rien, car je suis avec toi; ne promène pas des regards inquiets, car je suis ton Dieu."
+  },
+  {
+    "reference": "Matthieu 11:28",
+    "texte": "Venez à moi, vous tous qui êtes fatigués et chargés, et je vous donnerai du repos."
+  }
 ]
-
