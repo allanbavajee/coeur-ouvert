@@ -9,38 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Nunito&display=swap" rel="stylesheet" />
 
   <style>
-    nav {
-  background-color: var(--blue-main);
-  padding: 12px 20px;
-  border-radius: 6px;
-  margin-bottom: 30px;
-  box-shadow: 0 3px 6px rgba(42,110,187,0.3);
-}
-
-.menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
-
-.menu li a {
-  color: white;
-  font-weight: 700;
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.1em;
-  transition: color 0.3s ease;
-}
-
-.menu li a:hover,
-.menu li a:focus {
-  color: var(--accent-pastel);
-  outline: none;
-}
-
     :root {
       --blue-main: #2a6ebb;
       --blue-pastel: #d0e6ff;
@@ -58,6 +26,39 @@
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    /* Menu */
+    nav {
+      background-color: var(--blue-main);
+      padding: 12px 20px;
+      border-radius: 6px;
+      margin-bottom: 30px;
+      box-shadow: 0 3px 6px rgba(42,110,187,0.3);
+    }
+
+    .menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .menu li a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1em;
+      transition: color 0.3s ease;
+    }
+
+    .menu li a:hover,
+    .menu li a:focus {
+      color: var(--accent-pastel);
+      outline: none;
     }
 
     header {
@@ -136,6 +137,13 @@
 </head>
 <body>
 
+  <nav>
+    <ul class="menu">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="coaching.html">Coaching Spirituel</a></li>
+    </ul>
+  </nav>
+
   <header>
     <h1>Coaching Spirituel</h1>
     <p class="slogan">Demande d’accompagnement personnalisé</p>
@@ -155,13 +163,11 @@
   </form>
 
   <script>
-    // Ici on va gérer l’envoi du formulaire (simple alert pour test)
     const form = document.getElementById('coachingForm');
 
     form.addEventListener('submit', function(event) {
       event.preventDefault();
 
-      // Récupérer les valeurs
       const name = form.name.value.trim();
       const email = form.email.value.trim();
       const message = form.message.value.trim();
@@ -171,10 +177,8 @@
         return;
       }
 
-      // Pour l’instant, on simule un envoi
       alert(`Merci ${name}!\nVotre demande a bien été reçue.\nNous vous répondrons bientôt.`);
 
-      // Réinitialiser le formulaire
       form.reset();
     });
   </script>
