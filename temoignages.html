@@ -1,13 +1,165 @@
-<section id="form-temoignage" style="margin-bottom: 40px;">
-  <h2>Partage ton témoignage</h2>
-  <form id="temoignage-form" action="https://formspree.io/f/meozvbgg" method="POST">
-    <label for="temoignage-text">Ton témoignage *</label><br />
-    <textarea id="temoignage-text" name="temoignage-text" rows="4" required style="width: 100%;"></textarea><br /><br />
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Méta & styles (comme dans les autres pages) -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Témoignages - Coeur Ouvert</title>
 
-    <label for="temoignage-nom">Ton prénom (optionnel)</label><br />
-    <input type="text" id="temoignage-nom" name="temoignage-nom" placeholder="Tu peux rester anonyme" style="width: 100%;" /><br /><br />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Nunito&display=swap" rel="stylesheet" />
+  <style>
+    /* Copie ton CSS habituel ici */
+    /* ... mêmes styles que les autres pages ... */
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #f0f4f8;
+      color: #6b7c8a;
+      margin: 0;
+      padding: 30px 20px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    nav {
+      background-color: #2a6ebb;
+      padding: 12px 20px;
+      border-radius: 6px;
+      margin-bottom: 30px;
+      box-shadow: 0 3px 6px rgba(42,110,187,0.3);
+    }
+    .menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+    .menu li a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1em;
+      transition: color 0.3s ease;
+    }
+    .menu li a:hover,
+    .menu li a:focus {
+      color: #a3c1d1;
+      outline: none;
+    }
+    h1 {
+      text-align: center;
+      color: #2a6ebb;
+      margin-bottom: 20px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    section {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(42,110,187,0.1);
+    }
+    .temoignages-container {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    .temoignage {
+      background: #d0e6ff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(42,110,187,0.2);
+    }
+    .temoin-nom {
+      font-weight: 700;
+      color: #2a6ebb;
+      margin-top: 10px;
+      font-style: italic;
+    }
+    /* Responsive */
+    @media (max-width: 480px) {
+      body {
+        padding: 15px 10px;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
 
-    <button type="submit">Envoyer</button>
-  </form>
-  <p id="form-message" style="color: green; display: none; margin-top: 10px;">Merci pour ton témoignage ! Il sera ajouté après validation.</p>
-</section>
+  <nav>
+    <ul class="menu">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="coaching.html">Coaching Spirituel</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="temoignages.html">Témoignages</a></li>
+    </ul>
+  </nav>
+
+  <h1>Témoignages Inspirants</h1>
+
+  <section>
+    <div id="temoignages-list" class="temoignages-container">
+      <!-- Témoignages chargés ici via JS -->
+    </div>
+  </section>
+
+  <section id="form-temoignage" style="margin-top: 40px;">
+    <h2>Partage ton témoignage</h2>
+    <form id="temoignage-form" action="https://formspree.io/f/xxxxx" method="POST">
+      <label for="temoignage-text">Ton témoignage *</label><br />
+      <textarea id="temoignage-text" name="temoignage-text" rows="4" required style="width: 100%;"></textarea><br /><br />
+
+      <label for="temoignage-nom">Ton prénom (optionnel)</label><br />
+      <input type="text" id="temoignage-nom" name="temoignage-nom" placeholder="Tu peux rester anonyme" style="width: 100%;" /><br /><br />
+
+      <button type="submit">Envoyer</button>
+    </form>
+    <p id="form-message" style="color: green; display: none; margin-top: 10px;">Merci pour ton témoignage ! Il sera ajouté après validation.</p>
+  </section>
+
+  <script>
+    // Charger et afficher les témoignages depuis temoignages.json
+    fetch('temoignages.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('temoignages-list');
+        data.forEach(item => {
+          const div = document.createElement('div');
+          div.classList.add('temoignage');
+          div.innerHTML = `
+            <p>"${item.text}"</p>
+            <p class="temoin-nom">- ${item.name || "Anonyme"}</p>
+          `;
+          container.appendChild(div);
+        });
+      })
+      .catch(() => {
+        document.getElementById('temoignages-list').textContent = "Impossible de charger les témoignages.";
+      });
+
+    // Gestion simple du formulaire (affichage message de succès)
+    const form = document.getElementById('temoignage-form');
+    form.addEventListener('submit', function(e){
+      // Le form est envoyé à Formspree, on affiche juste le message
+      e.preventDefault();
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          document.getElementById('form-message').style.display = 'block';
+          form.reset();
+        } else {
+          alert('Une erreur est survenue, merci de réessayer.');
+        }
+      }).catch(() => {
+        alert('Une erreur est survenue, merci de réessayer.');
+      });
+    });
+  </script>
+
+</body>
+</html>
