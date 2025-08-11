@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Méta & styles (comme dans les autres pages) -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Témoignages - Coeur Ouvert</title>
 
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Nunito&display=swap" rel="stylesheet" />
+
   <style>
-    /* Copie ton CSS habituel ici */
-    /* ... mêmes styles que les autres pages ... */
+    :root {
+      --blue-main: #2a6ebb;
+      --blue-pastel: #d0e6ff;
+      --gray-medium: #6b7c8a;
+      --gray-light: #f0f4f8;
+      --accent-pastel: #a3c1d1;
+    }
+
     body {
       font-family: 'Nunito', sans-serif;
-      background-color: #f0f4f8;
-      color: #6b7c8a;
+      background-color: var(--gray-light);
+      color: var(--gray-medium);
       margin: 0;
       padding: 30px 20px;
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
     }
+
     nav {
-      background-color: #2a6ebb;
+      background-color: var(--blue-main);
       padding: 12px 20px;
       border-radius: 6px;
       margin-bottom: 30px;
       box-shadow: 0 3px 6px rgba(42,110,187,0.3);
     }
+
     .menu {
       list-style: none;
       margin: 0;
@@ -35,6 +44,7 @@
       justify-content: center;
       gap: 40px;
     }
+
     .menu li a {
       color: white;
       font-weight: 700;
@@ -43,46 +53,98 @@
       font-size: 1.1em;
       transition: color 0.3s ease;
     }
+
     .menu li a:hover,
     .menu li a:focus {
-      color: #a3c1d1;
+      color: var(--accent-pastel);
       outline: none;
     }
+
     h1 {
-      text-align: center;
-      color: #2a6ebb;
-      margin-bottom: 20px;
       font-family: 'Montserrat', sans-serif;
+      color: var(--blue-main);
+      font-size: 2.8em;
+      text-align: center;
+      margin-bottom: 10px;
     }
-    section {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 3px 6px rgba(42,110,187,0.1);
+
+    p.slogan {
+      font-style: italic;
+      font-size: 1.2em;
+      color: var(--accent-pastel);
+      text-align: center;
+      margin-bottom: 40px;
     }
-    .temoignages-container {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
+
+    #temoignages-list {
+      margin-bottom: 40px;
     }
+
     .temoignage {
-      background: #d0e6ff;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 3px 6px rgba(42,110,187,0.2);
+      background: var(--blue-pastel);
+      border-radius: 8px;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(42,110,187,0.2);
     }
+
     .temoin-nom {
       font-weight: 700;
-      color: #2a6ebb;
+      color: var(--blue-main);
+      text-align: right;
       margin-top: 10px;
       font-style: italic;
     }
-    /* Responsive */
-    @media (max-width: 480px) {
-      body {
-        padding: 15px 10px;
-        max-width: 100%;
-      }
+
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(42,110,187,0.15);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--blue-main);
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--gray-medium);
+      border-radius: 5px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1em;
+      margin-bottom: 20px;
+      resize: vertical;
+    }
+
+    button {
+      background-color: var(--blue-main);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1em;
+      font-weight: 700;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: var(--accent-pastel);
+      color: var(--blue-main);
+    }
+
+    #form-message {
+      display: none;
+      margin-top: 15px;
+      color: green;
+      font-weight: 700;
+      text-align: center;
     }
   </style>
 </head>
@@ -97,40 +159,43 @@
     </ul>
   </nav>
 
-  <h1>Témoignages Inspirants</h1>
+  <h1>Témoignages</h1>
+  <p class="slogan">Partage ton expérience ou lis celles des autres.</p>
 
-  <section>
-    <div id="temoignages-list" class="temoignages-container">
-      <!-- Témoignages chargés ici via JS -->
-    </div>
+  <section id="temoignages-list">
+    <!-- Les témoignages chargés depuis Google Sheets apparaîtront ici -->
+    <p>Chargement des témoignages...</p>
   </section>
 
-  <section id="form-temoignage" style="margin-top: 40px;">
-    <h2>Partage ton témoignage</h2>
-    <form id="temoignage-form" action="https://formspree.io/f/xxxxx" method="POST">
-      <label for="temoignage-text">Ton témoignage *</label><br />
-      <textarea id="temoignage-text" name="temoignage-text" rows="4" required style="width: 100%;"></textarea><br /><br />
+  <section>
+    <h2>Partager ton témoignage</h2>
+    <form id="temoignage-form" action="https://formspree.io/f/mpwlkere" method="POST">
+      <label for="name">Nom (optionnel, tu peux rester anonyme)</label>
+      <input type="text" id="name" name="name" placeholder="Ton nom ou 'Anonyme'">
 
-      <label for="temoignage-nom">Ton prénom (optionnel)</label><br />
-      <input type="text" id="temoignage-nom" name="temoignage-nom" placeholder="Tu peux rester anonyme" style="width: 100%;" /><br /><br />
+      <label for="message">Ton témoignage *</label>
+      <textarea id="message" name="message" rows="5" required placeholder="Écris ton témoignage ici..."></textarea>
 
       <button type="submit">Envoyer</button>
+
+      <p id="form-message">Merci pour ton témoignage ! Il sera publié après validation.</p>
     </form>
-    <p id="form-message" style="color: green; display: none; margin-top: 10px;">Merci pour ton témoignage ! Il sera ajouté après validation.</p>
   </section>
 
   <script>
-    // Charger et afficher les témoignages depuis temoignages.json
-    fetch('temoignages.json')
+    const urlAPI = "https://script.google.com/macros/s/AKfycbxyfbXnUTrrmh8yRyUYWxJEoIlGfbX-vKmUTKor447tf4cg_wqDbddJl7tJ29Tr0kdV/exec";
+
+    fetch(urlAPI)
       .then(response => response.json())
       .then(data => {
         const container = document.getElementById('temoignages-list');
+        container.innerHTML = "";
         data.forEach(item => {
           const div = document.createElement('div');
           div.classList.add('temoignage');
           div.innerHTML = `
-            <p>"${item.text}"</p>
-            <p class="temoin-nom">- ${item.name || "Anonyme"}</p>
+            <p>"${item.testimony}"</p>
+            <p class="temoin-nom">- ${item.name}</p>
           `;
           container.appendChild(div);
         });
@@ -139,10 +204,8 @@
         document.getElementById('temoignages-list').textContent = "Impossible de charger les témoignages.";
       });
 
-    // Gestion simple du formulaire (affichage message de succès)
     const form = document.getElementById('temoignage-form');
     form.addEventListener('submit', function(e){
-      // Le form est envoyé à Formspree, on affiche juste le message
       e.preventDefault();
       fetch(form.action, {
         method: form.method,
