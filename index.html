@@ -84,6 +84,9 @@
       color: var(--blue-main);
       font-weight: 600;
       margin-top: 20px;
+      background: var(--blue-pastel);
+      padding: 15px;
+      border-radius: 8px;
     }
 
     /* Responsive */
@@ -115,30 +118,23 @@
   </header>
 
   <script>
-    const versesRefs = [
-      "Psaumes 23:1",
-      "Jean 3:16",
-      "Philippiens 4:13",
-      "Ésaïe 41:10",
-      "Matthieu 11:28",
-      "Romains 8:28",
-      "Proverbes 3:5",
-      "Josué 1:9"
+    // Liste statique de versets
+    const verses = [
+      { ref: "Psaumes 23:1", text: "L'Éternel est mon berger: je ne manquerai de rien." },
+      { ref: "Jean 3:16", text: "Car Dieu a tant aimé le monde qu'il a donné son Fils unique, afin que quiconque croit en lui ne périsse point, mais qu'il ait la vie éternelle." },
+      { ref: "Philippiens 4:13", text: "Je puis tout par celui qui me fortifie." },
+      { ref: "Ésaïe 41:10", text: "Ne crains rien, car je suis avec toi; ne promène pas des regards inquiets, car je suis ton Dieu." },
+      { ref: "Matthieu 11:28", text: "Venez à moi, vous tous qui êtes fatigués et chargés, et je vous donnerai du repos." },
+      { ref: "Romains 8:28", text: "Nous savons, du reste, que toutes choses concourent au bien de ceux qui aiment Dieu." },
+      { ref: "Proverbes 3:5", text: "Confie-toi en l'Éternel de tout ton cœur, et ne t'appuie pas sur ta sagesse." },
+      { ref: "Josué 1:9", text: "Fortifie-toi et prends courage! Ne t'effraie point et ne t'épouvante point." }
     ];
 
-    const dayIndex = new Date().getDate() % versesRefs.length;
-    const verseRef = versesRefs[dayIndex];
+    // Choix du verset en fonction du jour du mois
+    const dayIndex = new Date().getDate() % verses.length;
+    const verse = verses[dayIndex];
 
-    fetch(`https://bible-api.com/${encodeURIComponent(verseRef)}?translation=segond`)
-      .then(response => response.json())
-      .then(data => {
-        const verseText = data.text.trim();
-        document.getElementById("daily-verse").textContent = `"${verseText}" — ${verseRef}`;
-      })
-      .catch(error => {
-        document.getElementById("daily-verse").textContent = "Impossible de charger le verset du jour.";
-        console.error(error);
-      });
+    document.getElementById("daily-verse").textContent = `"${verse.text}" — ${verse.ref}`;
   </script>
 
 </body>
