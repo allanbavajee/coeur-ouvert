@@ -150,34 +150,38 @@
   <section id="encouragement">
     <!-- Message d'encouragement apparaîtra ici -->
   </section>
+  <div id="daily-verse" style="margin-top:20px; font-style: italic; color:#2a6ebb; font-weight:600;"></div>
 
-  <script>
-    const verses = [
-      { text: "L'Éternel est mon berger: je ne manquerai de rien.", reference: "Psaume 23:1" },
-      { text: "Je puis tout par celui qui me fortifie.", reference: "Philippiens 4:13" },
-      { text: "Car je connais les projets que j'ai formés sur vous, dit l'Éternel.", reference: "Jérémie 29:11" },
-      { text: "Ne crains point, car je suis avec toi; ne promène pas des regards inquiets, car je suis ton Dieu.", reference: "Ésaïe 41:10" },
-      { text: "Approchez-vous de Dieu, et il s'approchera de vous.", reference: "Jacques 4:8" }
-    ];
+<script>
+  // Liste de références bibliques à faire défiler (tu peux ajouter/enlever)
+  const versesRefs = [
+    "Psaumes 23:1",
+    "Jean 3:16",
+    "Philippiens 4:13",
+    "Ésaïe 41:10",
+    "Matthieu 11:28",
+    "Romains 8:28",
+    "Proverbes 3:5",
+    "Josué 1:9"
+  ];
 
-    const encouragements = [
-      "Parfois, la vie nous met face à des tempêtes, mais même au cœur de la douleur, une lumière ne s’éteint jamais.",
-      "N'oublie jamais que chaque jour est une nouvelle chance d’avancer avec espoir et confiance.",
-      "Tu n'es jamais seul, car une présence bienveillante est toujours à tes côtés pour te soutenir.",
-      "Laisse ton cœur s’ouvrir à la paix intérieure, même lorsque le monde semble troublé.",
-      "Fais un pas à la fois, et découvre la force qui sommeille en toi."
-    ];
+  // Calculer un index en fonction de la date pour varier le verset chaque jour
+  const dayIndex = new Date().getDate() % versesRefs.length;
+  const verseRef = versesRefs[dayIndex];
 
-    function getRandomItem(arr) {
-      return arr[Math.floor(Math.random() * arr.length)];
-    }
+  // Appel à l'API Bible pour récupérer le verset en JSON
+  fetch(`https://bible-api.com/${encodeURIComponent(verseRef)}?translation=segond`)
+    .then(response => response.json())
+    .then(data => {
+      const verseText = data.text.trim();
+      document.getElementById("daily-verse").textContent = `"${verseText}" — ${verseRef}`;
+    })
+    .catch(error => {
+      document.getElementById("daily-verse").textContent = "Impossible de charger le verset du jour.";
+      console.error(error);
+    });
+</script>
 
-    const verse = getRandomItem(verses);
-    document.getElementById('verseOfDay').innerHTML = `"${verse.text}"<br><strong>— ${verse.reference}</strong>`;
-
-    const message = getRandomItem(encouragements);
-    document.getElementById('encouragement').innerText = message;
-  </script>
 
 </body>
 </html>
