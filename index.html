@@ -1,138 +1,76 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Coeur Ouvert</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Nunito&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --blue-main: #2a6ebb;
-      --blue-pastel: #d0e6ff;
-      --gray-medium: #6b7c8a;
-      --gray-light: #f0f4f8;
-      --accent-pastel: #a3c1d1;
-    }
-
-    body {
-      font-family: 'Nunito', sans-serif;
-      background-color: var(--gray-light);
-      color: var(--gray-medium);
-      margin: 0;
-      padding: 30px 20px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Menu */
-    nav {
-      background-color: var(--blue-main);
-      padding: 12px 20px;
-      border-radius: 6px;
-      margin-bottom: 30px;
-      box-shadow: 0 3px 6px rgba(42,110,187,0.3);
-    }
-
-    .menu {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-    }
-
-    .menu li a {
-      color: white;
-      font-weight: 700;
-      text-decoration: none;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.1em;
-      transition: color 0.3s ease;
-    }
-
-    .menu li a:hover,
-    .menu li a:focus {
-      color: var(--accent-pastel);
-      outline: none;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    header h1 {
-      font-family: 'Montserrat', sans-serif;
-      color: var(--blue-main);
-      font-size: 3em;
-      margin: 0 0 10px;
-      letter-spacing: 2px;
-    }
-    header p.slogan {
-      font-style: italic;
-      font-size: 1.2em;
-      color: var(--accent-pastel);
-      margin: 0 0 20px;
-    }
-
-    #daily-verse {
-      font-style: italic;
-      color: var(--blue-main);
-      font-weight: 600;
-      margin-top: 20px;
-      background: var(--blue-pastel);
-      padding: 15px;
-      border-radius: 8px;
-    }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      body {
-        padding: 20px 15px;
-        max-width: 100%;
-      }
-      header h1 {
-        font-size: 2.2em;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plateforme d'encouragement biblique</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Plateforme d'encouragement biblique</h1>
+        <nav>
+            <ul>
+                <li><a href="#verse">Verset du jour</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <nav>
-    <ul class="menu">
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="coaching.html">Coaching Spirituel</a></li>
-      <li><a href="ressources.html">Ressources</a></li>
-    </ul>
-  </nav>
+    <main>
+        <!-- Verset du jour -->
+        <section id="verse">
+            <h2>Verset du jour</h2>
+            <p id="verse-text">Chargement du verset...</p>
+        </section>
 
-  <header>
-    <h1>Coeur Ouvert</h1>
-    <p class="slogan">Espoir, écoute et lumière pour avancer chaque jour.</p>
-    <div id="daily-verse"></div>
-  </header>
+        <!-- Formulaire de contact -->
+        <section id="contact">
+            <h2>Contactez-nous</h2>
+            <form>
+                <label for="name">Votre nom</label>
+                <input type="text" id="name" name="name" required>
 
-  <script>
-  // Charger le verset du jour depuis verses.json
-  fetch('verses.json')
-    .then(response => response.json())
-    .then(verses => {
-      const today = new Date();
-      const dayOfYear = Math.floor(
-        (today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24
-      );
-      const verse = verses[dayOfYear % verses.length];
-      document.getElementById('verse').textContent = `${verse.reference} - ${verse.text}`;
-    })
-    .catch(error => {
-      console.error('Erreur lors du chargement du verset :', error);
-    });
-</script>
+                <label for="email">Votre email</label>
+                <input type="email" id="email" name="email" required>
 
+                <label for="message">Votre message</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Envoyer</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Plateforme d'encouragement biblique</p>
+    </footer>
+
+    <!-- Script pour afficher le verset du jour -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("verses.json")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erreur lors du chargement du fichier JSON");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    let today = new Date();
+                    let dayOfYear = Math.floor(
+                        (today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24
+                    );
+                    let verseIndex = dayOfYear % data.length;
+                    document.getElementById("verse-text").textContent = 
+                        data[verseIndex].reference + " - " + data[verseIndex].text;
+                })
+                .catch(error => {
+                    console.error(error);
+                    document.getElementById("verse-text").textContent = 
+                        "Impossible de charger le verset du jour.";
+                });
+        });
+    </script>
 </body>
 </html>
