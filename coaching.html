@@ -107,7 +107,7 @@
       color: var(--gray-medium);
     }
 
-    input[type="submit"] {
+    button[type="submit"] {
       background-color: var(--blue-main);
       color: white;
       border: none;
@@ -119,7 +119,7 @@
       font-weight: 700;
       width: 100%;
     }
-    input[type="submit"]:hover {
+    button[type="submit"]:hover {
       background-color: var(--accent-pastel);
     }
 
@@ -150,7 +150,7 @@
     <p class="slogan">Demande d’accompagnement personnalisé</p>
   </header>
 
-  <form id="coachingForm">
+  <form action="https://formspree.io/f/mpwlkere" method="POST">
     <label for="name">Nom</label>
     <input type="text" id="name" name="name" placeholder="Ton nom complet" required />
 
@@ -160,29 +160,8 @@
     <label for="message">Message</label>
     <textarea id="message" name="message" rows="5" placeholder="Ta demande ou question" required></textarea>
 
-    <input type="submit" value="Envoyer" />
+    <button type="submit">Envoyer</button>
   </form>
-
-  <script>
-    const form = document.getElementById('coachingForm');
-
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      const name = form.name.value.trim();
-      const email = form.email.value.trim();
-      const message = form.message.value.trim();
-
-      if (!name || !email || !message) {
-        alert("Merci de remplir tous les champs.");
-        return;
-      }
-
-      alert(`Merci ${name}!\nVotre demande a bien été reçue.\nNous vous répondrons bientôt.`);
-
-      form.reset();
-    });
-  </script>
 
 </body>
 </html>
