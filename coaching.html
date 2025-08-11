@@ -136,36 +136,6 @@
   </style>
 </head>
 <body>
-  <script>
-  const form = document.getElementById('coachingForm');
-  const messageDiv = document.getElementById('formMessage');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-    try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        messageDiv.textContent = "Merci pour votre message, nous vous répondrons bientôt !";
-        form.reset();
-      } else {
-        messageDiv.textContent = "Une erreur est survenue, merci de réessayer plus tard.";
-        messageDiv.style.color = 'red';
-      }
-    } catch (error) {
-      messageDiv.textContent = "Une erreur est survenue, merci de vérifier votre connexion.";
-      messageDiv.style.color = 'red';
-    }
-  });
-</script>
 
   <nav>
     <ul class="menu">
@@ -181,19 +151,51 @@
   </header>
 
   <form id="coachingForm" action="https://formspree.io/f/mpwlkere" method="POST">
-  <label for="name">Nom</label>
-  <input type="text" id="name" name="name" placeholder="Ton nom complet" required />
+    <label for="name">Nom</label>
+    <input type="text" id="name" name="name" placeholder="Ton nom complet" required />
 
-  <label for="email">Email</label>
-  <input type="email" id="email" name="email" placeholder="Ton adresse email" required />
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="Ton adresse email" required />
 
-  <label for="message">Message</label>
-  <textarea id="message" name="message" rows="5" placeholder="Ta demande ou question" required></textarea>
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5" placeholder="Ta demande ou question" required></textarea>
 
-  <button type="submit">Envoyer</button>
-</form>
+    <button type="submit">Envoyer</button>
+  </form>
 
-<div id="formMessage" style="margin-top:20px; color: green; font-weight: 600;"></div>
+  <div id="formMessage" style="margin-top:20px; color: green; font-weight: 600;"></div>
+
+  <script>
+    const form = document.getElementById('coachingForm');
+    const messageDiv = document.getElementById('formMessage');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          messageDiv.textContent = "Merci pour votre message, nous vous répondrons bientôt !";
+          messageDiv.style.color = 'green';
+          form.reset();
+        } else {
+          messageDiv.textContent = "Une erreur est survenue, merci de réessayer plus tard.";
+          messageDiv.style.color = 'red';
+        }
+      } catch (error) {
+        messageDiv.textContent = "Une erreur est survenue, merci de vérifier votre connexion.";
+        messageDiv.style.color = 'red';
+      }
+    });
+  </script>
 
 </body>
 </html>
