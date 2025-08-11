@@ -1,97 +1,145 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plateforme d'encouragement biblique</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 15px 0;
-        }
-        nav {
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        section {
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
-        }
-        h1, h2 {
-            text-align: center;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        input, textarea {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            padding: 10px;
-            background: #27ae60;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #2ecc71;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coeur Ouvert</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Nunito&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --blue-main: #2a6ebb;
+      --blue-pastel: #d0e6ff;
+      --gray-medium: #6b7c8a;
+      --gray-light: #f0f4f8;
+      --accent-pastel: #a3c1d1;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--gray-light);
+      color: var(--gray-medium);
+      margin: 0;
+      padding: 30px 20px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Menu */
+    nav {
+      background-color: var(--blue-main);
+      padding: 12px 20px;
+      border-radius: 6px;
+      margin-bottom: 30px;
+      box-shadow: 0 3px 6px rgba(42,110,187,0.3);
+    }
+
+    .menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .menu li a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1em;
+      transition: color 0.3s ease;
+    }
+
+    .menu li a:hover,
+    .menu li a:focus {
+      color: var(--accent-pastel);
+      outline: none;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header h1 {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--blue-main);
+      font-size: 3em;
+      margin: 0 0 10px;
+      letter-spacing: 2px;
+    }
+    header p.slogan {
+      font-style: italic;
+      font-size: 1.2em;
+      color: var(--accent-pastel);
+      margin: 0 0 20px;
+    }
+
+    #daily-verse {
+      font-style: italic;
+      color: var(--blue-main);
+      font-weight: 600;
+      margin-top: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 15px;
+        max-width: 100%;
+      }
+      header h1 {
+        font-size: 2.2em;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header et Menu -->
-    <header>
-        <nav>
-            <a href="#accueil">Accueil</a>
-            <a href="#verset">Verset du jour</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+  <nav>
+    <ul class="menu">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="coaching.html">Coaching Spirituel</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+    </ul>
+  </nav>
 
-    <!-- Accueil -->
-    <section id="accueil">
-        <h1>Plateforme d'encouragement biblique</h1>
-        <p style="text-align:center;">
-            Bienvenue sur notre plateforme. Recevez un encouragement quotidien et contactez-nous pour toute demande de prière ou de soutien.
-        </p>
-    </section>
+  <header>
+    <h1>Coeur Ouvert</h1>
+    <p class="slogan">Espoir, écoute et lumière pour avancer chaque jour.</p>
+    <div id="daily-verse"></div>
+  </header>
 
-    <!-- Verset du jour -->
-    <section id="verset">
-        <h2>Verset du jour</h2>
-        <p style="text-align:center;"><strong>Philippiens 4:13</strong> - Je puis tout par celui qui me fortifie.</p>
-    </section>
+  <script>
+    const versesRefs = [
+      "Psaumes 23:1",
+      "Jean 3:16",
+      "Philippiens 4:13",
+      "Ésaïe 41:10",
+      "Matthieu 11:28",
+      "Romains 8:28",
+      "Proverbes 3:5",
+      "Josué 1:9"
+    ];
 
-    <!-- Formulaire de contact -->
-    <section id="contact">
-        <h2>Contactez-nous</h2>
-        <form action="https://formspree.io/f/mpwlkere?redirect=merci.html" method="POST">
-            <input type="text" name="nom" placeholder="Votre nom" required>
-            <input type="email" name="email" placeholder="Votre email" required>
-            <textarea name="message" placeholder="Votre message" rows="5" required></textarea>
-            <button type="submit">Envoyer</button>
-        </form>
-    </section>
+    const dayIndex = new Date().getDate() % versesRefs.length;
+    const verseRef = versesRefs[dayIndex];
+
+    fetch(`https://bible-api.com/${encodeURIComponent(verseRef)}?translation=segond`)
+      .then(response => response.json())
+      .then(data => {
+        const verseText = data.text.trim();
+        document.getElementById("daily-verse").textContent = `"${verseText}" — ${verseRef}`;
+      })
+      .catch(error => {
+        document.getElementById("daily-verse").textContent = "Impossible de charger le verset du jour.";
+        console.error(error);
+      });
+  </script>
 
 </body>
 </html>
