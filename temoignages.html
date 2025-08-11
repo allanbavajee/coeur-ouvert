@@ -1,44 +1,62 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Témoignages</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Témoignages</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Menu -->
+  <header>
+    <h1>Témoignages</h1>
     <nav>
-        <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="temoignages.html">Témoignages</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
+      <a href="index.html">Accueil</a>
+      <a href="temoignages.html">Témoignages</a>
     </nav>
+  </header>
 
-    <main>
-        <h1>Témoignages inspirants</h1>
-        <p>Partage ton histoire pour encourager d'autres personnes. Tu peux choisir de rester anonyme.</p>
+  <main>
+    <section>
+      <h2>Partager ton témoignage</h2>
 
-        <!-- Formulaire Google Form -->
-        <h2>Partager ton témoignage</h2>
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScAHLKTqSv6bd6hJEZ8hMBsg86k9Ubsii0pvPkP-M35q3AK-Q/viewform?embedded=true"
-                width="640"
-                height="800"
-                frameborder="0"
-                marginheight="0"
-                marginwidth="0">
+      <!-- Google Form intégré -->
+      <iframe 
+        src="https://docs.google.com/forms/d/e/1FAIpQLScAHLKTqSv6bd6hJEZ8hMBsg86k9Ubsii0pvPkP-M35q3AK-Q/viewform?embedded=true" 
+        width="100%" 
+        height="800" 
+        frameborder="0" 
+        marginheight="0" 
+        marginwidth="0">
         Chargement…
-        </iframe>
+      </iframe>
+    </section>
 
-        <!-- Liste des témoignages (Google Sheet) -->
-        <h2>Ce que les autres ont partagé</h2>
-        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTDeQ50_-ucoJK85WFTsM6E6YHHb6Z33smZy2glW_ULmjCU7zeywjC-yX3sr8BRB113CQbR99TC7_I1/pubhtml?widget=true&amp;headers=false"
-                width="100%"
-                height="600">
-        </iframe>
-    </main>
+    <section>
+      <h2>Derniers témoignages</h2>
+      <div id="temoignages-list"></div>
+    </section>
+  </main>
 
+  <footer>
+    <p>&copy; 2025 - Plateforme de Réhabilitation</p>
+  </footer>
+
+  <script>
+    const urlAPI = "https://script.google.com/macros/s/AKfycbw_b37b-xXjbU1eF0z1dUlKuvP0GShmTZAjM_yjYI-RgOnYNu7q9LQ8RzA2BaI2nGuz/exec";
+
+    fetch(urlAPI)
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById("temoignages-list");
+        list.innerHTML = "";
+        data.forEach(item => {
+          const div = document.createElement("div");
+          div.className = "temoignage";
+          div.innerHTML = `<p><strong>${item.nom}</strong> (${item.date})</p><p>${item.message}</p>`;
+          list.appendChild(div);
+        });
+      })
+      .catch(error => console.error("Erreur:", error));
+  </script>
 </body>
 </html>
