@@ -6,7 +6,7 @@
 <title>Coeur Ouvert</title>
 
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Dancing+Script&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Dancing+Script&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 
 <style>
   :root {
@@ -21,7 +21,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
     color: var(--text-color);
     line-height: 1.6;
@@ -62,7 +62,7 @@
     font-family: 'Dancing Script', cursive;
     font-size: 1.3rem;
     color: var(--slogan-color);
-    margin-top: -10px;  /* plus proche du titre */
+    margin-top: -10px;
     margin-bottom: 0;
   }
 
@@ -116,6 +116,10 @@
   }
 
   #daily-verse {
+    max-width: 280px;
+    min-height: 220px;
+    margin: 0 auto 20px;
+    padding: 20px 28px;
     font-style: italic;
     font-weight: 400;
     font-size: 1.28rem;
@@ -128,8 +132,7 @@
     z-index: 1;
     overflow: visible;
     box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    padding: 20px 28px;
-    margin-bottom: 20px;
+    animation: fadeInUp 1.3s ease both;
   }
 
   #daily-verse::before {
@@ -161,61 +164,56 @@
     pointer-events: none;
   }
 
+  #daily-encouragement {
+    max-width: 280px;
+    min-height: 220px;
+    margin: 0 auto 20px;
+    padding: 20px 28px;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.16rem;
+    color: #3a3a3a;
+    background: #fef9e7;
+    border-radius: 12px;
+    font-family: Georgia, serif;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    animation: fadeInUp 1.3s ease both;
+  }
+
   main {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto 56px;
     padding: 0 20px;
+    display: flex;
+    gap: 24px;
+  }
+
+  .content-center {
+    flex: 1 1 58%;
+  }
+
+  .side-sections {
+    flex: 0 0 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 40px; /* un peu plus bas */
   }
 
   .intro {
-    background: var(--gray-light);
+    /* Fond blanc, suppression du gris */
     border-radius: 12px;
     padding: 22px;
     margin-bottom: 30px;
     text-align: center;
     box-shadow: 0 6px 20px rgba(0,0,0,0.03);
     animation: fadeInUp .75s ease both;
+    background: white;
   }
 
-  .intro p { margin-bottom: 12px; color: #222; }
+  .intro p { color: #222; }
   .intro p.lead { font-weight: 600; font-size: 1.05rem; color: #111; }
-
-  .main-flex-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 0 auto 56px;
-    padding: 60px 20px 20px; /* Espace plus grand en haut pour baisser les sections */
-    gap: 20px;
-  }
-
-  .left-section,
-  .right-section {
-    background: var(--gray-light);
-    border-radius: 12px;
-    padding: 20px;
-    width: 280px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-    font-family: Georgia, serif;
-    font-size: 1.1rem;
-    color: #5a2e00;
-    line-height: 1.4;
-    height: auto;
-  }
-
-  .left-section {
-    /* On laisse la hauteur auto pour prendre la hauteur du contenu */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .right-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
 
   .flex-row {
     display: flex;
@@ -223,7 +221,6 @@
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    flex: 1;
   }
 
   .section-block {
@@ -258,10 +255,10 @@
 
   .section-block img {
     width: 100%;
-    max-width: 280px;
+    max-width: 260px;
     border-radius: 10px;
-    object-fit: contain; /* Pour éviter que l'image soit coupée */
-    height: auto;
+    object-fit: cover;
+    height: 160px;
     margin-bottom: 12px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   }
@@ -309,7 +306,7 @@
   }
 
   .btn-secondary:hover {
-    background-color: #5ea45e;
+    background: #5ca95c;
   }
 
   footer {
@@ -320,27 +317,26 @@
   }
 
   /* Responsive tweaks */
-  @media (max-width: 1200px) {
-    .main-flex-container {
+  @media (max-width: 900px) {
+    main {
       flex-direction: column;
-      align-items: center;
-      padding-top: 40px;
+      max-width: 100%;
+      padding: 0 10px;
     }
-    .left-section,
-    .right-section {
-      width: 100%;
-      max-width: 400px;
-      margin-bottom: 30px;
-    }
-    .flex-row {
-      flex: 1 1 100%;
-      max-width: 900px;
-      flex-wrap: wrap;
+    .side-sections {
+      flex-direction: row;
       justify-content: center;
+      margin-top: 20px;
+      gap: 16px;
+      max-width: 100%;
     }
-    .section-block {
-      flex: 1 1 45%;
-      max-width: 400px;
+    .side-sections > div {
+      max-width: 280px;
+      flex: 1 1 auto;
+    }
+    .content-center {
+      flex: none;
+      max-width: 100%;
     }
   }
 
@@ -383,24 +379,19 @@
 
   <!-- Main content -->
   <main>
-
-    <div class="intro" role="region" aria-labelledby="intro-title">
-      <p class="lead"><strong>Tu es une personne de valeur.</strong></p>
-      <p>Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse. <strong>Coeur Ouvert</strong> est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
-      <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière (si tu le souhaites), des paroles d’encouragement et des témoignages réels de transformation.</p>
+    <div class="side-sections" aria-label="Verset et encouragement quotidien">
+      <div id="daily-verse" tabindex="0">Chargement du verset...</div>
+      <div id="daily-encouragement" tabindex="0">Ton encouragement quotidien apparaîtra ici.</div>
     </div>
 
-    <div class="main-flex-container" role="main" aria-label="Contenu principal">
+    <div class="content-center">
+      <div class="intro" role="region" aria-labelledby="intro-title">
+        <p class="lead" id="intro-title"><strong>Tu es une personne de valeur.</strong></p>
+        <p>Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse. <strong>Coeur Ouvert</strong> est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
+        <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière (si tu le souhaites), des paroles d’encouragement et des témoignages réels de transformation.</p>
+      </div>
 
-      <!-- Section verset à gauche -->
-      <aside class="left-section" aria-labelledby="verse-title">
-        <h2 id="verse-title">Verset du jour</h2>
-        <div id="daily-verse">Chargement du verset...</div>
-      </aside>
-
-      <!-- Section centrale avec les images et textes -->
-      <div class="flex-row" aria-live="polite" aria-label="Nos valeurs et mission">
-
+      <div class="flex-row" aria-live="polite">
         <section class="section-block" aria-labelledby="mission-title">
           <h2 id="mission-title">Notre mission</h2>
           <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png" alt="Notre mission" />
@@ -418,23 +409,14 @@
           <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png" alt="Vivre avec gratitude" />
           <p>La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.</p>
         </section>
-
       </div>
 
-      <!-- Section encouragement à droite -->
-      <aside class="right-section" aria-labelledby="encouragement-title">
-        <h2 id="encouragement-title">Encouragement du jour</h2>
-        <p>Chaque jour est une nouvelle chance de renaître, de marcher dans la lumière et d’avancer avec confiance. Que ta foi soit ton guide et ton courage ta force.</p>
-      </aside>
-
+      <!-- Boutons -->
+      <div class="btn-row" role="region" aria-label="Actions">
+        <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
+        <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
+      </div>
     </div>
-
-    <!-- Boutons -->
-    <div class="btn-row" role="region" aria-label="Actions">
-      <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
-      <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
-    </div>
-
   </main>
 
   <footer>
@@ -468,6 +450,15 @@
     });
   </script>
 
+  <!-- Encouragement daily script (placeholder) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Exemple d'encouragement fixe, tu pourras modifier dynamiquement plus tard
+      document.getElementById("daily-encouragement").textContent = 
+        "Reste fort aujourd’hui, Dieu est avec toi dans chaque étape de ta vie.";
+    });
+  </script>
+
   <!-- Fade-in on scroll script -->
   <script>
     function onEntry(entry) {
@@ -480,7 +471,7 @@
 
     let options = { threshold: [0.2] };
     let observer = new IntersectionObserver(onEntry, options);
-    document.querySelectorAll('.section-block').forEach(block => {
+    document.querySelectorAll('.section-block, .btn-row').forEach(block => {
       observer.observe(block);
     });
   </script>
