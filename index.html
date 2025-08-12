@@ -11,13 +11,14 @@
 <style>
   :root {
     --gold-accent: #f5a623;
-    --gold-pale: #f5c742; /* jaune plus vif */
-    --green-pale: #7fbf36; /* vert plus vif */
+    --gold-dark: #c48a18; /* jaune plus foncé */
+    --green-dark: #3b6b11; /* vert foncé */
+    --green-dark-text: #ffffff; /* blanc pour texte vert bouton */
     --blue-main: #2a6ebb;
     --gray-light: #f7f7f7;
     --text-color: #000000;
     --muted: #666666;
-    --slogan-color: #b74242; /* rouge brique vif */
+    --slogan-color: #803333; /* rouge brique foncé */
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,7 +42,6 @@
     gap: 18px;
     flex-wrap: wrap;
     text-align: center;
-    animation: fadeInUp .6s ease both;
   }
 
   header img.logo {
@@ -73,7 +73,6 @@
     max-width: 900px;
     margin: 16px auto 28px;
     padding: 0 20px;
-    animation: fadeInUp .65s ease both;
   }
 
   .menu {
@@ -134,7 +133,6 @@
     z-index: 1;
     overflow: visible;
     box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    animation: fadeInUp .7s ease both;
   }
 
   #daily-verse::before {
@@ -179,7 +177,6 @@
     margin-bottom: 30px;
     text-align: center;
     box-shadow: 0 6px 20px rgba(0,0,0,0.03);
-    animation: fadeInUp .75s ease both;
   }
 
   .intro p { margin-bottom: 12px; color: #222; }
@@ -227,7 +224,7 @@
     width: 100%;
     max-width: 260px;
     border-radius: 10px;
-    object-fit: cover;
+    object-fit: contain; /* correction image coupée */
     height: 160px;
     margin-bottom: 12px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
@@ -248,7 +245,6 @@
     display: flex;
     gap: 18px;
     justify-content: center;
-    animation: fadeInUp .8s ease both;
   }
 
   .btn-primary {
@@ -262,26 +258,26 @@
   }
 
   .btn-yellow {
-    background-color: var(--gold-pale);
-    color: #4a3600;
-    box-shadow: 0 6px 16px rgba(245, 199, 66, 0.6);
+    background-color: var(--gold-dark);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(196, 138, 24, 0.7);
   }
   .btn-yellow:hover,
   .btn-yellow:focus {
-    background-color: #f9d65f;
-    box-shadow: 0 10px 22px rgba(249, 214, 95, 0.9);
+    background-color: #b27f0e;
+    box-shadow: 0 10px 22px rgba(178, 127, 14, 0.9);
     outline: none;
   }
 
   .btn-green {
-    background-color: var(--green-pale);
-    color: #2a4a0a;
-    box-shadow: 0 6px 16px rgba(127, 191, 54, 0.6);
+    background-color: var(--green-dark);
+    color: var(--green-dark-text);
+    box-shadow: 0 6px 16px rgba(59, 107, 17, 0.7);
   }
   .btn-green:hover,
   .btn-green:focus {
-    background-color: #a2d032;
-    box-shadow: 0 10px 22px rgba(162, 208, 50, 0.9);
+    background-color: #2f590e;
+    box-shadow: 0 10px 22px rgba(47, 89, 14, 0.9);
     outline: none;
   }
 
@@ -308,11 +304,6 @@
     }
   }
 
-  /* Simple fadeInUp animation */
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
 </style>
 </head>
 <body>
