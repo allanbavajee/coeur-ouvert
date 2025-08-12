@@ -11,7 +11,7 @@
     --gold-accent: #f5a623;
     --blue-main: #2a6ebb;
     --gray-light: #f7f7f7;
-    --verset-bg: #FFE6CC; /* orange pale */
+    --verset-bg: #FFF9E5; /* jaune très pâle */
     --text-color: #000000;
   }
   * {
@@ -79,6 +79,9 @@
     font-family: Georgia, serif;
     text-align: center;
     box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+
+    /* Dégradé fade à gauche et droite */
+    background-image: linear-gradient(to right, white, var(--verset-bg) 15%, var(--verset-bg) 85%, white);
   }
   main {
     max-width: 900px;
@@ -112,10 +115,10 @@
   .section-block img {
     width: 100%;
     max-width: 260px;
-    height: 160px;
     border-radius: 12px;
-    object-fit: cover;
+    object-fit: contain; /* éviter le crop */
     margin-bottom: 10px;
+    height: auto; /* suppression de la hauteur fixe */
   }
   .section-block p {
     font-weight: 400;
@@ -123,7 +126,7 @@
     color: #222222;
     line-height: 1.5;
     text-align: center;
-    margin-top: auto; /* pousse le texte en bas si possible */
+    margin-top: auto;
   }
   footer {
     text-align: center;
