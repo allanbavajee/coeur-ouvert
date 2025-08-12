@@ -23,12 +23,14 @@
   }
   header {
     max-width: 900px;
-    margin: 40px auto 40px;
+    margin: 40px auto 10px;
     padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 15px;
+    flex-wrap: wrap;
+    text-align: center;
   }
   header img.logo {
     height: 70px;
@@ -40,6 +42,13 @@
     font-size: 3.2rem;
     letter-spacing: 2px;
     color: var(--text-color);
+  }
+  header p.slogan {
+    width: 100%;
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-top: 5px;
+    color: #555;
   }
   nav {
     max-width: 900px;
@@ -71,17 +80,15 @@
     font-style: italic;
     font-weight: 400;
     font-size: 1.4rem;
-    color: #5a2e00; /* marron foncé */
+    color: #5a2e00;
     background-image: linear-gradient(to right, white 15%, #FFDB8C 50%, white 85%);
     border-radius: 12px;
     font-family: Georgia, serif;
     text-align: center;
     position: relative;
     z-index: 1;
-    overflow: visible;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12); /* Ombre douce verticale au centre */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12);
   }
-
   #daily-verse::before {
     content: "";
     position: absolute;
@@ -99,6 +106,17 @@
     max-width: 900px;
     margin: 0 auto;
     padding: 0 20px 60px;
+  }
+  .intro {
+    background: var(--gray-light);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  .intro p {
+    margin-bottom: 15px;
   }
   .flex-row {
     display: flex;
@@ -135,7 +153,7 @@
   .section-block p {
     font-weight: 400;
     font-size: 1rem;
-    color: #222222;
+    color: #222;
     line-height: 1.5;
     text-align: center;
     margin-top: auto;
@@ -143,7 +161,7 @@
   footer {
     text-align: center;
     padding: 20px 0;
-    color: #666666;
+    color: #666;
     font-size: 0.9rem;
   }
   footer a {
@@ -180,9 +198,6 @@
       margin-bottom: 30px;
       max-width: 100%;
     }
-    .section-block img {
-      height: auto;
-    }
   }
 </style>
 </head>
@@ -191,6 +206,7 @@
   <header>
     <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/logo.coeur.ouvert.png" alt="Logo Coeur Ouvert" class="logo" />
     <h1>Coeur Ouvert</h1>
+    <p class="slogan">Un espace pour parler, être écouté, et retrouver l’espoir</p>
   </header>
 
   <nav>
@@ -205,33 +221,30 @@
   <div id="daily-verse">Chargement du verset...</div>
 
   <main>
+    <div class="intro">
+      <p><strong>Tu es une personne de valeur.</strong></p>
+      <p>Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse.</p>
+      <p>Coeur Ouvert est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
+      <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière, les paroles d’encouragement et les témoignages réels de transformation.</p>
+    </div>
+
     <div class="flex-row">
       <section class="section-block">
         <h2>Notre mission</h2>
         <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png" alt="Notre mission" />
-        <p>
-          Coeur Ouvert est une plateforme chrétienne dédiée à l’encouragement spirituel 
-          et au coaching personnalisé. Nous partageons chaque jour la Parole de Dieu pour inspirer,
-          accompagner et fortifier ta foi.
-        </p>
+        <p>Faire découvrir l’amour de Dieu, non pour imposer une religion, mais pour restaurer la relation entre Dieu et l’homme.</p>
       </section>
 
       <section class="section-block">
         <h2>Comme Dieu te voit</h2>
         <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/tigre.jpg" alt="Comme Dieu te voit" />
-        <p>
-          Tu es précieux aux yeux de Dieu, créé avec amour et destiné à accomplir de grandes choses. 
-          Ne doute jamais de ta valeur, car elle est infinie et inaltérable.
-        </p>
+        <p>Tu es précieux aux yeux de Dieu, créé avec amour et destiné à accomplir de grandes choses. Ne doute jamais de ta valeur.</p>
       </section>
 
       <section class="section-block">
         <h2>Vivre avec gratitude</h2>
         <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png" alt="Vivre avec gratitude" />
-        <p>
-          La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. 
-          Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.
-        </p>
+        <p>La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix.</p>
       </section>
     </div>
   </main>
@@ -244,16 +257,12 @@
     document.addEventListener("DOMContentLoaded", function () {
       fetch("verses.json")
         .then(response => {
-          if (!response.ok) {
-            throw new Error("Erreur lors du chargement du fichier JSON");
-          }
+          if (!response.ok) throw new Error("Erreur lors du chargement du fichier JSON");
           return response.json();
         })
         .then(data => {
           let today = new Date();
-          let dayOfYear = Math.floor(
-            (today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24
-          );
+          let dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
           let verseIndex = dayOfYear % data.length;
           document.getElementById("daily-verse").textContent =
             data[verseIndex].reference + " - " + data[verseIndex].texte;
