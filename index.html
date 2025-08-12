@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Coeur Ouvert</title>
 
-<!-- Fonts (conservés) -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Dancing+Script&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
 
 <style>
   :root {
@@ -15,9 +15,9 @@
     --gray-light: #f7f7f7;
     --text-color: #000000;
     --muted: #666666;
+    --slogan-color: #b35d5d;
   }
 
-  /* Reset léger */
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
@@ -29,7 +29,6 @@
     -moz-osx-font-smoothing:grayscale;
   }
 
-  /* Header (logo + titre + slogan) */
   header {
     max-width: 900px;
     margin: 36px auto 8px;
@@ -44,29 +43,29 @@
   }
 
   header img.logo {
-    height: 80px;               /* un peu plus grand */
+    height: 80px;
     width: auto;
     flex-shrink: 0;
   }
 
   header h1 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 3rem;
-    letter-spacing: 1px;
+    font-size: 3.8rem;
+    letter-spacing: 1.5px;
     color: var(--text-color);
     line-height: 1;
   }
 
   header p.slogan {
     width: 100%;
-    font-size: 1.05rem;
-    font-style: italic;
-    margin-top: 6px;
-    color: var(--muted);
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    color: var(--slogan-color);
+    margin-top: -10px;  /* plus proche du titre */
+    margin-bottom: 0;
   }
 
-  /* Menu */
   nav {
     max-width: 900px;
     margin: 16px auto 28px;
@@ -92,7 +91,6 @@
     transition: color .22s ease;
   }
 
-  /* subtle underline animation */
   .menu li a::after {
     content: "";
     height: 2px;
@@ -111,12 +109,12 @@
     color: var(--gold-accent);
     outline: none;
   }
+
   .menu li a:hover::after,
   .menu li a:focus::after {
     width: 60%;
   }
 
-  /* Verset du jour — fond central orange pâle fondant sur les côtés + ombre centrée */
   #daily-verse {
     max-width: 900px;
     margin: 0 auto 42px;
@@ -124,20 +122,18 @@
     font-style: italic;
     font-weight: 400;
     font-size: 1.28rem;
-    color: #5a2e00; /* marron foncé */
-    background-image: linear-gradient(to right, white 14%, #FFECB9 50%, white 86%); /* orange très pâle */
+    color: #5a2e00;
+    background-image: linear-gradient(to right, white 14%, #FFECB9 50%, white 86%);
     border-radius: 12px;
     font-family: Georgia, serif;
     text-align: center;
     position: relative;
     z-index: 1;
     overflow: visible;
-    /* very subtle outer lift so the pseudo shadow shows clearly */
     box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     animation: fadeInUp .7s ease both;
   }
 
-  /* warm radial highlight at center (soft) */
   #daily-verse::before {
     content: "";
     position: absolute;
@@ -152,7 +148,6 @@
     pointer-events: none;
   }
 
-  /* narrow centered shadow "floating" under the banner */
   #daily-verse::after {
     content: "";
     position: absolute;
@@ -168,7 +163,6 @@
     pointer-events: none;
   }
 
-  /* Main & intro */
   main {
     max-width: 900px;
     margin: 0 auto 56px;
@@ -188,15 +182,74 @@
   .intro p { margin-bottom: 12px; color: #222; }
   .intro p.lead { font-weight: 600; font-size: 1.05rem; color: #111; }
 
-  .cta-row {
-    margin-top: 12px;
-    display:flex;
-    justify-content:center;
-    gap:12px;
+  .flex-row {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .section-block {
+    background: var(--gray-light);
+    border-radius: 14px;
+    padding: 14px;
+    flex: 1 1 30%;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 220px;
+    transition: transform .22s ease, box-shadow .22s ease, opacity 1s ease;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  /* Fade-in animation trigger class */
+  .section-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section-block h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.35rem;
+    margin-bottom: 10px;
+    text-align: center;
+    color: var(--text-color);
+  }
+
+  .section-block img {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 10px;
+    object-fit: cover;
+    height: 160px;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  }
+
+  .section-block p {
+    font-size: 0.995rem;
+    color: #222;
+    text-align: center;
+    margin-top: auto;
+  }
+
+  /* Boutons sous la mission */
+  .btn-row {
+    max-width: 900px;
+    margin: 20px auto 56px;
+    padding: 0 20px;
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    animation: fadeInUp .8s ease both;
   }
 
   .btn-primary {
-    display:inline-block;
+    display: inline-block;
     background-color: var(--gold-accent);
     color: white;
     font-weight: 700;
@@ -206,93 +259,50 @@
     transition: transform .18s ease, box-shadow .18s ease;
     box-shadow: 0 6px 16px rgba(245,166,35,0.25);
   }
+
   .btn-primary:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 22px rgba(245,166,35,0.32);
   }
 
-  /* three image blocks */
-  .flex-row {
-    display:flex;
-    gap:20px;
-    justify-content:space-between;
-    align-items:flex-start;
-    flex-wrap:wrap;
-  }
-
-  .section-block {
-    background: var(--gray-light);
-    border-radius: 14px;
-    padding: 14px;
-    flex: 1 1 30%;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    min-width:220px;
-    transition: transform .22s ease, box-shadow .22s ease;
-    animation: fadeInUp .85s ease both;
-  }
-
-  .section-block:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.07);
-  }
-
-  .section-block h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight:700;
-    font-size:1.35rem;
-    margin-bottom:10px;
-    text-align:center;
-    color: var(--text-color);
-  }
-
-  .section-block img {
-    width:100%;
-    max-width:260px;
-    border-radius:10px;
-    object-fit:cover; /* try cover so cards look visually strong */
-    height:160px;
-    margin-bottom:12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-  }
-
-  .section-block p {
-    font-size:0.995rem;
-    color:#222;
-    text-align:center;
-    margin-top:auto;
+  .btn-secondary {
+    background: #6fbf6f;
+    box-shadow: 0 6px 16px rgba(111,191,111,0.22);
   }
 
   footer {
-    text-align:center;
-    padding:26px 16px;
-    color:var(--muted);
-    font-size:0.92rem;
+    text-align: center;
+    padding: 26px 16px;
+    color: var(--muted);
+    font-size: 0.92rem;
   }
 
-  /* responsive tweaks */
+  /* Responsive tweaks */
   @media (max-width: 900px) {
     .section-block { flex: 1 1 45%; }
   }
+
   @media (max-width: 640px) {
     header h1 { font-size: 2.2rem; }
     header img.logo { height: 72px; }
     .section-block { flex: 1 1 100%; max-width: 100%; }
     .section-block img { height: auto; object-fit: contain; }
+    .btn-row {
+      flex-direction: column;
+      gap: 12px;
+    }
   }
 
-  /* simple animations */
+  /* Simple fadeInUp animation */
   @keyframes fadeInUp {
-    from { opacity:0; transform: translateY(10px); }
-    to   { opacity:1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>
 </head>
 <body>
 
-  <!-- Header (logo + title + slogan) -->
+  <!-- Header -->
   <header>
     <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/logo.coeur.ouvert.png" alt="Logo Coeur Ouvert" class="logo" />
     <h1>Coeur Ouvert</h1>
@@ -318,11 +328,6 @@
       <p class="lead"><strong>Tu es une personne de valeur.</strong></p>
       <p>Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse. <strong>Coeur Ouvert</strong> est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
       <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière (si tu le souhaites), des paroles d’encouragement et des témoignages réels de transformation.</p>
-
-      <div class="cta-row">
-        <a class="btn-primary" href="coaching.html" aria-label="Demander un coaching spirituel">Parler à un conseiller</a>
-        <a class="btn-primary" href="temoignages.html" style="background:#6fbf6f; box-shadow: 0 6px 16px rgba(111,191,111,0.22);">Lire des témoignages</a>
-      </div>
     </div>
 
     <div class="flex-row" aria-live="polite">
@@ -341,8 +346,14 @@
       <section class="section-block" aria-labelledby="gratitude-title">
         <h2 id="gratitude-title">Vivre avec gratitude</h2>
         <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png" alt="Vivre avec gratitude" />
-        <p>La gratitude transforme notre regard sur la vie : elle ouvre le cœur à la joie, à la paix et à la reconnaissance quotidienne.</p>
+        <p>La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.</p>
       </section>
+    </div>
+
+    <!-- Boutons -->
+    <div class="btn-row" role="region" aria-label="Actions">
+      <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
+      <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
     </div>
   </main>
 
@@ -350,26 +361,47 @@
     &copy; 2025 Coeur Ouvert — <a href="contact.html">Contact</a>
   </footer>
 
-  <!-- Verset script (inchangé, fonctionne avec verses.json côté serveur) -->
+  <!-- Verset script -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       fetch("verses.json")
         .then(response => {
-          if (!response.ok) throw new Error("Erreur lors du chargement du fichier JSON");
+          if (!response.ok) {
+            throw new Error("Erreur lors du chargement du fichier JSON");
+          }
           return response.json();
         })
         .then(data => {
-          const today = new Date();
-          const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
-          const verseIndex = dayOfYear % data.length;
+          let today = new Date();
+          let dayOfYear = Math.floor(
+            (today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24
+          );
+          let verseIndex = dayOfYear % data.length;
           document.getElementById("daily-verse").textContent =
-            data[verseIndex].reference + " — " + data[verseIndex].texte;
+            data[verseIndex].reference + " - " + data[verseIndex].texte;
         })
         .catch(error => {
           console.error(error);
           document.getElementById("daily-verse").textContent =
             "Impossible de charger le verset du jour.";
         });
+    });
+  </script>
+
+  <!-- Fade-in on scroll script -->
+  <script>
+    function onEntry(entry) {
+      entry.forEach(change => {
+        if (change.isIntersecting) {
+          change.target.classList.add('visible');
+        }
+      });
+    }
+
+    let options = { threshold: [0.2] };
+    let observer = new IntersectionObserver(onEntry, options);
+    document.querySelectorAll('.section-block').forEach(block => {
+      observer.observe(block);
     });
   </script>
 
