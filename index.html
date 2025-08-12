@@ -4,43 +4,42 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Coeur Ouvert</title>
-<!-- Google Fonts : Poppins -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+<!-- Google Fonts : Montserrat pour titre, Open Sans pour texte -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
 <style>
   :root {
     --gold-accent: #f5a623;
+    --blue-main: #2a6ebb;
     --gray-light: #f7f7f7;
+    --verset-bg: #e6f0ff;
+    --text-color: #000000;
   }
   * {
     margin: 0; padding: 0; box-sizing: border-box;
   }
   body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     background: white;
-    color: #000000;
+    color: var(--text-color);
     line-height: 1.6;
   }
   header {
     max-width: 900px;
-    margin: 20px auto 30px;
+    margin: 20px auto 40px;
     padding: 0 20px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 20px;
   }
   header img.logo {
     height: 60px;
-    margin-bottom: 10px;
   }
   header h1 {
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 3rem;
     letter-spacing: 2px;
-    margin-bottom: 5px;
-  }
-  header p.slogan {
-    font-style: italic;
-    font-weight: 400;
-    font-size: 1.2rem;
-    color: #444444;
+    color: var(--text-color);
   }
   nav {
     max-width: 900px;
@@ -54,8 +53,8 @@
     gap: 40px;
   }
   .menu li a {
-    color: #000000;
-    font-weight: 700;
+    color: var(--text-color);
+    font-weight: 600;
     font-size: 1.1em;
     text-decoration: none;
     transition: color 0.3s ease;
@@ -68,47 +67,60 @@
   #daily-verse {
     max-width: 900px;
     margin: 0 auto 50px;
-    padding: 10px 20px;
+    padding: 15px 25px;
     font-style: italic;
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: #000000;
-    border-left: 4px solid #2a6ebb;
-    background: #f9f9f9;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: var(--blue-main);
+    background-color: var(--verset-bg);
+    border-left: 6px solid var(--blue-main);
+    border-radius: 8px;
+    font-family: 'Open Sans', sans-serif;
   }
   main {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 20px 60px;
   }
+  .flex-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
   .section-block {
     background: var(--gray-light);
     border-radius: 15px;
-    padding: 30px 20px;
-    margin-bottom: 40px;
+    padding: 20px;
+    flex: 1 1 28%;
     text-align: center;
     box-shadow: 0 6px 15px rgb(0 0 0 / 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .section-block img {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.08);
+    object-fit: cover;
   }
   .section-block h2 {
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 2.3rem;
-    margin-bottom: 20px;
-    color: #000000;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
   }
   .section-block p {
     font-weight: 400;
-    font-size: 1.15rem;
+    font-size: 1rem;
     color: #222222;
-    max-width: 650px;
-    margin: 0 auto 25px;
-    line-height: 1.7;
-  }
-  .section-block img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    box-shadow: 0 8px 20px rgb(0 0 0 / 0.08);
+    line-height: 1.6;
+    flex-grow: 1;
   }
   .btn-primary {
     display: inline-block;
@@ -121,6 +133,7 @@
     text-decoration: none;
     box-shadow: 0 6px 15px rgba(245,166,35,0.6);
     transition: background-color 0.3s ease;
+    margin-top: 25px;
   }
   .btn-primary:hover {
     background-color: #d18b1f;
@@ -132,32 +145,38 @@
     font-size: 0.9rem;
   }
   footer a {
-    color: #2a6ebb;
+    color: var(--blue-main);
     text-decoration: none;
   }
   footer a:hover {
     text-decoration: underline;
   }
-  @media (max-width: 480px) {
+  @media (max-width: 900px) {
+    .section-block {
+      flex: 1 1 45%;
+      margin-bottom: 30px;
+    }
+  }
+  @media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      gap: 10px;
+    }
     header h1 {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
     }
-    header p.slogan {
-      font-size: 1rem;
+    nav {
+      padding: 0 10px;
     }
-    main {
-      padding: 0 15px 40px;
+    .menu {
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    .section-block h2 {
-      font-size: 1.8rem;
-    }
-    .section-block p {
-      font-size: 1rem;
+    .section-block {
+      flex: 1 1 100%;
+      margin-bottom: 30px;
       max-width: 100%;
-    }
-    .btn-primary {
-      font-size: 1rem;
-      padding: 12px 30px;
     }
   }
 </style>
@@ -167,79 +186,10 @@
   <header>
     <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/logo.coeur.ouvert.png" alt="Logo Coeur Ouvert" class="logo" />
     <h1>Coeur Ouvert</h1>
-    <p class="slogan">Espoir, écoute et lumière pour avancer chaque jour.</p>
   </header>
 
   <nav>
     <ul class="menu">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="coaching.html">Coaching Spirituel</a></li>
-      <li><a href="ressources.html">Ressources</a></li>
-      <li><a href="temoignages.html">Témoignages</a></li>
-    </ul>
-  </nav>
-
-  <div id="daily-verse">Chargement du verset...</div>
-
-  <main>
-    <section class="section-block">
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Notre mission" />
-      <h2>Notre mission</h2>
-      <p>
-        Coeur Ouvert est une plateforme chrétienne dédiée à l’encouragement spirituel 
-        et au coaching personnalisé. Nous partageons chaque jour la Parole de Dieu pour inspirer,
-        accompagner et fortifier ta foi.
-      </p>
-    </section>
-
-    <section class="section-block">
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Comme Dieu te voit" />
-      <h2>Comme Dieu te voit</h2>
-      <p>
-        Tu es précieux aux yeux de Dieu, créé avec amour et destiné à accomplir de grandes choses. 
-        Ne doute jamais de ta valeur, car elle est infinie et inaltérable.
-      </p>
-    </section>
-
-    <section class="section-block">
-      <img src="https://images.unsplash.com/photo-1465311443244-3f4ef331f62a?auto=format&fit=crop&w=800&q=80" alt="Vivre avec gratitude" />
-      <h2>Vivre avec gratitude</h2>
-      <p>
-        La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. 
-        Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.
-      </p>
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2025 Coeur Ouvert — <a href="contact.html">Contact</a>
-  </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      fetch("verses.json")
-        .then(response => {
-          if (!response.ok) {
-            throw new Error("Erreur lors du chargement du fichier JSON");
-          }
-          return response.json();
-        })
-        .then(data => {
-          let today = new Date();
-          let dayOfYear = Math.floor(
-            (today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24
-          );
-          let verseIndex = dayOfYear % data.length;
-          document.getElementById("daily-verse").textContent =
-            data[verseIndex].reference + " - " + data[verseIndex].texte;
-        })
-        .catch(error => {
-          console.error(error);
-          document.getElementById("daily-verse").textContent =
-            "Impossible de charger le verset du jour.";
-        });
-    });
-  </script>
-
-</body>
-</html>
+      <li><a href="ressources.html">Ressources</a></
