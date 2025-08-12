@@ -1,150 +1,277 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Témoignages</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Témoignages - Coeur Ouvert</title>
 
-        header {
-            background: #2c3e50;
-            color: #fff;
-            padding: 10px 0;
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Nunito&display=swap" rel="stylesheet" />
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            margin: 0;
-        }
+  <style>
+    :root {
+      --blue-main: #2a6ebb;
+      --blue-pastel: #d0e6ff;
+      --gray-medium: #6b7c8a;
+      --gray-light: #f0f4f8;
+      --accent-pastel: #a3c1d1;
+    }
 
-        nav ul li {
-            margin: 0 15px;
-        }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--gray-light);
+      color: var(--gray-medium);
+      margin: 0;
+      padding: 30px 20px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    /* Menu */
+    nav {
+      background-color: var(--blue-main);
+      padding: 12px 20px;
+      border-radius: 6px;
+      margin-bottom: 30px;
+      box-shadow: 0 3px 6px rgba(42,110,187,0.3);
+    }
+    .menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+    .menu li a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.05em;
+    }
 
-        nav ul li a.active {
-            text-decoration: underline;
-        }
+    header h1 {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--blue-main);
+      font-size: 2.4em;
+      text-align: center;
+      margin: 8px 0 6px;
+    }
+    .slogan {
+      text-align: center;
+      font-style: italic;
+      color: var(--accent-pastel);
+      margin-bottom: 28px;
+    }
 
-        main {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-        }
+    /* Témoignages */
+    #temoignages-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+    .temoignage {
+      background: white;
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      color: var(--gray-medium);
+    }
+    .temoignage blockquote {
+      margin: 0;
+      font-style: italic;
+      color: #2f4f6f;
+    }
+    .temoignage .meta {
+      text-align: right;
+      margin-top: 12px;
+      font-weight: 700;
+      color: var(--blue-main);
+      font-style: italic;
+    }
 
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-        }
+    /* Formulaire */
+    .form-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+      margin-bottom: 30px;
+    }
+    label { display:block; margin-bottom:6px; color:var(--blue-main); font-weight:700; }
+    input[type="text"], input[type="email"], textarea {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      border: 1px solid var(--gray-medium);
+      border-radius: 6px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+    }
+    .small {
+      font-size: 0.9rem;
+      color: #7a8a95;
+    }
+    .row { display:flex; gap:12px; align-items:center; margin-bottom:12px; }
+    .row input[type="checkbox"]{ width:auto; }
 
-        p {
-            text-align: center;
-            color: #555;
-        }
+    button[type="submit"]{
+      background-color: var(--blue-main);
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+    }
+    button[type="submit"]:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        form {
-            margin-top: 20px;
-        }
+    #form-message { display:none; text-align:center; margin-top:12px; font-weight:700; color:green; }
 
-        label {
-            display: block;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        textarea,
-        input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-
-        button {
-            display: block;
-            margin: 20px auto;
-            background: #27ae60;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #219150;
-        }
-
-        footer {
-            text-align: center;
-            padding: 15px;
-            background: #2c3e50;
-            color: white;
-            margin-top: 40px;
-        }
-    </style>
+    /* Responsive */
+    @media (min-width:700px){
+      #temoignages-list { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="coaching.html">Coaching Spirituel</a></li>
-            <li><a href="ressources.html">Ressources</a></li>
-            <li><a href="temoignages.html">Témoignages</a></li>
-        </ul>
-    </nav>
-</header>
+  <nav>
+    <ul class="menu">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="coaching.html">Coaching Spirituel</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="temoignages.html">Témoignages</a></li>
+      <li><a href="formulaire-temoignage.html">Témoigner</a></li>
+    </ul>
+  </nav>
 
-<main>
-    <h1>Partagez votre témoignage</h1>
-    <p>Remplissez le formulaire ci-dessous pour partager votre expérience.  
-       Vous pouvez aussi joindre un fichier audio, vidéo ou image.</p>
+  <header>
+    <h1>Témoignages</h1>
+    <p class="slogan">Partage ton expérience — ton histoire peut encourager quelqu’un.</p>
+  </header>
 
-    <form action=https://formspree.io/f/mpwlkere" method="POST" enctype="multipart/form-data">
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required>
+  <!-- Liste des témoignages (chargée depuis temoignages.json) -->
+  <section id="temoignages-list">
+    <p>Chargement des témoignages...</p>
+  </section>
 
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email" required>
+  <!-- Formulaire sur la plateforme (envoi via Formspree) -->
+  <section class="form-card" aria-labelledby="form-title">
+    <h2 id="form-title">Partager ton témoignage</h2>
+    <p class="small">Tu peux rester anonyme — ton témoignage sera examiné avant publication.</p>
 
-        <label for="message">Votre témoignage :</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
+    <form id="temoignage-form" action="https://formspree.io/f/mpwlkere" method="POST">
+      <label for="name">Prénom (optionnel)</label>
+      <input type="text" id="name" name="name" placeholder="Ton prénom ou laisse vide pour rester anonyme">
 
-        <label for="fichier">Fichier audio / vidéo / image (max 5 Mo) :</label>
-        <input type="file" id="fichier" name="fichier" accept=".mp3,.mp4,.wav,.jpg,.jpeg,.png">
+      <div class="row">
+        <input type="checkbox" id="anonymous" name="anonymous" />
+        <label for="anonymous" class="small">Cocher pour rester anonyme publiquement</label>
+      </div>
 
-        <button type="submit">Envoyer</button>
+      <label for="message">Ton témoignage *</label>
+      <textarea id="message" name="message" rows="6" required placeholder="Raconte brièvement ce que tu veux partager..."></textarea>
+
+      <div class="row">
+        <input type="email" id="email" name="email" placeholder="(optionnel) ton email si tu souhaites être contacté" />
+      </div>
+
+      <button type="submit" id="submit-btn">Envoyer</button>
+
+      <p id="form-message">Merci — ton témoignage a bien été envoyé. Nous le publierons après vérification.</p>
     </form>
-</main>
+  </section>
 
-<footer>
-    <p>&copy; 2025 MonSite - Tous droits réservés</p>
-</footer>
+  <script>
+    // --- Chargement des témoignages depuis temoignages.json (visuels manuels) ---
+    async function loadTemoignages(){
+      try{
+        const r = await fetch('temoignages.json');
+        if(!r.ok) throw new Error('temoignages.json introuvable');
+        const data = await r.json();
+        const container = document.getElementById('temoignages-list');
+        container.innerHTML = '';
+        if(!data.length){
+          container.innerHTML = '<p>Aucun témoignage publié pour le moment.</p>';
+          return;
+        }
+        data.forEach(item => {
+          const el = document.createElement('article');
+          el.className = 'temoignage';
+          el.innerHTML = `
+            <blockquote>${escapeHtml(item.text)}</blockquote>
+            <div class="meta">
+              ${escapeHtml(item.name || 'Anonyme')} ${item.date ? (' • ' + escapeHtml(item.date)) : ''}
+            </div>
+          `;
+          container.appendChild(el);
+        });
+      } catch(err){
+        document.getElementById('temoignages-list').textContent = 'Impossible de charger les témoignages.';
+        console.error(err);
+      }
+    }
 
+    // petite fonction d'échappement pour sécurité quand on ajoute du HTML
+    function escapeHtml(str){
+      if(!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    loadTemoignages();
+
+    // --- Gestion du formulaire (envoi via Formspree) ---
+    const form = document.getElementById('temoignage-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const messageP = document.getElementById('form-message');
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+
+      // si anonyme coché, forcer le prénom à "Anonyme" (pour l'email)
+      const anonymous = document.getElementById('anonymous').checked;
+      const nameInput = document.getElementById('name');
+      if(anonymous){
+        nameInput.value = 'Anonyme';
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Envoi en cours...';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          messageP.style.display = 'block';
+          form.reset();
+        } else {
+          const error = await response.json().catch(()=>null);
+          alert('Erreur lors de l\'envoi. Réessaie plus tard.');
+          console.error('Formspree response error', error);
+        }
+      } catch (err){
+        alert('Erreur réseau. Vérifie ta connexion.');
+        console.error(err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Envoyer';
+      }
+    });
+
+  </script>
 </body>
 </html>
