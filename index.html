@@ -15,7 +15,8 @@
     --gray-light: #f7f7f7;
     --text-color: #000000;
     --muted: #666666;
-    --slogan-color: #ff0000; /* rouge vif */
+    --slogan-color: #ff0000; /* slogan rouge */
+    --lead-color: #2a6ebb;   /* couleur pour "Tu es..." (frappante) */
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,6 +26,8 @@
     background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
     color: var(--text-color);
     line-height: 1.6;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
   }
 
   header {
@@ -37,11 +40,13 @@
     gap: 18px;
     flex-wrap: wrap;
     text-align: center;
+    animation: fadeInUp .6s ease both;
   }
 
   header img.logo {
     height: 80px;
     width: auto;
+    flex-shrink: 0;
   }
 
   header h1 {
@@ -50,83 +55,358 @@
     font-size: 3.8rem;
     letter-spacing: 1.5px;
     color: var(--text-color);
+    line-height: 1;
   }
 
+  /* Slogan en rouge */
   header p.slogan {
     width: 100%;
     font-family: 'Dancing Script', cursive;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--slogan-color);
-    margin-top: -10px;
+    margin-top: -10px;  /* plus proche du titre */
+    margin-bottom: 0;
   }
 
-  /* Bloc valeur */
+  nav {
+    max-width: 900px;
+    margin: 16px auto 28px;
+    padding: 0 20px;
+    animation: fadeInUp .65s ease both;
+  }
+
+  .menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .menu li a {
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-decoration: none;
+    padding: 6px 4px;
+    position: relative;
+    transition: color .22s ease;
+  }
+
+  .menu li a::after {
+    content: "";
+    height: 2px;
+    width: 0;
+    background: var(--gold-accent);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -6px;
+    transition: width .22s ease;
+    border-radius: 2px;
+  }
+
+  .menu li a:hover,
+  .menu li a:focus {
+    color: var(--gold-accent);
+    outline: none;
+  }
+
+  .menu li a:hover::after,
+  .menu li a:focus::after {
+    width: 60%;
+  }
+
+  /* Verset global (sera utilisé à l'intérieur du left-section) */
+  #daily-verse {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.28rem;
+    color: #5a2e00;
+    background-image: linear-gradient(to right, white 14%, #FFECB9 50%, white 86%);
+    border-radius: 12px;
+    font-family: Georgia, serif;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    padding: 20px 28px;
+    margin-bottom: 20px;
+  }
+
+  #daily-verse::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64%;
+    height: 76%;
+    border-radius: 12px;
+    background: radial-gradient(circle, rgba(255,222,146,0.45) 0%, transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  #daily-verse::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 58%;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.12);
+    filter: blur(8px);
+    z-index: -2;
+    pointer-events: none;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto 56px;
+    padding: 0 20px;
+  }
+
+  /* Intro : fond blanc (on a retiré le gris) */
+  .intro {
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+    animation: fadeInUp .75s ease both;
+    background: white;
+  }
+
+  /* "Tu es..." en Playfair Display pour marquer l'attention */
   .intro p.lead {
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: #c62828;
     font-family: 'Playfair Display', serif;
-    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2rem;            /* plus grand */
+    color: var(--lead-color);   /* couleur frappante */
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
   }
 
-  /* Sections latérales fixées */
+  .intro p { margin-bottom: 12px; color: #222; }
+  .intro p.lead-small { font-weight: 600; font-size: 1.05rem; color: #111; }
+
+  /* Container horizontal principal (gauche - centre - droite) */
+  .main-flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto 56px;
+    padding: 60px 20px 20px; /* plus bas comme demandé précédemment */
+    gap: 20px;
+  }
+
+  /* Carrés latéraux : plus longs et "fixes" (sticky) */
   .left-section,
   .right-section {
     background: var(--gray-light);
     border-radius: 12px;
-    padding: 20px;
-    width: 280px;
-    min-height: 500px;
+    padding: 18px;
+    width: 300px;               /* un peu plus large */
+    min-height: 560px;          /* un peu plus long */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    font-family: Georgia, serif;
+    font-size: 1.05rem;
+    color: #5a2e00;
+    line-height: 1.4;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-    text-align: center;
-    position: relative;
+    position: sticky;           /* reste visible en scroll */
+    top: 24px;
     overflow: hidden;
   }
 
-  /* Verset centré */
-  #daily-verse {
-    flex: 1;
+  /* Centrer le verset à l'intérieur du carré (vertical + horizontal) */
+  .left-section #daily-verse {
+    margin: 0;                  /* override du margin-bottom global */
+    flex: 1;                    /* prend l'espace disponible */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    font-style: italic;
-    font-size: 1.2rem;
+    text-align: center;
+    padding: 18px;
+    background-image: linear-gradient(to right, white 14%, #FFECB9 50%, white 86%);
+    border-radius: 10px;
   }
 
-  /* Image en bas avec dégradé vers le haut */
+  /* Image en bas du carré avec dégradé vers le haut */
   .side-image {
-    position: relative;
-    height: 180px;
+    height: 200px;
+    width: 100%;
     background-size: cover;
     background-position: center;
-    border-radius: 0 0 12px 12px;
+    border-radius: 10px;
+    margin-top: 12px;
+    position: relative;
     overflow: hidden;
+    flex-shrink: 0;
   }
 
-  .side-image::before {
+  .side-image::after {
+    /* dégradé du bas vers le haut (plus foncé en bas) */
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+    left: 0; right: 0; bottom: 0;
+    height: 70%;
+    background: linear-gradient(to top, rgba(0,0,0,0.35), rgba(255,255,255,0));
+    pointer-events: none;
   }
 
+  /* Flex central (3 blocs) */
+  .flex-row {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .section-block {
+    background: var(--gray-light);
+    border-radius: 14px;
+    padding: 14px;
+    flex: 1 1 30%;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 220px;
+    transition: transform .22s ease, box-shadow .22s ease, opacity 1s ease;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  /* Fade-in trigger */
+  .section-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section-block h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.35rem;
+    margin-bottom: 10px;
+    text-align: center;
+    color: var(--text-color);
+  }
+
+  .section-block img {
+    width: 100%;
+    max-width: 320px; /* un peu plus grand */
+    border-radius: 10px;
+    object-fit: contain; /* pas coupé */
+    height: auto;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  }
+
+  .section-block p {
+    font-size: 0.995rem;
+    color: #222;
+    text-align: center;
+    margin-top: auto;
+  }
+
+  /* Boutons */
+  .btn-row {
+    max-width: 900px;
+    margin: 20px auto 56px;
+    padding: 0 20px;
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    animation: fadeInUp .8s ease both;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background-color: var(--gold-accent);
+    color: white;
+    font-weight: 400;
+    padding: 12px 28px;
+    border-radius: 28px;
+    text-decoration: none;
+    transition: transform .18s ease, box-shadow .18s ease;
+    box-shadow: 0 6px 16px rgba(245,166,35,0.25);
+  }
+
+  .btn-secondary {
+    background: #6fbf6f;
+    box-shadow: 0 6px 16px rgba(111,191,111,0.22);
+    color: white;
+    font-weight: 400;
+  }
+
+  footer {
+    text-align: center;
+    padding: 26px 16px;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 1200px) {
+    .main-flex-container {
+      flex-direction: column;
+      align-items: center;
+      padding-top: 40px;
+    }
+    .left-section,
+    .right-section {
+      width: 100%;
+      max-width: 420px;
+      min-height: auto;
+      position: relative; /* sticky désactivé sur petits écrans */
+      top: auto;
+    }
+    .flex-row {
+      flex: 1 1 100%;
+      max-width: 900px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .section-block {
+      flex: 1 1 45%;
+      max-width: 400px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    header h1 { font-size: 2.2rem; }
+    header img.logo { height: 72px; }
+    .section-block { flex: 1 1 100%; max-width: 100%; }
+    .section-block img { height: auto; object-fit: contain; }
+    .btn-row { flex-direction: column; gap: 12px; }
+  }
+
+  /* Simple fadeInUp animation */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>
 </head>
 <body>
 
+  <!-- Header -->
   <header>
     <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/logo.coeur.ouvert.png" alt="Logo Coeur Ouvert" class="logo" />
     <h1>Coeur Ouvert</h1>
     <p class="slogan">Un espace pour parler, être écouté, et retrouver l’espoir</p>
   </header>
 
+  <!-- Menu -->
   <nav>
     <ul class="menu">
       <li><a href="index.html">Accueil</a></li>
@@ -136,30 +416,118 @@
     </ul>
   </nav>
 
+  <!-- Main content -->
   <main>
-    <div class="intro">
-      <p class="lead">Tu as de la valeur</p>
+
+    <div class="intro" role="region" aria-labelledby="intro-title">
+      <p class="lead"><strong>Tu es une personne de valeur.</strong></p>
       <p>Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse. <strong>Coeur Ouvert</strong> est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
+      <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière (si tu le souhaites), des paroles d’encouragement et des témoignages réels de transformation.</p>
     </div>
 
-    <div class="main-flex-container">
-      <aside class="left-section">
-        <h2>Verset du jour</h2>
+    <div class="main-flex-container" role="main" aria-label="Contenu principal">
+
+      <!-- Section verset à gauche (sticky) -->
+      <aside class="left-section" aria-labelledby="verse-title">
+        <h2 id="verse-title">Verset du jour</h2>
+        <!-- Le verset est centré verticalement grâce aux styles ci-dessus -->
         <div id="daily-verse">Chargement du verset...</div>
-        <div class="side-image" style="background-image:url('https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/verset.jpg');"></div>
+
+        <!-- image en bas du carré (dégradé vers le haut). Remplace l'URL si tu veux autre image -->
+        <div class="side-image" style="background-image:url('https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png');"></div>
       </aside>
 
-      <div class="flex-row">
-        <!-- Tes sections centrales restent inchangées -->
+      <!-- Section centrale avec les images et textes -->
+      <div class="flex-row" aria-live="polite" aria-label="Nos valeurs et mission">
+
+        <section class="section-block" aria-labelledby="mission-title">
+          <h2 id="mission-title">Notre mission</h2>
+          <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png" alt="Notre mission" />
+          <p>Faire découvrir l’amour de Dieu : pas pour imposer une religion, mais pour restaurer la relation entre Dieu et l’homme.</p>
+        </section>
+
+        <section class="section-block" aria-labelledby="comme-dieu-title">
+          <h2 id="comme-dieu-title">Comme Dieu te voit</h2>
+          <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/tigre.jpg" alt="Comme Dieu te voit" />
+          <p>Tu es précieux aux yeux de Dieu, créé avec amour et destiné à accomplir de grandes choses. Ne doute jamais de ta valeur.</p>
+        </section>
+
+        <section class="section-block" aria-labelledby="gratitude-title">
+          <h2 id="gratitude-title">Vivre avec gratitude</h2>
+          <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png" alt="Vivre avec gratitude" />
+          <p>La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.</p>
+        </section>
+
       </div>
 
-      <aside class="right-section">
-        <h2>Encouragement du jour</h2>
-        <p>Chaque jour est une nouvelle chance de renaître...</p>
-        <div class="side-image" style="background-image:url('https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/encouragement.jpg');"></div>
+      <!-- Section encouragement à droite (sticky) -->
+      <aside class="right-section" aria-labelledby="encouragement-title">
+        <h2 id="encouragement-title">Encouragement du jour</h2>
+        <div id="daily-encouragement" style="flex:1; display:flex; align-items:center; justify-content:center; text-align:center; padding:12px;">
+          Chaque jour est une nouvelle chance de renaître, de marcher dans la lumière et d’avancer avec confiance.
+        </div>
+
+        <!-- image en bas du carré (dégradé vers le haut). Remplace l'URL si tu veux autre image -->
+        <div class="side-image" style="background-image:url('https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png');"></div>
       </aside>
+
     </div>
+
+    <!-- Boutons -->
+    <div class="btn-row" role="region" aria-label="Actions">
+      <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
+      <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
+    </div>
+
   </main>
+
+  <footer>
+    &copy; 2025 Coeur Ouvert — <a href="contact.html">Contact</a>
+  </footer>
+
+  <!-- Verset script (inchangé) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("verses.json")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Erreur lors du chargement du fichier JSON");
+          }
+          return response.json();
+        })
+        .then(data => {
+          let today = new Date();
+          let dayOfYear = Math.floor(
+            (today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24
+          );
+          let verseIndex = dayOfYear % data.length;
+          document.getElementById("daily-verse").textContent =
+            data[verseIndex].reference + " - " + data[verseIndex].texte;
+        })
+        .catch(error => {
+          console.error(error);
+          document.getElementById("daily-verse").textContent =
+            "Impossible de charger le verset du jour.";
+        });
+    });
+  </script>
+
+  <!-- Fade-in on scroll script (inchangé) -->
+  <script>
+    function onEntry(entry) {
+      entry.forEach(change => {
+        if (change.isIntersecting) {
+          change.target.classList.add('visible');
+        }
+      });
+    }
+
+    let options = { threshold: [0.2] };
+    let observer = new IntersectionObserver(onEntry, options);
+    document.querySelectorAll('.section-block').forEach(block => {
+      observer.observe(block);
+    });
+  </script>
 
 </body>
 </html>
