@@ -115,105 +115,74 @@
     width: 60%;
   }
 
-  main {
-    max-width: 1200px; /* plus large pour le container horizontal */
-    margin: 0 auto 56px;
-    padding: 0 20px;
-  }
-
-  .intro {
-    max-width: 900px;
-    margin: 0 auto 40px;
-    background: var(--gray-light);
-    border-radius: 12px;
-    padding: 22px;
-    text-align: center;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.03);
-    animation: fadeInUp .75s ease both;
-  }
-
-  .intro p { margin-bottom: 12px; color: #222; }
-  .intro p.lead { font-weight: 600; font-size: 1.05rem; color: #111; }
-
-  /* Conteneur horizontal principal avec 3 colonnes */
+  /* Conteneur principal flex */
   .main-flex-container {
     display: flex;
-    gap: 40px;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto 56px;
+    padding: 0 20px;
+    gap: 20px;
   }
 
-  /* Colonne verset et encouragement */
+  /* Colonnes latérales */
   .side-column {
     background: var(--gray-light);
     border-radius: 12px;
     padding: 24px 20px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.04);
-    width: 280px;
+    width: 250px;
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 1.5s ease, transform 1.5s ease;
   }
 
-  .side-column.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .side-column h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    color: var(--text-color);
-    text-align: center;
-  }
-
-  #daily-verse {
-    font-style: italic;
-    font-family: Georgia, serif;
-    font-size: 1.25rem;
-    color: #5a2e00;
-    text-align: center;
-    min-height: 330px; /* hauteur pour faire environ 2x hauteur image */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  #daily-encouragement {
-    font-size: 1.1rem;
-    color: #333333;
-    line-height: 1.5;
-    text-align: center;
-    min-height: 330px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Colonne centrale des 3 blocs */
+  /* Colonne centrale */
   .center-column {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 580px;
+    max-width: 700px;
+  }
+
+  .intro {
+    background: var(--gray-light);
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+  }
+
+  .intro p { margin-bottom: 12px; color: #222; }
+  .intro p.lead { font-weight: 600; font-size: 1.05rem; color: #111; }
+
+  .flex-row {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
   }
 
   .section-block {
     background: var(--gray-light);
     border-radius: 14px;
     padding: 14px;
+    flex: 1 1 30%;
     box-shadow: 0 6px 18px rgba(0,0,0,0.04);
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 220px;
     transition: transform .22s ease, box-shadow .22s ease, opacity 1.5s ease;
     opacity: 0;
     transform: translateY(10px);
   }
 
-  .section-block.visible {
+  /* Fade-in animation trigger class */
+  .section-block.visible,
+  .side-column.visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -229,10 +198,10 @@
 
   .section-block img {
     width: 100%;
-    max-width: 580px;
-    height: 190px;
+    max-width: 260px;
     border-radius: 10px;
     object-fit: cover;
+    height: 160px;
     margin-bottom: 12px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   }
@@ -263,15 +232,8 @@
     padding: 12px 28px;
     border-radius: 28px;
     text-decoration: none;
-    transition: transform .18s ease, box-shadow .18s ease, opacity 1.5s ease;
+    transition: transform .18s ease, box-shadow .18s ease;
     box-shadow: 0 6px 16px rgba(245,166,35,0.25);
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  .btn-primary.visible {
-    opacity: 1;
-    transform: translateY(0);
   }
 
   .btn-primary:hover {
@@ -282,7 +244,12 @@
   .btn-secondary {
     background: #6fbf6f;
     box-shadow: 0 6px 16px rgba(111,191,111,0.22);
-    color: white !important;
+    color: white;
+    font-weight: 400;
+  }
+
+  .btn-secondary:hover {
+    background: #5da95d;
   }
 
   footer {
@@ -294,42 +261,22 @@
 
   /* Responsive tweaks */
   @media (max-width: 1200px) {
-    main {
-      max-width: 900px;
-    }
     .main-flex-container {
-      flex-direction: column;
-      gap: 40px;
-      align-items: center;
-    }
-    .side-column {
-      width: 100%;
-      max-width: 500px;
-      min-height: auto;
-      padding: 20px;
-    }
-    #daily-verse, #daily-encouragement {
-      min-height: auto;
-      padding: 10px 0;
-      display: block;
-      text-align: center;
-    }
-    .center-column {
-      width: 100%;
-      max-width: 900px;
-    }
-    .section-block img {
-      max-width: 100%;
-      height: auto;
+      max-width: 95%;
     }
   }
 
-  @media (max-width: 640px) {
-    header h1 { font-size: 2.2rem; }
-    header img.logo { height: 72px; }
-    .btn-row {
+  @media (max-width: 900px) {
+    .main-flex-container {
       flex-direction: column;
-      gap: 12px;
+      align-items: center;
+    }
+    .side-column,
+    .center-column {
+      width: 100% !important;
+      max-width: 600px;
+      opacity: 1 !important;
+      transform: none !important;
     }
   }
 
@@ -359,25 +306,23 @@
     </ul>
   </nav>
 
-  <!-- Intro -->
-  <main>
-    <div class="intro" role="region" aria-labelledby="intro-title">
-      <p class="lead"><strong>Tu es une personne de valeur.</strong></p>
-      <p>Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse. <strong>Coeur Ouvert</strong> est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
-      <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière (si tu le souhaites), des paroles d’encouragement et des témoignages réels de transformation.</p>
-    </div>
+  <!-- Conteneur principal avec colonnes -->
+  <main class="main-flex-container" role="main">
+    <!-- Colonne gauche : verset -->
+    <aside class="side-column" aria-label="Verset du jour" id="verse-section">
+      <h2>Verset du jour</h2>
+      <p id="daily-verse">Chargement du verset...</p>
+    </aside>
 
-    <!-- Conteneur horizontal avec 3 colonnes -->
-    <div class="main-flex-container" role="region" aria-label="Verset, Mission et Encouragement">
+    <!-- Colonne centrale : intro + images -->
+    <section class="center-column">
+      <div class="intro" role="region" aria-labelledby="intro-title">
+        <p class="lead"><strong>Tu es une personne de valeur.</strong></p>
+        <p id="intro-title">Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse. <strong>Coeur Ouvert</strong> est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
+        <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière (si tu le souhaites), des paroles d’encouragement et des témoignages réels de transformation.</p>
+      </div>
 
-      <!-- Verset à gauche -->
-      <section class="side-column" aria-labelledby="verse-title">
-        <h2 id="verse-title">Verset du jour</h2>
-        <div id="daily-verse">Chargement du verset...</div>
-      </section>
-
-      <!-- Centre avec les 3 blocs -->
-      <div class="center-column" aria-live="polite">
+      <div class="flex-row" aria-live="polite">
         <section class="section-block" aria-labelledby="mission-title">
           <h2 id="mission-title">Notre mission</h2>
           <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png" alt="Notre mission" />
@@ -397,18 +342,18 @@
         </section>
       </div>
 
-      <!-- Encouragement à droite -->
-      <section class="side-column" aria-labelledby="encouragement-title">
-        <h2 id="encouragement-title">Encouragement du jour</h2>
-        <p id="daily-encouragement">Voici un message d'encouragement pour aujourd'hui. Tu peux le changer chaque jour.</p>
-      </section>
-    </div>
+      <!-- Boutons -->
+      <div class="btn-row" role="region" aria-label="Actions">
+        <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
+        <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
+      </div>
+    </section>
 
-    <!-- Boutons -->
-    <div class="btn-row" role="region" aria-label="Actions">
-      <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
-      <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
-    </div>
+    <!-- Colonne droite : encouragement -->
+    <aside class="side-column" aria-label="Encouragement journalier" id="encouragement-section">
+      <h2>Encouragement du jour</h2>
+      <p id="daily-encouragement">Reste fort et garde la foi. Chaque jour est une nouvelle chance pour grandir.</p>
+    </aside>
   </main>
 
   <footer>
@@ -454,7 +399,7 @@
 
     let options = { threshold: [0.2] };
     let observer = new IntersectionObserver(onEntry, options);
-    document.querySelectorAll('.section-block, .side-column, .btn-primary').forEach(block => {
+    document.querySelectorAll('.section-block, .side-column').forEach(block => {
       observer.observe(block);
     });
   </script>
