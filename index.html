@@ -1,19 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-<header style="position: relative; text-align: center; margin-bottom: 50px;">
-  <img src="logo.png" alt="Logo Coeur Ouvert" style="height: 60px; position: absolute; top: 10px; left: 20px;" />
-  <h1 style="font-family: 'Montserrat', sans-serif; color: var(--blue-main); font-size: 3em; margin: 0 0 10px;">
-    Coeur Ouvert
-  </h1>
-  <p class="slogan" style="font-style: italic; font-size: 1.2em; color: var(--accent-pastel); margin: 0 0 20px;">
-    Espoir, écoute et lumière pour avancer chaque jour.
-  </p>
-  <div id="daily-verse" style="font-style: italic; color: var(--blue-main); font-weight: 600; background: var(--blue-pastel); padding: 15px; border-radius: 8px; max-width: 500px; margin: 0 auto;">
-    Chargement du verset...
-  </div>
-  <img src="header-bg.jpg" alt="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.1; z-index: -1;" />
-</header>
-  
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,32 +15,35 @@
       --gray-medium: #6b7c8a;
       --gray-light: #f0f4f8;
       --accent-pastel: #a3c1d1;
+      --gold-accent: #f5a623;
+    }
+
+    /* Reset basique */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
       font-family: 'Nunito', sans-serif;
       background-color: var(--gray-light);
       color: var(--gray-medium);
-      margin: 0;
-      padding: 30px 20px;
       max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto;
+      padding: 30px 20px;
     }
 
-    /* Menu */
     nav {
       background-color: var(--blue-main);
       padding: 12px 20px;
       border-radius: 6px;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       box-shadow: 0 3px 6px rgba(42,110,187,0.3);
     }
 
     .menu {
       list-style: none;
-      margin: 0;
-      padding: 0;
       display: flex;
       justify-content: center;
       gap: 40px;
@@ -76,31 +65,114 @@
     }
 
     header {
+      position: relative;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
+      padding: 40px 20px 60px;
+      border-radius: 10px;
+      background-color: white;
+      box-shadow: 0 0 15px rgba(42,110,187,0.15);
+      overflow: hidden;
     }
+
+    header img.logo {
+      height: 60px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
     header h1 {
       font-family: 'Montserrat', sans-serif;
       color: var(--blue-main);
       font-size: 3em;
-      margin: 0 0 10px;
       letter-spacing: 2px;
+      margin-bottom: 10px;
     }
+
     header p.slogan {
       font-style: italic;
       font-size: 1.2em;
       color: var(--accent-pastel);
-      margin: 0 0 20px;
+      margin-bottom: 25px;
     }
 
     #daily-verse {
       font-style: italic;
       color: var(--blue-main);
       font-weight: 600;
-      margin-top: 20px;
       background: var(--blue-pastel);
-      padding: 15px;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 0 10px rgba(42,110,187,0.1);
+    }
+
+    header img.bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.08;
+      z-index: -1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    main {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(42,110,187,0.1);
+      margin-bottom: 50px;
+    }
+
+    main h2 {
+      color: var(--blue-main);
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 15px;
+      font-size: 2em;
+    }
+
+    main p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background-color: var(--gold-accent);
+      color: white;
+      font-weight: 700;
+      padding: 12px 30px;
       border-radius: 8px;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #d18b1f;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: var(--gray-medium);
+      margin-bottom: 20px;
+    }
+
+    footer a {
+      color: var(--blue-main);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
 
     /* Responsive */
@@ -109,8 +181,13 @@
         padding: 20px 15px;
         max-width: 100%;
       }
+
       header h1 {
         font-size: 2.2em;
+      }
+
+      main h2 {
+        font-size: 1.6em;
       }
     }
   </style>
@@ -122,15 +199,36 @@
       <li><a href="index.html">Accueil</a></li>
       <li><a href="coaching.html">Coaching Spirituel</a></li>
       <li><a href="ressources.html">Ressources</a></li>
-      <li><a href="temoignages.html">Témoiganges</a></li>
+      <li><a href="temoignages.html">Témoignages</a></li>
     </ul>
   </nav>
 
   <header>
+    <img src="logo.png" alt="Logo Coeur Ouvert" class="logo" />
     <h1>Coeur Ouvert</h1>
     <p class="slogan">Espoir, écoute et lumière pour avancer chaque jour.</p>
     <div id="daily-verse">Chargement du verset...</div>
+    <img src="header-bg.jpg" alt="" class="bg" />
   </header>
+
+  <main>
+    <section>
+      <h2>Notre mission</h2>
+      <p>
+        Coeur Ouvert est une plateforme chrétienne dédiée à l’encouragement spirituel 
+        et au coaching personnalisé. Nous partageons chaque jour la Parole de Dieu pour inspirer,
+        accompagner et fortifier ta foi.
+      </p>
+      <p>
+        Explore nos ressources, témoigne de ta transformation, ou demande un accompagnement spirituel adapté.
+      </p>
+      <a href="coaching.html" class="btn-primary">Demander un coaching spirituel</a>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Coeur Ouvert — <a href="contact.html">Contact</a>
+  </footer>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -157,5 +255,6 @@
         });
     });
   </script>
- </body>
+
+</body>
 </html>
