@@ -11,7 +11,7 @@
     --gold-accent: #f5a623;
     --blue-main: #2a6ebb;
     --gray-light: #f7f7f7;
-    --verset-bg: #e6f0ff;
+    --verset-bg: #FFE6CC; /* orange pale */
     --text-color: #000000;
   }
   * {
@@ -25,19 +25,21 @@
   }
   header {
     max-width: 900px;
-    margin: 20px auto 40px;
+    margin: 40px auto 40px;
     padding: 0 20px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    gap: 15px;
   }
   header img.logo {
-    height: 60px;
+    height: 70px;
+    flex-shrink: 0;
   }
   header h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 3rem;
+    font-size: 3.2rem;
     letter-spacing: 2px;
     color: var(--text-color);
   }
@@ -67,15 +69,16 @@
   #daily-verse {
     max-width: 900px;
     margin: 0 auto 50px;
-    padding: 15px 25px;
+    padding: 20px 30px;
     font-style: italic;
     font-weight: 400;
-    font-size: 1.2rem;
-    color: var(--blue-main);
+    font-size: 1.4rem;
+    color: #8B4513; /* marron foncé */
     background-color: var(--verset-bg);
-    border-left: 6px solid var(--blue-main);
-    border-radius: 8px;
-    font-family: 'Open Sans', sans-serif;
+    border-radius: 12px;
+    font-family: Georgia, serif;
+    text-align: center;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
   }
   main {
     max-width: 900px;
@@ -91,52 +94,36 @@
   .section-block {
     background: var(--gray-light);
     border-radius: 15px;
-    padding: 20px;
+    padding: 15px;
     flex: 1 1 28%;
-    text-align: center;
     box-shadow: 0 6px 15px rgb(0 0 0 / 0.05);
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .section-block img {
-    width: 100%;
-    max-width: 260px;
-    height: auto;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 8px 20px rgb(0 0 0 / 0.08);
-    object-fit: cover;
-  }
   .section-block h2 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 1.8rem;
-    margin-bottom: 15px;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
     color: var(--text-color);
+    text-align: center;
+  }
+  .section-block img {
+    width: 100%;
+    max-width: 260px;
+    height: 160px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 10px;
   }
   .section-block p {
     font-weight: 400;
     font-size: 1rem;
     color: #222222;
-    line-height: 1.6;
-    flex-grow: 1;
-  }
-  .btn-primary {
-    display: inline-block;
-    background-color: var(--gold-accent);
-    color: white;
-    font-weight: 700;
-    padding: 15px 40px;
-    border-radius: 30px;
-    font-size: 1.2rem;
-    text-decoration: none;
-    box-shadow: 0 6px 15px rgba(245,166,35,0.6);
-    transition: background-color 0.3s ease;
-    margin-top: 25px;
-  }
-  .btn-primary:hover {
-    background-color: #d18b1f;
+    line-height: 1.5;
+    text-align: center;
+    margin-top: auto; /* pousse le texte en bas si possible */
   }
   footer {
     text-align: center;
@@ -178,6 +165,9 @@
       margin-bottom: 30px;
       max-width: 100%;
     }
+    .section-block img {
+      height: auto;
+    }
   }
 </style>
 </head>
@@ -202,8 +192,8 @@
   <main>
     <div class="flex-row">
       <section class="section-block">
-        <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png" alt="Notre mission" />
         <h2>Notre mission</h2>
+        <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png" alt="Notre mission" />
         <p>
           Coeur Ouvert est une plateforme chrétienne dédiée à l’encouragement spirituel 
           et au coaching personnalisé. Nous partageons chaque jour la Parole de Dieu pour inspirer,
@@ -212,8 +202,8 @@
       </section>
 
       <section class="section-block">
-        <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/tigre.jpg" alt="Comme Dieu te voit" />
         <h2>Comme Dieu te voit</h2>
+        <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/tigre.jpg" alt="Comme Dieu te voit" />
         <p>
           Tu es précieux aux yeux de Dieu, créé avec amour et destiné à accomplir de grandes choses. 
           Ne doute jamais de ta valeur, car elle est infinie et inaltérable.
@@ -221,8 +211,8 @@
       </section>
 
       <section class="section-block">
-        <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png" alt="Vivre avec gratitude" />
         <h2>Vivre avec gratitude</h2>
+        <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png" alt="Vivre avec gratitude" />
         <p>
           La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. 
           Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.
