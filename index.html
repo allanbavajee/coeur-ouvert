@@ -192,4 +192,74 @@
     <ul class="menu">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="coaching.html">Coaching Spirituel</a></li>
-      <li><a href="ressources.html">Ressources</a></
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="temoignages.html">Témoignages</a></li>
+    </ul>
+  </nav>
+
+  <div id="daily-verse">Chargement du verset...</div>
+
+  <main>
+    <div class="flex-row">
+      <section class="section-block">
+        <img src="https://via.placeholder.com/260x160.png?text=Notre+mission" alt="Notre mission" />
+        <h2>Notre mission</h2>
+        <p>
+          Coeur Ouvert est une plateforme chrétienne dédiée à l’encouragement spirituel 
+          et au coaching personnalisé. Nous partageons chaque jour la Parole de Dieu pour inspirer,
+          accompagner et fortifier ta foi.
+        </p>
+      </section>
+
+      <section class="section-block">
+        <img src="https://via.placeholder.com/260x160.png?text=Comme+Dieu+te+voit" alt="Comme Dieu te voit" />
+        <h2>Comme Dieu te voit</h2>
+        <p>
+          Tu es précieux aux yeux de Dieu, créé avec amour et destiné à accomplir de grandes choses. 
+          Ne doute jamais de ta valeur, car elle est infinie et inaltérable.
+        </p>
+      </section>
+
+      <section class="section-block">
+        <img src="https://via.placeholder.com/260x160.png?text=Vivre+avec+gratitude" alt="Vivre avec gratitude" />
+        <h2>Vivre avec gratitude</h2>
+        <p>
+          La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. 
+          Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Coeur Ouvert — <a href="contact.html">Contact</a>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("verses.json")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Erreur lors du chargement du fichier JSON");
+          }
+          return response.json();
+        })
+        .then(data => {
+          let today = new Date();
+          let dayOfYear = Math.floor(
+            (today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24
+          );
+          let verseIndex = dayOfYear % data.length;
+          document.getElementById("daily-verse").textContent =
+            data[verseIndex].reference + " - " + data[verseIndex].texte;
+        })
+        .catch(error => {
+          console.error(error);
+          document.getElementById("daily-verse").textContent =
+            "Impossible de charger le verset du jour.";
+        });
+    });
+  </script>
+
+</body>
+</html>
