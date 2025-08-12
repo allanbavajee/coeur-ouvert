@@ -11,14 +11,11 @@
 <style>
   :root {
     --gold-accent: #f5a623;
-    --gold-dark: #c48a18; /* jaune plus foncé */
-    --green-dark: #3b6b11; /* vert foncé */
-    --green-dark-text: #ffffff; /* blanc pour texte vert bouton */
     --blue-main: #2a6ebb;
     --gray-light: #f7f7f7;
     --text-color: #000000;
     --muted: #666666;
-    --slogan-color: #ff0000; /* rouge vif pour slogan */
+    --slogan-color: #b00000; /* rouge plus vif */
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -62,11 +59,10 @@
   header p.slogan {
     width: 100%;
     font-family: 'Dancing Script', cursive;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     color: var(--slogan-color);
-    margin-top: -8px;  /* plus proche du titre */
+    margin-top: -10px;  /* plus proche du titre */
     margin-bottom: 0;
-    letter-spacing: 0.02em;
   }
 
   nav {
@@ -117,10 +113,19 @@
     width: 60%;
   }
 
-  #daily-verse {
+  /* Section verset + encouragement côte à côte */
+  #daily-section {
     max-width: 900px;
     margin: 0 auto 42px;
-    padding: 20px 28px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    animation: fadeInUp 1s ease both;
+  }
+
+  #daily-verse, #daily-encouragement {
+    flex: 1 1 45%;
     font-style: italic;
     font-weight: 400;
     font-size: 1.28rem;
@@ -133,9 +138,12 @@
     z-index: 1;
     overflow: visible;
     box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    padding: 20px 28px;
   }
 
-  #daily-verse::before {
+  /* Décorations comme verset */
+  #daily-verse::before,
+  #daily-encouragement::before {
     content: "";
     position: absolute;
     top: 50%;
@@ -149,7 +157,8 @@
     pointer-events: none;
   }
 
-  #daily-verse::after {
+  #daily-verse::after,
+  #daily-encouragement::after {
     content: "";
     position: absolute;
     bottom: -10px;
@@ -177,6 +186,7 @@
     margin-bottom: 30px;
     text-align: center;
     box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+    animation: fadeInUp .75s ease both;
   }
 
   .intro p { margin-bottom: 12px; color: #222; }
@@ -200,7 +210,7 @@
     flex-direction: column;
     align-items: center;
     min-width: 220px;
-    transition: transform 1s ease, box-shadow 1s ease, opacity 1s ease; /* fade plus long */
+    transition: transform 1s ease, box-shadow 1s ease, opacity 1s ease;
     opacity: 0;
     transform: translateY(10px);
   }
@@ -222,10 +232,10 @@
 
   .section-block img {
     width: 100%;
-    max-width: 320px; /* un peu plus large */
+    max-width: 380px;
     border-radius: 10px;
     object-fit: contain;
-    height: 220px; /* plus grand */
+    height: 260px;
     margin-bottom: 12px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   }
@@ -245,40 +255,35 @@
     display: flex;
     gap: 18px;
     justify-content: center;
+    animation: fadeInUp 1.2s ease both;
   }
 
   .btn-primary {
     display: inline-block;
-    font-weight: 400; /* plus normal */
+    background-color: var(--gold-accent);
+    color: white;
+    font-weight: 400; /* pas bold */
     padding: 12px 28px;
     border-radius: 28px;
     text-decoration: none;
     transition: transform .18s ease, box-shadow .18s ease;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 16px rgba(245,166,35,0.25);
   }
 
-  .btn-yellow {
-    background-color: var(--gold-dark);
-    color: #fff;
-    box-shadow: 0 6px 16px rgba(196, 138, 24, 0.7);
-  }
-  .btn-yellow:hover,
-  .btn-yellow:focus {
-    background-color: #b27f0e;
-    box-shadow: 0 10px 22px rgba(178, 127, 14, 0.9);
-    outline: none;
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(245,166,35,0.32);
   }
 
-  .btn-green {
-    background-color: var(--green-dark);
-    color: var(--green-dark-text);
-    box-shadow: 0 6px 16px rgba(59, 107, 17, 0.7);
+  .btn-secondary {
+    background: #6fbf6f;
+    box-shadow: 0 6px 16px rgba(111,191,111,0.22);
+    color: white;
+    font-weight: 400; /* pas bold */
   }
-  .btn-green:hover,
-  .btn-green:focus {
-    background-color: #2f590e;
-    box-shadow: 0 10px 22px rgba(47, 89, 14, 0.9);
-    outline: none;
+
+  .btn-secondary:hover {
+    background-color: #59a659;
   }
 
   footer {
@@ -302,8 +307,20 @@
       flex-direction: column;
       gap: 12px;
     }
+    #daily-section {
+      flex-direction: column;
+      gap: 16px;
+    }
+    #daily-verse, #daily-encouragement {
+      flex: 1 1 100%;
+    }
   }
 
+  /* Simple fadeInUp animation */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>
 </head>
 <body>
@@ -325,8 +342,14 @@
     </ul>
   </nav>
 
-  <!-- Verset du jour -->
-  <div id="daily-verse">Chargement du verset...</div>
+  <!-- Section verset + encouragement -->
+  <div id="daily-section" aria-live="polite">
+    <div id="daily-verse">Chargement du verset...</div>
+    <div id="daily-encouragement">
+      <strong>Encouragement du jour :</strong><br />
+      <em>Rappelle-toi que chaque jour est une nouvelle chance de recommencer et d'avancer avec foi et courage.</em>
+    </div>
+  </div>
 
   <!-- Main content -->
   <main>
@@ -358,8 +381,8 @@
 
     <!-- Boutons -->
     <div class="btn-row" role="region" aria-label="Actions">
-      <a href="coaching.html" class="btn-primary btn-yellow" role="button">Parler à un conseiller</a>
-      <a href="temoignages.html" class="btn-primary btn-green" role="button">Lire des témoignages</a>
+      <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
+      <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
     </div>
   </main>
 
