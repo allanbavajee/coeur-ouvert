@@ -15,7 +15,7 @@
     --gray-light: #f7f7f7;
     --text-color: #000000;
     --muted: #666666;
-    --slogan-color: #b00000; /* rouge plus vif */
+    --slogan-color: #b00000;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -61,7 +61,7 @@
     font-family: 'Dancing Script', cursive;
     font-size: 1.3rem;
     color: var(--slogan-color);
-    margin-top: -10px;  /* plus proche du titre */
+    margin-top: -10px;
     margin-bottom: 0;
   }
 
@@ -113,37 +113,54 @@
     width: 60%;
   }
 
-  /* Section verset + encouragement côte à côte */
-  #daily-section {
-    max-width: 900px;
-    margin: 0 auto 42px;
+  /* CONTENEUR PRINCIPAL : deux colonnes */
+  #main-container {
+    max-width: 1100px;
+    margin: 0 auto 56px;
     padding: 0 20px;
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    gap: 40px;
+    align-items: flex-start;
     animation: fadeInUp 1s ease both;
   }
 
-  #daily-verse, #daily-encouragement {
-    flex: 1 1 45%;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 1.28rem;
-    color: #5a2e00;
-    background-image: linear-gradient(to right, white 14%, #FFECB9 50%, white 86%);
-    border-radius: 12px;
-    font-family: Georgia, serif;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    overflow: visible;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    padding: 20px 28px;
+  /* Colonne gauche : intro + sections + boutons */
+  #left-column {
+    flex: 2 1 0;
   }
 
-  /* Décorations comme verset */
-  #daily-verse::before,
-  #daily-encouragement::before {
+  /* Colonne droite : verset + encouragement */
+  #right-column {
+    flex: 1 1 300px;
+    background: var(--gray-light);
+    border-radius: 12px;
+    padding: 20px 28px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+    font-family: Georgia, serif;
+    color: #5a2e00;
+    font-style: italic;
+    position: sticky;
+    top: 100px; /* Reste visible en scroll */
+    height: fit-content;
+  }
+
+  #right-column h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  #daily-verse {
+    margin-bottom: 28px;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    position: relative;
+  }
+
+  #daily-verse::before {
     content: "";
     position: absolute;
     top: 50%;
@@ -157,8 +174,7 @@
     pointer-events: none;
   }
 
-  #daily-verse::after,
-  #daily-encouragement::after {
+  #daily-verse::after {
     content: "";
     position: absolute;
     bottom: -10px;
@@ -173,12 +189,14 @@
     pointer-events: none;
   }
 
-  main {
-    max-width: 900px;
-    margin: 0 auto 56px;
-    padding: 0 20px;
+  #daily-encouragement {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #3a2a2a;
   }
 
+  /* Intro */
   .intro {
     background: var(--gray-light);
     border-radius: 12px;
@@ -186,18 +204,19 @@
     margin-bottom: 30px;
     text-align: center;
     box-shadow: 0 6px 20px rgba(0,0,0,0.03);
-    animation: fadeInUp .75s ease both;
   }
 
   .intro p { margin-bottom: 12px; color: #222; }
   .intro p.lead { font-weight: 600; font-size: 1.05rem; color: #111; }
 
+  /* Sections photos */
   .flex-row {
     display: flex;
     gap: 20px;
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
+    margin-bottom: 30px;
   }
 
   .section-block {
@@ -210,12 +229,11 @@
     flex-direction: column;
     align-items: center;
     min-width: 220px;
-    transition: transform 1s ease, box-shadow 1s ease, opacity 1s ease;
     opacity: 0;
     transform: translateY(10px);
+    transition: transform 1s ease, box-shadow 1s ease, opacity 1s ease;
   }
 
-  /* Fade-in animation trigger class */
   .section-block.visible {
     opacity: 1;
     transform: translateY(0);
@@ -247,27 +265,26 @@
     margin-top: auto;
   }
 
-  /* Boutons sous la mission */
+  /* Boutons */
   .btn-row {
-    max-width: 900px;
-    margin: 20px auto 56px;
-    padding: 0 20px;
     display: flex;
     gap: 18px;
     justify-content: center;
-    animation: fadeInUp 1.2s ease both;
   }
 
   .btn-primary {
     display: inline-block;
     background-color: var(--gold-accent);
     color: white;
-    font-weight: 400; /* pas bold */
+    font-weight: 400;
     padding: 12px 28px;
     border-radius: 28px;
     text-decoration: none;
     transition: transform .18s ease, box-shadow .18s ease;
     box-shadow: 0 6px 16px rgba(245,166,35,0.25);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 1.2s ease, transform 1.2s ease, box-shadow 1.2s ease;
   }
 
   .btn-primary:hover {
@@ -279,11 +296,16 @@
     background: #6fbf6f;
     box-shadow: 0 6px 16px rgba(111,191,111,0.22);
     color: white;
-    font-weight: 400; /* pas bold */
+    font-weight: 400;
   }
 
   .btn-secondary:hover {
     background-color: #59a659;
+  }
+
+  .btn-primary.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   footer {
@@ -293,8 +315,18 @@
     font-size: 0.92rem;
   }
 
-  /* Responsive tweaks */
+  /* Responsive */
   @media (max-width: 900px) {
+    #main-container {
+      flex-direction: column;
+    }
+    #right-column {
+      position: static;
+      top: auto;
+      margin-top: 40px;
+      flex: none;
+      width: 100%;
+    }
     .section-block { flex: 1 1 45%; }
   }
 
@@ -307,16 +339,8 @@
       flex-direction: column;
       gap: 12px;
     }
-    #daily-section {
-      flex-direction: column;
-      gap: 16px;
-    }
-    #daily-verse, #daily-encouragement {
-      flex: 1 1 100%;
-    }
   }
 
-  /* Simple fadeInUp animation */
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -342,55 +366,64 @@
     </ul>
   </nav>
 
-  <!-- Section verset + encouragement -->
-  <div id="daily-section" aria-live="polite">
-    <div id="daily-verse">Chargement du verset...</div>
-    <div id="daily-encouragement">
-      <strong>Encouragement du jour :</strong><br />
-      <em>Rappelle-toi que chaque jour est une nouvelle chance de recommencer et d'avancer avec foi et courage.</em>
+  <!-- CONTENEUR PRINCIPAL -->
+  <div id="main-container">
+
+    <!-- Colonne gauche -->
+    <div id="left-column">
+
+      <div class="intro" role="region" aria-labelledby="intro-title">
+        <p class="lead"><strong>Tu es une personne de valeur.</strong></p>
+        <p>Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse. <strong>Coeur Ouvert</strong> est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
+        <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière (si tu le souhaites), des paroles d’encouragement et des témoignages réels de transformation.</p>
+      </div>
+
+      <div class="flex-row" aria-live="polite">
+        <section class="section-block" aria-labelledby="mission-title">
+          <h2 id="mission-title">Notre mission</h2>
+          <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png" alt="Notre mission" />
+          <p>Faire découvrir l’amour de Dieu : pas pour imposer une religion, mais pour restaurer la relation entre Dieu et l’homme.</p>
+        </section>
+
+        <section class="section-block" aria-labelledby="comme-dieu-title">
+          <h2 id="comme-dieu-title">Comme Dieu te voit</h2>
+          <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/tigre.jpg" alt="Comme Dieu te voit" />
+          <p>Tu es précieux aux yeux de Dieu, créé avec amour et destiné à accomplir de grandes choses. Ne doute jamais de ta valeur.</p>
+        </section>
+
+        <section class="section-block" aria-labelledby="gratitude-title">
+          <h2 id="gratitude-title">Vivre avec gratitude</h2>
+          <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png" alt="Vivre avec gratitude" />
+          <p>La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.</p>
+        </section>
+      </div>
+
+      <!-- Boutons -->
+      <div class="btn-row" role="region" aria-label="Actions">
+        <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
+        <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
+      </div>
+
     </div>
+
+    <!-- Colonne droite -->
+    <aside id="right-column" role="complementary" aria-label="Verset et encouragement du jour">
+      <h3>Verset du jour</h3>
+      <div id="daily-verse">Chargement du verset...</div>
+
+      <h3>Encouragement du jour</h3>
+      <div id="daily-encouragement">
+        Rappelle-toi que chaque jour est une nouvelle chance de recommencer et d'avancer avec foi et courage.
+      </div>
+    </aside>
+
   </div>
-
-  <!-- Main content -->
-  <main>
-    <div class="intro" role="region" aria-labelledby="intro-title">
-      <p class="lead"><strong>Tu es une personne de valeur.</strong></p>
-      <p>Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse. <strong>Coeur Ouvert</strong> est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
-      <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière (si tu le souhaites), des paroles d’encouragement et des témoignages réels de transformation.</p>
-    </div>
-
-    <div class="flex-row" aria-live="polite">
-      <section class="section-block" aria-labelledby="mission-title">
-        <h2 id="mission-title">Notre mission</h2>
-        <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png" alt="Notre mission" />
-        <p>Faire découvrir l’amour de Dieu : pas pour imposer une religion, mais pour restaurer la relation entre Dieu et l’homme.</p>
-      </section>
-
-      <section class="section-block" aria-labelledby="comme-dieu-title">
-        <h2 id="comme-dieu-title">Comme Dieu te voit</h2>
-        <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/tigre.jpg" alt="Comme Dieu te voit" />
-        <p>Tu es précieux aux yeux de Dieu, créé avec amour et destiné à accomplir de grandes choses. Ne doute jamais de ta valeur.</p>
-      </section>
-
-      <section class="section-block" aria-labelledby="gratitude-title">
-        <h2 id="gratitude-title">Vivre avec gratitude</h2>
-        <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png" alt="Vivre avec gratitude" />
-        <p>La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.</p>
-      </section>
-    </div>
-
-    <!-- Boutons -->
-    <div class="btn-row" role="region" aria-label="Actions">
-      <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
-      <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
-    </div>
-  </main>
 
   <footer>
     &copy; 2025 Coeur Ouvert — <a href="contact.html">Contact</a>
   </footer>
 
-  <!-- Verset script -->
+  <!-- Script verset -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       fetch("verses.json")
@@ -417,7 +450,7 @@
     });
   </script>
 
-  <!-- Fade-in on scroll script -->
+  <!-- Fade-in scroll pour les sections photos -->
   <script>
     function onEntry(entry) {
       entry.forEach(change => {
@@ -431,6 +464,13 @@
     let observer = new IntersectionObserver(onEntry, options);
     document.querySelectorAll('.section-block').forEach(block => {
       observer.observe(block);
+    });
+
+    // Animation fade-in boutons
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.btn-primary').forEach(btn => {
+        btn.classList.add('visible');
+      });
     });
   </script>
 
