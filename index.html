@@ -11,13 +11,13 @@
 <style>
   :root {
     --gold-accent: #f5a623;
-    --gold-pale: #f9e8a1; /* jaune pâle doux */
-    --green-pale: #9ccc7a; /* vert pâle doux */
+    --gold-pale: #f5c742; /* jaune plus vif */
+    --green-pale: #7fbf36; /* vert plus vif */
     --blue-main: #2a6ebb;
     --gray-light: #f7f7f7;
     --text-color: #000000;
     --muted: #666666;
-    --slogan-color: #8b4c4c; /* un brun plus foncé et moins calligraphique */
+    --slogan-color: #b74242; /* rouge brique vif */
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -203,7 +203,7 @@
     flex-direction: column;
     align-items: center;
     min-width: 220px;
-    transition: transform .4s ease, box-shadow .4s ease, opacity 1.8s ease;
+    transition: transform .22s ease, box-shadow .22s ease, opacity 1s ease;
     opacity: 0;
     transform: translateY(10px);
   }
@@ -263,25 +263,25 @@
 
   .btn-yellow {
     background-color: var(--gold-pale);
-    color: #5a4200;
-    box-shadow: 0 6px 16px rgba(249, 232, 161, 0.5);
+    color: #4a3600;
+    box-shadow: 0 6px 16px rgba(245, 199, 66, 0.6);
   }
   .btn-yellow:hover,
   .btn-yellow:focus {
-    background-color: #f7e37f;
-    box-shadow: 0 10px 22px rgba(247, 243, 135, 0.7);
+    background-color: #f9d65f;
+    box-shadow: 0 10px 22px rgba(249, 214, 95, 0.9);
     outline: none;
   }
 
   .btn-green {
     background-color: var(--green-pale);
-    color: #3a5a2a;
-    box-shadow: 0 6px 16px rgba(156, 204, 122, 0.5);
+    color: #2a4a0a;
+    box-shadow: 0 6px 16px rgba(127, 191, 54, 0.6);
   }
   .btn-green:hover,
   .btn-green:focus {
-    background-color: #8dbf57;
-    box-shadow: 0 10px 22px rgba(141, 191, 87, 0.7);
+    background-color: #a2d032;
+    box-shadow: 0 10px 22px rgba(162, 208, 50, 0.9);
     outline: none;
   }
 
