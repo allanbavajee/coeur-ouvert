@@ -4,59 +4,45 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Coeur Ouvert</title>
-
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Dancing+Script&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
-
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:wght@700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
 <style>
   :root {
     --gold-accent: #f5a623;
     --blue-main: #2a6ebb;
     --gray-light: #f7f7f7;
     --text-color: #000000;
-    --muted: #666666;
-    --slogan-color: #b35d5d;
   }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
   body {
     font-family: 'Open Sans', sans-serif;
-    background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
+    background: white;
     color: var(--text-color);
     line-height: 1.6;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
   }
-
   header {
     max-width: 900px;
-    margin: 36px auto 8px;
+    margin: 40px auto 10px;
     padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 18px;
+    gap: 15px;
     flex-wrap: wrap;
     text-align: center;
-    animation: fadeInUp .6s ease both;
   }
-
   header img.logo {
-    height: 80px;
-    width: auto;
+    height: 70px;
     flex-shrink: 0;
   }
-
   header h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 3.8rem;
-    letter-spacing: 1.5px;
+    font-size: 3.2rem;
+    letter-spacing: 2px;
     color: var(--text-color);
-    line-height: 1;
   }
-
   header p.slogan {
     width: 100%;
     font-family: 'Merriweather', serif;
@@ -65,282 +51,201 @@
     margin-top: -10px;
     margin-bottom: 0;
   }
-
-  /* Fade-in amélioré pour .section-block uniquement */
-  .section-block {
-    opacity: 0;
-    transform: translateY(15px);
-    transition: opacity 1.2s ease, transform 1.2s ease;
-  }
-
-  .section-block.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
-
-<script>
-  // Intersection Observer : fade-in uniquement sur les sections images + textes
-  function onEntry(entry) {
-    entry.forEach(change => {
-      if (change.isIntersecting) {
-        change.target.classList.add('visible');
-      }
-    });
-  }
-
-  let options = { threshold: [0.3] }; // déclenche un peu plus tard
-  let observer = new IntersectionObserver(onEntry, options);
-  document.querySelectorAll('.section-block').forEach(block => {
-    observer.observe(block);
-  });
-</script>
-  }
-
   nav {
     max-width: 900px;
-    margin: 16px auto 28px;
+    margin: 0 auto 40px;
     padding: 0 20px;
-    animation: fadeInUp .65s ease both;
   }
-
   .menu {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 36px;
-    align-items: center;
+    gap: 40px;
   }
-
   .menu li a {
     color: var(--text-color);
     font-weight: 600;
-    font-size: 1.05rem;
+    font-size: 1.1em;
     text-decoration: none;
-    padding: 6px 4px;
-    position: relative;
-    transition: color .22s ease;
+    transition: color 0.3s ease;
   }
-
-  .menu li a::after {
-    content: "";
-    height: 2px;
-    width: 0;
-    background: var(--gold-accent);
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -6px;
-    transition: width .22s ease;
-    border-radius: 2px;
-  }
-
   .menu li a:hover,
   .menu li a:focus {
     color: var(--gold-accent);
     outline: none;
   }
-
-  .menu li a:hover::after,
-  .menu li a:focus::after {
-    width: 60%;
-  }
-
   #daily-verse {
     max-width: 900px;
-    margin: 0 auto 42px;
-    padding: 20px 28px;
+    margin: 0 auto 50px;
+    padding: 20px 30px;
     font-style: italic;
     font-weight: 400;
-    font-size: 1.28rem;
-    color: #5a2e00;
-    background-image: linear-gradient(to right, white 14%, #FFECB9 50%, white 86%);
+    font-size: 1.4rem;
+    color: #5a2e00; /* marron foncé */
+    background-image: linear-gradient(to right, white 15%, #FFDB8C 50%, white 85%);
     border-radius: 12px;
     font-family: Georgia, serif;
     text-align: center;
     position: relative;
     z-index: 1;
     overflow: visible;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    animation: fadeInUp .7s ease both;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12); /* Ombre douce verticale au centre */
   }
-
   #daily-verse::before {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 64%;
-    height: 76%;
+    width: 60%;
+    height: 80%;
+    pointer-events: none;
     border-radius: 12px;
-    background: radial-gradient(circle, rgba(255,222,146,0.45) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(255, 206, 102, 0.4) 0%, transparent 70%);
     z-index: -1;
-    pointer-events: none;
   }
-
-  #daily-verse::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 58%;
-    height: 18px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.12);
-    filter: blur(8px);
-    z-index: -2;
-    pointer-events: none;
-  }
-
   main {
     max-width: 900px;
-    margin: 0 auto 56px;
-    padding: 0 20px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
   }
-
-  .intro {
-    background: var(--gray-light);
-    border-radius: 12px;
-    padding: 22px;
-    margin-bottom: 30px;
-    text-align: center;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.03);
-    animation: fadeInUp .75s ease both;
-  }
-
-  .intro p { margin-bottom: 12px; color: #222; }
-  .intro p.lead { font-weight: 600; font-size: 1.05rem; color: #111; }slo
-
   .flex-row {
     display: flex;
-    gap: 20px;
     justify-content: space-between;
-    align-items: flex-start;
+    gap: 20px;
     flex-wrap: wrap;
   }
-
   .section-block {
     background: var(--gray-light);
-    border-radius: 14px;
-    padding: 14px;
-    flex: 1 1 30%;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    border-radius: 15px;
+    padding: 15px;
+    flex: 1 1 28%;
+    box-shadow: 0 6px 15px rgb(0 0 0 / 0.05);
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 220px;
-    transition: transform .22s ease, box-shadow .22s ease, opacity 1s ease;
-    opacity: 0;
-    transform: translateY(10px);
-  }
 
-  /* Fade-in animation trigger class */
+    /* Animation fade-in initiale cachée */
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
   .section-block.visible {
     opacity: 1;
     transform: translateY(0);
   }
-
   .section-block h2 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 1.35rem;
+    font-size: 1.6rem;
     margin-bottom: 10px;
-    text-align: center;
     color: var(--text-color);
+    text-align: center;
   }
-
   .section-block img {
     width: 100%;
     max-width: 260px;
-    border-radius: 10px;
-    object-fit: cover;
-    height: 160px;
-    margin-bottom: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    border-radius: 12px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    height: auto;
   }
-
   .section-block p {
-    font-size: 0.995rem;
-    color: #222;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #222222;
+    line-height: 1.5;
     text-align: center;
     margin-top: auto;
   }
-
-  /* Boutons sous la mission */
   .btn-row {
     max-width: 900px;
-    margin: 20px auto 56px;
-    padding: 0 20px;
+    margin: 0 auto 50px;
     display: flex;
-    gap: 18px;
     justify-content: center;
-    animation: fadeInUp .8s ease both;
+    gap: 30px;
   }
-
-  .btn-primary {
-    display: inline-block;
+  .btn {
     background-color: var(--gold-accent);
     color: white;
-    font-weight: 700;
-    padding: 12px 28px;
-    border-radius: 28px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 15px 35px;
+    border-radius: 40px;
     text-decoration: none;
-    transition: transform .18s ease, box-shadow .18s ease;
-    box-shadow: 0 6px 16px rgba(245,166,35,0.25);
+    box-shadow: 0 5px 15px rgb(245 166 35 / 0.5);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
-
-  .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 22px rgba(245,166,35,0.32);
+  .btn:hover,
+  .btn:focus {
+    background-color: #d48b0d;
+    box-shadow: 0 6px 20px rgb(212 139 13 / 0.7);
+    outline: none;
   }
-
-  .btn-secondary {
-    background: #6fbf6f;
-    box-shadow: 0 6px 16px rgba(111,191,111,0.22);
-  }
-
   footer {
     text-align: center;
-    padding: 26px 16px;
-    color: var(--muted);
-    font-size: 0.92rem;
+    padding: 20px 0;
+    color: #666666;
+    font-size: 0.9rem;
   }
-
-  /* Responsive tweaks */
+  footer a {
+    color: var(--blue-main);
+    text-decoration: none;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
   @media (max-width: 900px) {
-    .section-block { flex: 1 1 45%; }
-  }
-
-  @media (max-width: 640px) {
-    header h1 { font-size: 2.2rem; }
-    header img.logo { height: 72px; }
-    .section-block { flex: 1 1 100%; max-width: 100%; }
-    .section-block img { height: auto; object-fit: contain; }
-    .btn-row {
-      flex-direction: column;
-      gap: 12px;
+    .section-block {
+      flex: 1 1 45%;
+      margin-bottom: 30px;
     }
   }
-
-  /* Simple fadeInUp animation */
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  @media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.4rem;
+    }
+    nav {
+      padding: 0 10px;
+    }
+    .menu {
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .section-block {
+      flex: 1 1 100%;
+      margin-bottom: 30px;
+      max-width: 100%;
+    }
+    .section-block img {
+      height: auto;
+    }
+    .btn-row {
+      flex-direction: column;
+      gap: 15px;
+    }
+    .btn {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
   }
 </style>
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/logo.coeur.ouvert.png" alt="Logo Coeur Ouvert" class="logo" />
     <h1>Coeur Ouvert</h1>
     <p class="slogan">Un espace pour parler, être écouté, et retrouver l’espoir</p>
   </header>
 
-  <!-- Menu -->
   <nav>
     <ul class="menu">
       <li><a href="index.html">Accueil</a></li>
@@ -350,41 +255,42 @@
     </ul>
   </nav>
 
-  <!-- Verset du jour -->
   <div id="daily-verse">Chargement du verset...</div>
 
-  <!-- Main content -->
   <main>
-    <div class="intro" role="region" aria-labelledby="intro-title">
-      <p class="lead"><strong>Tu es une personne de valeur.</strong></p>
-      <p>Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse. <strong>Coeur Ouvert</strong> est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
-      <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière (si tu le souhaites), des paroles d’encouragement et des témoignages réels de transformation.</p>
-    </div>
-
-    <div class="flex-row" aria-live="polite">
-      <section class="section-block" aria-labelledby="mission-title">
-        <h2 id="mission-title">Notre mission</h2>
+    <div class="flex-row">
+      <section class="section-block">
+        <h2>Notre mission</h2>
         <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png" alt="Notre mission" />
-        <p>Faire découvrir l’amour de Dieu : pas pour imposer une religion, mais pour restaurer la relation entre Dieu et l’homme.</p>
+        <p>
+          Coeur Ouvert est une plateforme chrétienne dédiée à l’encouragement spirituel 
+          et au coaching personnalisé. Nous partageons chaque jour la Parole de Dieu pour inspirer,
+          accompagner et fortifier ta foi.
+        </p>
       </section>
 
-      <section class="section-block" aria-labelledby="comme-dieu-title">
-        <h2 id="comme-dieu-title">Comme Dieu te voit</h2>
+      <section class="section-block">
+        <h2>Comme Dieu te voit</h2>
         <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/tigre.jpg" alt="Comme Dieu te voit" />
-        <p>Tu es précieux aux yeux de Dieu, créé avec amour et destiné à accomplir de grandes choses. Ne doute jamais de ta valeur.</p>
+        <p>
+          Tu es précieux aux yeux de Dieu, créé avec amour et destiné à accomplir de grandes choses. 
+          Ne doute jamais de ta valeur, car elle est infinie et inaltérable.
+        </p>
       </section>
 
-      <section class="section-block" aria-labelledby="gratitude-title">
-        <h2 id="gratitude-title">Vivre avec gratitude</h2>
+      <section class="section-block">
+        <h2>Vivre avec gratitude</h2>
         <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png" alt="Vivre avec gratitude" />
-        <p>La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.</p>
+        <p>
+          La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. 
+          Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.
+        </p>
       </section>
     </div>
 
-    <!-- Boutons -->
-    <div class="btn-row" role="region" aria-label="Actions">
-      <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
-      <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
+    <div class="btn-row">
+      <a href="coaching.html" class="btn">Parler à un conseiller</a>
+      <a href="temoignages.html" class="btn">Lire des témoignages</a>
     </div>
   </main>
 
@@ -392,7 +298,6 @@
     &copy; 2025 Coeur Ouvert — <a href="contact.html">Contact</a>
   </footer>
 
-  <!-- Verset script -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       fetch("verses.json")
@@ -417,10 +322,8 @@
             "Impossible de charger le verset du jour.";
         });
     });
-  </script>
 
-  <!-- Fade-in on scroll script -->
-  <script>
+    // Intersection Observer : fade-in uniquement sur les sections images + textes
     function onEntry(entry) {
       entry.forEach(change => {
         if (change.isIntersecting) {
@@ -428,8 +331,7 @@
         }
       });
     }
-
-    let options = { threshold: [0.2] };
+    let options = { threshold: [0.3] }; // déclenche un peu plus tard
     let observer = new IntersectionObserver(onEntry, options);
     document.querySelectorAll('.section-block').forEach(block => {
       observer.observe(block);
