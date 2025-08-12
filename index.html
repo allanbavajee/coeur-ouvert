@@ -72,14 +72,27 @@
     font-weight: 400;
     font-size: 1.4rem;
     color: #5a2e00; /* marron foncé */
-    background-image: 
-      linear-gradient(to right, white, #f7a33c 15%, #f7a33c 85%, white);
+    background-image: linear-gradient(to right, white 15%, #FFDB8C 50%, white 85%);
     border-radius: 12px;
     font-family: Georgia, serif;
     text-align: center;
-    box-shadow: 0 0 20px 5px rgba(247,163,60,0.5); /* glow doux orange */
     position: relative;
     z-index: 1;
+    overflow: visible;
+  }
+
+  #daily-verse::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 80%;
+    pointer-events: none;
+    border-radius: 12px;
+    background: radial-gradient(circle, rgba(255, 206, 102, 0.4) 0%, transparent 70%);
+    z-index: -1;
   }
   main {
     max-width: 900px;
