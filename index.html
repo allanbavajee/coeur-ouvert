@@ -18,7 +18,7 @@
     --gray-light: #f7f7f7;
     --text-color: #000000;
     --muted: #666666;
-    --slogan-color: #803333; /* rouge brique foncé */
+    --slogan-color: #ff0000; /* rouge vif pour slogan */
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -200,7 +200,7 @@
     flex-direction: column;
     align-items: center;
     min-width: 220px;
-    transition: transform .22s ease, box-shadow .22s ease, opacity 1s ease;
+    transition: transform 1s ease, box-shadow 1s ease, opacity 1s ease; /* fade plus long */
     opacity: 0;
     transform: translateY(10px);
   }
@@ -222,10 +222,10 @@
 
   .section-block img {
     width: 100%;
-    max-width: 260px;
+    max-width: 320px; /* un peu plus large */
     border-radius: 10px;
-    object-fit: contain; /* correction image coupée */
-    height: 160px;
+    object-fit: contain;
+    height: 220px; /* plus grand */
     margin-bottom: 12px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   }
@@ -249,7 +249,7 @@
 
   .btn-primary {
     display: inline-block;
-    font-weight: 700;
+    font-weight: 400; /* plus normal */
     padding: 12px 28px;
     border-radius: 28px;
     text-decoration: none;
