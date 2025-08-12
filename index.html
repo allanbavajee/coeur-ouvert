@@ -4,14 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Coeur Ouvert</title>
-<!-- Google Fonts : Montserrat pour titre, Open Sans pour texte -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
 <style>
   :root {
     --gold-accent: #f5a623;
     --blue-main: #2a6ebb;
     --gray-light: #f7f7f7;
-    --verset-bg: #FFF9E5; /* jaune très pâle */
     --text-color: #000000;
   }
   * {
@@ -73,15 +71,15 @@
     font-style: italic;
     font-weight: 400;
     font-size: 1.4rem;
-    color: #8B4513; /* marron foncé */
-    background-color: var(--verset-bg);
+    color: #5a2e00; /* marron foncé */
+    background-image: 
+      linear-gradient(to right, white, #f7a33c 15%, #f7a33c 85%, white);
     border-radius: 12px;
     font-family: Georgia, serif;
     text-align: center;
-    box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
-
-    /* Dégradé fade à gauche et droite */
-    background-image: linear-gradient(to right, white, var(--verset-bg) 15%, var(--verset-bg) 85%, white);
+    box-shadow: 0 0 20px 5px rgba(247,163,60,0.5); /* glow doux orange */
+    position: relative;
+    z-index: 1;
   }
   main {
     max-width: 900px;
@@ -116,9 +114,9 @@
     width: 100%;
     max-width: 260px;
     border-radius: 12px;
-    object-fit: contain; /* éviter le crop */
+    object-fit: contain;
     margin-bottom: 10px;
-    height: auto; /* suppression de la hauteur fixe */
+    height: auto;
   }
   .section-block p {
     font-weight: 400;
