@@ -117,13 +117,13 @@
     width: 60%;
   }
 
-  /* Verset global (sera utilisé à l'intérieur du left-section) */
+  /* Verset global (sans fond jaune) */
   #daily-verse {
     font-style: italic;
     font-weight: 400;
     font-size: 1.28rem;
     color: #5a2e00;
-    background-image: linear-gradient(to right, white 14%, #FFECB9 50%, white 86%);
+    /* plus de background-image jaune ici */
     border-radius: 12px;
     font-family: Georgia, serif;
     text-align: center;
@@ -133,22 +133,10 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     padding: 20px 28px;
     margin-bottom: 20px;
+    background: transparent;
   }
 
-  #daily-verse::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 64%;
-    height: 76%;
-    border-radius: 12px;
-    background: radial-gradient(circle, rgba(255,222,146,0.45) 0%, transparent 60%);
-    z-index: -1;
-    pointer-events: none;
-  }
-
+  /* small shadow under the card (kept) */
   #daily-verse::after {
     content: "";
     position: absolute;
@@ -208,7 +196,6 @@
   /* Carrés latéraux : plus longs et "fixes" (sticky) */
   .left-section,
   .right-section {
-    background: var(--gray-light);
     border-radius: 12px;
     padding: 18px;
     width: 300px;               /* un peu plus large */
@@ -225,6 +212,22 @@
     overflow: hidden;
   }
 
+  /* LEFT: background image en bas + dégradé vers le haut pour fusionner avec le blanc */
+  .left-section {
+    background:
+      linear-gradient(to top,
+        rgba(255,255,255,1) 0%,
+        rgba(255,255,255,0.98) 20%,
+        rgba(255,255,255,0.95) 35%,
+        rgba(255,255,255,0.9) 50%,
+        rgba(255,255,255,0.6) 70%,
+        rgba(255,255,255,0.25) 85%,
+        rgba(255,255,255,0) 100%),
+      url('https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png') no-repeat bottom center;
+    background-size: cover;
+    color: #5a2e00;
+  }
+
   /* Centrer le verset à l'intérieur du carré (vertical + horizontal) */
   .left-section #daily-verse {
     margin: 0;                  /* override du margin-bottom global */
@@ -234,11 +237,11 @@
     justify-content: center;
     text-align: center;
     padding: 18px;
-    background-image: linear-gradient(to right, white 14%, #FFECB9 50%, white 86%);
+    background: transparent;    /* pas de jaune */
     border-radius: 10px;
   }
 
-  /* Image en bas du carré avec dégradé vers le haut */
+  /* Image en bas du carré droit avec dégradé vers le haut (optionnel) */
   .side-image {
     height: 200px;
     width: 100%;
@@ -252,12 +255,12 @@
   }
 
   .side-image::after {
-    /* dégradé du bas vers le haut (plus foncé en bas) */
+    /* dégradé du bas vers le haut (léger) */
     content: "";
     position: absolute;
     left: 0; right: 0; bottom: 0;
     height: 70%;
-    background: linear-gradient(to top, rgba(0,0,0,0.35), rgba(255,255,255,0));
+    background: linear-gradient(to top, rgba(0,0,0,0.18), rgba(255,255,255,0));
     pointer-events: none;
   }
 
@@ -430,11 +433,11 @@
       <!-- Section verset à gauche (sticky) -->
       <aside class="left-section" aria-labelledby="verse-title">
         <h2 id="verse-title">Verset du jour</h2>
-        <!-- Le verset est centré verticalement grâce aux styles ci-dessus -->
+
+        <!-- Le verset est centré verticalement -->
         <div id="daily-verse">Chargement du verset...</div>
 
-        <!-- image en bas du carré (dégradé vers le haut). Remplace l'URL si tu veux autre image -->
-        <div class="side-image" style="background-image:url('https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png');"></div>
+        <!-- (remplacé : l'image est en background du left-section, donc pas d'élément image ici) -->
       </aside>
 
       <!-- Section centrale avec les images et textes -->
@@ -467,7 +470,7 @@
           Chaque jour est une nouvelle chance de renaître, de marcher dans la lumière et d’avancer avec confiance.
         </div>
 
-        <!-- image en bas du carré (dégradé vers le haut). Remplace l'URL si tu veux autre image -->
+        <!-- image en bas du carré droit (optionnel) -->
         <div class="side-image" style="background-image:url('https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png');"></div>
       </aside>
 
