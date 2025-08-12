@@ -59,11 +59,42 @@
 
   header p.slogan {
     width: 100%;
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Merriweather', serif;
     font-size: 1.3rem;
-    color: var(--slogan-color);
-    margin-top: -10px;  /* plus proche du titre */
+    color: #8B4B4B;
+    margin-top: -10px;
     margin-bottom: 0;
+  }
+
+  /* Fade-in amélioré pour .section-block uniquement */
+  .section-block {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+
+  .section-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // Intersection Observer : fade-in uniquement sur les sections images + textes
+  function onEntry(entry) {
+    entry.forEach(change => {
+      if (change.isIntersecting) {
+        change.target.classList.add('visible');
+      }
+    });
+  }
+
+  let options = { threshold: [0.3] }; // déclenche un peu plus tard
+  let observer = new IntersectionObserver(onEntry, options);
+  document.querySelectorAll('.section-block').forEach(block => {
+    observer.observe(block);
+  });
+</script>
   }
 
   nav {
@@ -180,7 +211,7 @@
   }
 
   .intro p { margin-bottom: 12px; color: #222; }
-  .intro p.lead { font-weight: 600; font-size: 1.05rem; color: #111; }
+  .intro p.lead { font-weight: 600; font-size: 1.05rem; color: #111; }slo
 
   .flex-row {
     display: flex;
