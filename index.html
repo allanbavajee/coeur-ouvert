@@ -62,7 +62,7 @@
     font-family: 'Dancing Script', cursive;
     font-size: 1.3rem;
     color: var(--slogan-color);
-    margin-top: -10px;
+    margin-top: -10px;  /* plus proche du titre */
     margin-bottom: 0;
   }
 
@@ -115,47 +115,107 @@
     width: 60%;
   }
 
-  /* Conteneur principal flex */
-  .main-flex-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+  #daily-verse {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.28rem;
+    color: #5a2e00;
+    background-image: linear-gradient(to right, white 14%, #FFECB9 50%, white 86%);
+    border-radius: 12px;
+    font-family: Georgia, serif;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    padding: 20px 28px;
+    margin-bottom: 20px;
+  }
+
+  #daily-verse::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64%;
+    height: 76%;
+    border-radius: 12px;
+    background: radial-gradient(circle, rgba(255,222,146,0.45) 0%, transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  #daily-verse::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 58%;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.12);
+    filter: blur(8px);
+    z-index: -2;
+    pointer-events: none;
+  }
+
+  main {
     max-width: 1200px;
     margin: 0 auto 56px;
     padding: 0 20px;
-    gap: 20px;
-  }
-
-  /* Colonnes latérales */
-  .side-column {
-    background: var(--gray-light);
-    border-radius: 12px;
-    padding: 24px 20px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
-    width: 250px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 1.5s ease, transform 1.5s ease;
-  }
-
-  /* Colonne centrale */
-  .center-column {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 700px;
   }
 
   .intro {
     background: var(--gray-light);
     border-radius: 12px;
     padding: 22px;
+    margin-bottom: 30px;
+    text-align: center;
     box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+    animation: fadeInUp .75s ease both;
   }
 
   .intro p { margin-bottom: 12px; color: #222; }
   .intro p.lead { font-weight: 600; font-size: 1.05rem; color: #111; }
+
+  .main-flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto 56px;
+    padding: 60px 20px 20px; /* Espace plus grand en haut pour baisser les sections */
+    gap: 20px;
+  }
+
+  .left-section,
+  .right-section {
+    background: var(--gray-light);
+    border-radius: 12px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    color: #5a2e00;
+    line-height: 1.4;
+    height: auto;
+  }
+
+  .left-section {
+    /* On laisse la hauteur auto pour prendre la hauteur du contenu */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
   .flex-row {
     display: flex;
@@ -163,6 +223,7 @@
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
+    flex: 1;
   }
 
   .section-block {
@@ -175,14 +236,13 @@
     flex-direction: column;
     align-items: center;
     min-width: 220px;
-    transition: transform .22s ease, box-shadow .22s ease, opacity 1.5s ease;
+    transition: transform .22s ease, box-shadow .22s ease, opacity 1s ease;
     opacity: 0;
     transform: translateY(10px);
   }
 
   /* Fade-in animation trigger class */
-  .section-block.visible,
-  .side-column.visible {
+  .section-block.visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -198,10 +258,10 @@
 
   .section-block img {
     width: 100%;
-    max-width: 260px;
+    max-width: 280px;
     border-radius: 10px;
-    object-fit: cover;
-    height: 160px;
+    object-fit: contain; /* Pour éviter que l'image soit coupée */
+    height: auto;
     margin-bottom: 12px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   }
@@ -249,7 +309,7 @@
   }
 
   .btn-secondary:hover {
-    background: #5da95d;
+    background-color: #5ea45e;
   }
 
   footer {
@@ -262,21 +322,36 @@
   /* Responsive tweaks */
   @media (max-width: 1200px) {
     .main-flex-container {
-      max-width: 95%;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 40px;
+    }
+    .left-section,
+    .right-section {
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 30px;
+    }
+    .flex-row {
+      flex: 1 1 100%;
+      max-width: 900px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .section-block {
+      flex: 1 1 45%;
+      max-width: 400px;
     }
   }
 
-  @media (max-width: 900px) {
-    .main-flex-container {
+  @media (max-width: 640px) {
+    header h1 { font-size: 2.2rem; }
+    header img.logo { height: 72px; }
+    .section-block { flex: 1 1 100%; max-width: 100%; }
+    .section-block img { height: auto; object-fit: contain; }
+    .btn-row {
       flex-direction: column;
-      align-items: center;
-    }
-    .side-column,
-    .center-column {
-      width: 100% !important;
-      max-width: 600px;
-      opacity: 1 !important;
-      transform: none !important;
+      gap: 12px;
     }
   }
 
@@ -306,23 +381,26 @@
     </ul>
   </nav>
 
-  <!-- Conteneur principal avec colonnes -->
-  <main class="main-flex-container" role="main">
-    <!-- Colonne gauche : verset -->
-    <aside class="side-column" aria-label="Verset du jour" id="verse-section">
-      <h2>Verset du jour</h2>
-      <p id="daily-verse">Chargement du verset...</p>
-    </aside>
+  <!-- Main content -->
+  <main>
 
-    <!-- Colonne centrale : intro + images -->
-    <section class="center-column">
-      <div class="intro" role="region" aria-labelledby="intro-title">
-        <p class="lead"><strong>Tu es une personne de valeur.</strong></p>
-        <p id="intro-title">Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse. <strong>Coeur Ouvert</strong> est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
-        <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière (si tu le souhaites), des paroles d’encouragement et des témoignages réels de transformation.</p>
-      </div>
+    <div class="intro" role="region" aria-labelledby="intro-title">
+      <p class="lead"><strong>Tu es une personne de valeur.</strong></p>
+      <p>Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse. <strong>Coeur Ouvert</strong> est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
+      <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière (si tu le souhaites), des paroles d’encouragement et des témoignages réels de transformation.</p>
+    </div>
 
-      <div class="flex-row" aria-live="polite">
+    <div class="main-flex-container" role="main" aria-label="Contenu principal">
+
+      <!-- Section verset à gauche -->
+      <aside class="left-section" aria-labelledby="verse-title">
+        <h2 id="verse-title">Verset du jour</h2>
+        <div id="daily-verse">Chargement du verset...</div>
+      </aside>
+
+      <!-- Section centrale avec les images et textes -->
+      <div class="flex-row" aria-live="polite" aria-label="Nos valeurs et mission">
+
         <section class="section-block" aria-labelledby="mission-title">
           <h2 id="mission-title">Notre mission</h2>
           <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png" alt="Notre mission" />
@@ -340,20 +418,23 @@
           <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png" alt="Vivre avec gratitude" />
           <p>La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.</p>
         </section>
+
       </div>
 
-      <!-- Boutons -->
-      <div class="btn-row" role="region" aria-label="Actions">
-        <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
-        <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
-      </div>
-    </section>
+      <!-- Section encouragement à droite -->
+      <aside class="right-section" aria-labelledby="encouragement-title">
+        <h2 id="encouragement-title">Encouragement du jour</h2>
+        <p>Chaque jour est une nouvelle chance de renaître, de marcher dans la lumière et d’avancer avec confiance. Que ta foi soit ton guide et ton courage ta force.</p>
+      </aside>
 
-    <!-- Colonne droite : encouragement -->
-    <aside class="side-column" aria-label="Encouragement journalier" id="encouragement-section">
-      <h2>Encouragement du jour</h2>
-      <p id="daily-encouragement">Reste fort et garde la foi. Chaque jour est une nouvelle chance pour grandir.</p>
-    </aside>
+    </div>
+
+    <!-- Boutons -->
+    <div class="btn-row" role="region" aria-label="Actions">
+      <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
+      <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
+    </div>
+
   </main>
 
   <footer>
@@ -399,7 +480,7 @@
 
     let options = { threshold: [0.2] };
     let observer = new IntersectionObserver(onEntry, options);
-    document.querySelectorAll('.section-block, .side-column').forEach(block => {
+    document.querySelectorAll('.section-block').forEach(block => {
       observer.observe(block);
     });
   </script>
