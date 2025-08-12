@@ -13,7 +13,6 @@
     --gold-accent: #f5a623;
     --blue-main: #2a6ebb;
     --gray-light: #f7f7f7;
-    --gray-verse-bg: #e0e0e0;
     --text-color: #000000;
     --muted: #666666;
     --slogan-color: #b35d5d;
@@ -116,37 +115,12 @@
     width: 60%;
   }
 
-  /* Conteneur principal flex pour 2 colonnes */
-  .content-wrapper {
+  main {
     max-width: 900px;
     margin: 0 auto 56px;
     padding: 0 20px;
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
   }
 
-  /* Colonne gauche : contenu principal */
-  .left-column {
-    flex: 1 1 65%;
-  }
-
-  /* Colonne droite : verset */
-  .right-column {
-    flex: 0 0 30%;
-    background-color: var(--gray-verse-bg);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-    font-family: Georgia, serif;
-    font-size: 1.2rem;
-    color: #4b3b00;
-    min-height: 350px;
-    position: sticky;
-    top: 80px; /* Reste visible quand scroll */
-  }
-
-  /* Intro */
   .intro {
     background: var(--gray-light);
     border-radius: 12px;
@@ -160,6 +134,59 @@
   .intro p { margin-bottom: 12px; color: #222; }
   .intro p.lead { font-weight: 600; font-size: 1.05rem; color: #111; }
 
+  /* Conteneur verset + encouragement */
+  .daily-messages-container {
+    max-width: 900px;
+    margin: 40px auto 60px;
+    padding: 0 20px;
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .daily-message {
+    background: var(--gray-light);
+    border-radius: 12px;
+    padding: 24px 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    flex: 1 1 48%;
+    min-width: 280px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+  }
+
+  .daily-message.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .daily-message h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    color: var(--text-color);
+    text-align: center;
+  }
+
+  #daily-verse {
+    font-style: italic;
+    font-family: Georgia, serif;
+    font-size: 1.25rem;
+    color: #5a2e00;
+    text-align: center;
+  }
+
+  #daily-encouragement {
+    font-size: 1.1rem;
+    color: #333333;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  /* Section avec images */
   .flex-row {
     display: flex;
     gap: 20px;
@@ -178,12 +205,11 @@
     flex-direction: column;
     align-items: center;
     min-width: 220px;
-    transition: transform .22s ease, box-shadow .22s ease, opacity 1s ease;
+    transition: transform .22s ease, box-shadow .22s ease, opacity 1.5s ease;
     opacity: 0;
     transform: translateY(10px);
   }
 
-  /* Fade-in animation trigger class */
   .section-block.visible {
     opacity: 1;
     transform: translateY(0);
@@ -203,7 +229,7 @@
     max-width: 320px;
     border-radius: 10px;
     object-fit: cover;
-    height: 180px;
+    height: 190px;
     margin-bottom: 12px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   }
@@ -217,7 +243,8 @@
 
   /* Boutons sous la mission */
   .btn-row {
-    margin-top: 30px;
+    max-width: 900px;
+    margin: 20px auto 56px;
     padding: 0 20px;
     display: flex;
     gap: 18px;
@@ -233,8 +260,15 @@
     padding: 12px 28px;
     border-radius: 28px;
     text-decoration: none;
-    transition: transform .18s ease, box-shadow .18s ease;
+    transition: transform .18s ease, box-shadow .18s ease, opacity 1.5s ease;
     box-shadow: 0 6px 16px rgba(245,166,35,0.25);
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .btn-primary.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .btn-primary:hover {
@@ -245,21 +279,36 @@
   .btn-secondary {
     background: #6fbf6f;
     box-shadow: 0 6px 16px rgba(111,191,111,0.22);
-    color: white;
-    font-weight: 400;
+    color: white !important;
+  }
+
+  footer {
+    text-align: center;
+    padding: 26px 16px;
+    color: var(--muted);
+    font-size: 0.92rem;
   }
 
   /* Responsive tweaks */
   @media (max-width: 900px) {
-    .content-wrapper {
+    .section-block { flex: 1 1 45%; }
+    .daily-messages-container {
       flex-direction: column;
+      gap: 30px;
     }
-    .right-column {
-      position: relative;
-      top: auto;
-      flex: 1 1 100%;
-      min-height: auto;
-      margin-top: 40px;
+    .daily-message {
+      min-width: 100%;
+    }
+  }
+
+  @media (max-width: 640px) {
+    header h1 { font-size: 2.2rem; }
+    header img.logo { height: 72px; }
+    .section-block { flex: 1 1 100%; max-width: 100%; }
+    .section-block img { height: auto; object-fit: contain; }
+    .btn-row {
+      flex-direction: column;
+      gap: 12px;
     }
   }
 
@@ -289,51 +338,54 @@
     </ul>
   </nav>
 
-  <!-- Conteneur principal -->
-  <div class="content-wrapper">
-
-    <!-- Colonne gauche -->
-    <div class="left-column">
-      <div class="intro" role="region" aria-labelledby="intro-title">
-        <p class="lead"><strong>Tu es une personne de valeur.</strong></p>
-        <p>Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse. <strong>Coeur Ouvert</strong> est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
-        <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière (si tu le souhaites), des paroles d’encouragement et des témoignages réels de transformation.</p>
-      </div>
-
-      <div class="flex-row" aria-live="polite">
-        <section class="section-block" aria-labelledby="mission-title">
-          <h2 id="mission-title">Notre mission</h2>
-          <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png" alt="Notre mission" />
-          <p>Faire découvrir l’amour de Dieu : pas pour imposer une religion, mais pour restaurer la relation entre Dieu et l’homme.</p>
-        </section>
-
-        <section class="section-block" aria-labelledby="comme-dieu-title">
-          <h2 id="comme-dieu-title">Comme Dieu te voit</h2>
-          <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/tigre.jpg" alt="Comme Dieu te voit" />
-          <p>Tu es précieux aux yeux de Dieu, créé avec amour et destiné à accomplir de grandes choses. Ne doute jamais de ta valeur.</p>
-        </section>
-
-        <section class="section-block" aria-labelledby="gratitude-title">
-          <h2 id="gratitude-title">Vivre avec gratitude</h2>
-          <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png" alt="Vivre avec gratitude" />
-          <p>La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.</p>
-        </section>
-      </div>
-
-      <!-- Boutons -->
-      <div class="btn-row" role="region" aria-label="Actions">
-        <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
-        <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
-      </div>
+  <!-- Main content -->
+  <main>
+    <div class="intro" role="region" aria-labelledby="intro-title">
+      <p class="lead"><strong>Tu es une personne de valeur.</strong></p>
+      <p>Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse. <strong>Coeur Ouvert</strong> est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
+      <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière (si tu le souhaites), des paroles d’encouragement et des témoignages réels de transformation.</p>
     </div>
 
-    <!-- Colonne droite : Verset du jour -->
-    <aside class="right-column" role="complementary" aria-label="Verset du jour">
-      <h2>Verset du jour</h2>
-      <div id="daily-verse">Chargement du verset...</div>
-    </aside>
+    <!-- Conteneur verset + encouragement -->
+    <div class="daily-messages-container" role="region" aria-label="Verset et encouragement du jour">
+      <section class="daily-message left-column" aria-labelledby="verse-title">
+        <h2 id="verse-title">Verset du jour</h2>
+        <div id="daily-verse">Chargement du verset...</div>
+      </section>
 
-  </div>
+      <section class="daily-message right-column" aria-labelledby="encouragement-title">
+        <h2 id="encouragement-title">Encouragement du jour</h2>
+        <p id="daily-encouragement">Voici un message d'encouragement pour aujourd'hui. Tu peux le changer chaque jour.</p>
+      </section>
+    </div>
+
+    <!-- Section avec images -->
+    <div class="flex-row" aria-live="polite">
+      <section class="section-block" aria-labelledby="mission-title">
+        <h2 id="mission-title">Notre mission</h2>
+        <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png" alt="Notre mission" />
+        <p>Faire découvrir l’amour de Dieu : pas pour imposer une religion, mais pour restaurer la relation entre Dieu et l’homme.</p>
+      </section>
+
+      <section class="section-block" aria-labelledby="comme-dieu-title">
+        <h2 id="comme-dieu-title">Comme Dieu te voit</h2>
+        <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/tigre.jpg" alt="Comme Dieu te voit" />
+        <p>Tu es précieux aux yeux de Dieu, créé avec amour et destiné à accomplir de grandes choses. Ne doute jamais de ta valeur.</p>
+      </section>
+
+      <section class="section-block" aria-labelledby="gratitude-title">
+        <h2 id="gratitude-title">Vivre avec gratitude</h2>
+        <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png" alt="Vivre avec gratitude" />
+        <p>La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.</p>
+      </section>
+    </div>
+
+    <!-- Boutons -->
+    <div class="btn-row" role="region" aria-label="Actions">
+      <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
+      <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
+    </div>
+  </main>
 
   <footer>
     &copy; 2025 Coeur Ouvert — <a href="contact.html">Contact</a>
@@ -363,23 +415,21 @@
           document.getElementById("daily-verse").textContent =
             "Impossible de charger le verset du jour.";
         });
-    });
-  </script>
 
-  <!-- Fade-in on scroll script -->
-  <script>
-    function onEntry(entry) {
-      entry.forEach(change => {
-        if (change.isIntersecting) {
-          change.target.classList.add('visible');
-        }
+      // Observer fade-in pour .section-block et .daily-message et .btn-primary
+      function onEntry(entry) {
+        entry.forEach(change => {
+          if (change.isIntersecting) {
+            change.target.classList.add('visible');
+          }
+        });
+      }
+      let options = { threshold: [0.2] };
+      let observer = new IntersectionObserver(onEntry, options);
+
+      document.querySelectorAll('.section-block, .daily-message, .btn-primary').forEach(el => {
+        observer.observe(el);
       });
-    }
-
-    let options = { threshold: [0.2] };
-    let observer = new IntersectionObserver(onEntry, options);
-    document.querySelectorAll('.section-block, .intro, .btn-row').forEach(block => {
-      observer.observe(block);
     });
   </script>
 
