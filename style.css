@@ -183,31 +183,13 @@ main {
 }
 
 /* Carrés latéraux : plus longs et "fixes" (sticky) */
-.left-section,
-.right-section {
-  border-radius: 12px;
-  padding: 18px;
-  width: 300px;               /* un peu plus large */
-  min-height: 560px;          /* un peu plus long */
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-  font-family: Georgia, serif;
-  font-size: 1.05rem;
-  color: #5a2e00;
-  line-height: 1.4;
-  display: flex;
-  flex-direction: column;
-  position: sticky;           /* reste visible en scroll */
-  top: 24px;
-  overflow: hidden;
-}
-
-/* LEFT: background image en bas + dégradé vers le haut pour fusionner avec le blanc */
 .left-section {
-  position: relative;
-  border-radius: 12px;
-  padding: 18px;
+  position: sticky;
+  top: 24px;
   width: 300px;
   min-height: 560px;
+  border-radius: 12px;
+  padding: 18px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.05);
   font-family: Georgia, serif;
   font-size: 1.05rem;
@@ -218,11 +200,9 @@ main {
   flex-direction: column;
   justify-content: center; /* centre verticalement */
   align-items: center;     /* centre horizontalement */
-
-  position: sticky;
-  top: 24px;
   overflow: hidden;
-  background: transparent;
+
+  background: white; /* fond blanc, identique à droite */
   z-index: 0;
 }
 
