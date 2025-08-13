@@ -203,7 +203,7 @@ main {
 
 /* LEFT: background image en bas + dégradé vers le haut pour fusionner avec le blanc */
 .left-section {
-  position: relative; /* pour le ::before */
+  position: relative;
   border-radius: 12px;
   padding: 18px;
   width: 300px;
@@ -213,28 +213,30 @@ main {
   font-size: 1.05rem;
   color: #5a2e00;
   line-height: 1.4;
+
   display: flex;
   flex-direction: column;
-  justify-content: center; /* pour centrer verticalement le verset */
+  justify-content: center; /* centre verticalement */
+  align-items: center;     /* centre horizontalement */
+
   position: sticky;
   top: 24px;
   overflow: hidden;
-  background: transparent; /* pas de fond blanc */
+  background: transparent;
   z-index: 0;
 }
 
-/* Image en fond avec dégradé foncé vers blanc en haut */
 .left-section::before {
   content: "";
   position: absolute;
   bottom: 0;
-  right: 0;       /* image alignée à droite */
+  right: 0;
   width: 100%;
   height: 200px;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   background-image:
-    linear-gradient(to top, rgba(255,255,255,0.95), rgba(0,0,0,0.5)),
+    linear-gradient(to top, rgba(0,0,0,0.5), rgba(255,255,255,0.95)),
     url('https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/zen.png');
   background-repeat: no-repeat;
   background-position: bottom right;
@@ -243,7 +245,6 @@ main {
   z-index: -1;
 }
 
-/* Le texte du verset : simple bloc centré, sans fond */
 .left-section #daily-verse {
   margin: 0;
   font-style: italic;
@@ -255,25 +256,11 @@ main {
   position: relative;
   z-index: 1;
   padding: 18px;
-  background: transparent; /* PAS de fond blanc ou jaune */
+  background: transparent;
   border-radius: 10px;
-  box-shadow: none; /* retirer l’ombre si elle donne effet de rectangle */
+  box-shadow: none;
+  max-width: 90%;
 }
-
-
-/* Centrer le verset à l'intérieur du carré (vertical + horizontal) */
-.left-section #daily-verse {
-  margin: 0;                  /* override du margin-bottom global */
-  flex: 1;                    /* prend l'espace disponible */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 18px;
-  background: transparent;    /* pas de jaune */
-  border-radius: 10px;
-}
-
 /* Image en bas du carré droit avec dégradé vers le haut (optionnel) */
 .side-image {
   height: 200px;
