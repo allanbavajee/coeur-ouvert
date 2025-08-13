@@ -1,1 +1,14 @@
+.verse-box {
+  position: relative;
+  padding: 20px;
+  text-align: center;
+  color: black;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(255, 255, 255, 1)),
+              url('https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png') bottom center / cover no-repeat;
+  background-blend-mode: multiply;
+}
 
