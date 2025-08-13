@@ -183,19 +183,28 @@ main {
   position: sticky;
   top: 24px;
   overflow: hidden;
-  background: #ffffff; /* blanc complet */
 }
 
-.left-section #daily-verse,
-.right-section #daily-encouragement {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 18px;
-  background: transparent;
+/* Image de fond pour la section gauche */
+.left-section {
+  position: relative;
+  background: url('https://exemple.com/ton-image.jpg') no-repeat center center;
+  background-size: cover;
 }
+
+.left-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,0.85); /* voile blanc semi-transparent */
+  z-index: 0;
+}
+
+.left-section * {
+  position: relative;
+  z-index: 1;
+}
+
 
 .flex-row {
   display: flex;
