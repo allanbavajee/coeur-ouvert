@@ -203,7 +203,7 @@ main {
 
 /* LEFT: background image en bas + dégradé vers le haut pour fusionner avec le blanc */
 .left-section {
-  position: relative; /* nécessaire pour le ::before */
+  position: relative; /* pour le ::before */
   border-radius: 12px;
   padding: 18px;
   width: 300px;
@@ -218,33 +218,35 @@ main {
   position: sticky;
   top: 24px;
   overflow: hidden;
-  background: white; /* on met blanc car on va gérer l’image en ::before */
+  background: transparent; /* ici on enlève le blanc */
+  z-index: 0;
 }
 
-/* Image en fond foncée en bas */
+/* L’image en fond avec dégradé foncé vers blanc */
 .left-section::before {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0; right: 0;
-  height: 200px; /* hauteur de la zone image visible */
+  height: 200px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   background-image:
-    linear-gradient(to top, rgba(0,0,0,0.4), rgba(255,255,255,1) 90%),
+    linear-gradient(to top, rgba(0,0,0,0.5), rgba(255,255,255,0.95) 90%),
     url('https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/zen.png');
   background-repeat: no-repeat;
   background-position: bottom center;
   background-size: cover;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  z-index: 0;
-  filter: brightness(0.75);
+  filter: brightness(0.7);
+  z-index: -1;  /* bien derrière */
 }
 
-/* On s'assure que le contenu soit au-dessus */
+/* Contenu au-dessus */
 .left-section > * {
   position: relative;
   z-index: 1;
 }
+
 
 
 /* Centrer le verset à l'intérieur du carré (vertical + horizontal) */
