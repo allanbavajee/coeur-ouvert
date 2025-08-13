@@ -1,115 +1,389 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plateforme Biblique & Coaching</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        nav {
-            background-color: #34495e;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 10px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        section {
-            padding: 20px;
-            max-width: 1000px;
-            margin: auto;
-            background: white;
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
-        }
-        h2 {
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 5px;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        input, textarea, button {
-            padding: 10px;
-            font-size: 1rem;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        button {
-            background-color: #27ae60;
-            color: white;
-            cursor: pointer;
-            border: none;
-        }
-        button:hover {
-            background-color: #2ecc71;
-        }
-    </style>
-</head>
-<body>
+:root {
+  --gold-accent: #f5a623;
+  --blue-main: #2a6ebb;
+  --gray-light: #f7f7f7;
+  --text-color: #000000;
+  --muted: #666666;
+  --slogan-color: #ff0000; /* slogan rouge */
+  --lead-color: #2a6ebb;   /* couleur pour "Tu es..." (frappante) */
+}
 
-    <header>
-        <h1>📖 Plateforme Biblique & Coaching Spirituel</h1>
-        <p>Encourager, former et transformer des vies par la Parole de Dieu</p>
-    </header>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <nav>
-        <a href="#verset">Verset du jour</a>
-        <a href="#coaching">Coaching Spirituel</a>
-        <a href="#ressources">Ressources</a>
-    </nav>
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
+  color: var(--text-color);
+  line-height: 1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
 
-    <section id="verset">
-        <h2>📜 Verset du jour</h2>
-        <p><strong>Psaume 23:1</strong> — "L'Éternel est mon berger: je ne manquerai de rien."</p>
-        <img src="https://via.placeholder.com/800x400?text=Verset+du+jour" alt="Image biblique">
-    </section>
+header {
+  max-width: 900px;
+  margin: 36px auto 8px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  text-align: center;
+  animation: fadeInUp .6s ease both;
+}
 
-    <section id="coaching">
-        <h2>🤝 Coaching Spirituel</h2>
-        <form action="mailto:tonemail@example.com" method="post" enctype="text/plain">
-            <input type="text" name="nom" placeholder="Votre nom" required>
-            <input type="email" name="email" placeholder="Votre email" required>
-            <textarea name="message" placeholder="Votre message" rows="5" required></textarea>
-            <button type="submit">Envoyer</button>
-        </form>
-    </section>
+header img.logo {
+  height: 80px;
+  width: auto;
+  flex-shrink: 0;
+}
 
-    <section id="ressources">
-        <h2>📂 Ressources</h2>
-        <ul>
-            <li><a href="support.pdf" target="_blank">📄 Télécharger PDF</a></li>
-            <li><a href="audio.mp3" target="_blank">🎧 Écouter l'audio</a></li>
-        </ul>
-        <img src="https://via.placeholder.com/800x400?text=Ressources" alt="Ressources chrétiennes">
-    </section>
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 3.8rem;
+  letter-spacing: 1.5px;
+  color: var(--text-color);
+  line-height: 1;
+}
 
-</body>
-</html>
+/* Slogan en rouge */
+header p.slogan {
+  width: 100%;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  color: var(--slogan-color);
+  margin-top: -10px;  /* plus proche du titre */
+  margin-bottom: 0;
+}
+
+nav {
+  max-width: 900px;
+  margin: 16px auto 28px;
+  padding: 0 20px;
+  animation: fadeInUp .65s ease both;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  align-items: center;
+}
+
+.menu li a {
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+  padding: 6px 4px;
+  position: relative;
+  transition: color .22s ease;
+}
+
+.menu li a::after {
+  content: "";
+  height: 2px;
+  width: 0;
+  background: var(--gold-accent);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -6px;
+  transition: width .22s ease;
+  border-radius: 2px;
+}
+
+.menu li a:hover,
+.menu li a:focus {
+  color: var(--gold-accent);
+  outline: none;
+}
+
+.menu li a:hover::after,
+.menu li a:focus::after {
+  width: 60%;
+}
+
+/* Verset global (sans fond jaune) */
+#daily-verse {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.28rem;
+  color: #5a2e00;
+  /* plus de background-image jaune ici */
+  border-radius: 12px;
+  font-family: Georgia, serif;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  padding: 20px 28px;
+  margin-bottom: 20px;
+  background: transparent;
+}
+
+/* small shadow under the card (kept) */
+#daily-verse::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 58%;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.12);
+  filter: blur(8px);
+  z-index: -2;
+  pointer-events: none;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto 56px;
+  padding: 0 20px;
+}
+
+/* Intro : fond blanc (on a retiré le gris) */
+.intro {
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 30px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+  animation: fadeInUp .75s ease both;
+  background: white;
+}
+
+/* "Tu es..." en Playfair Display pour marquer l'attention */
+.intro p.lead {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 2rem;            /* plus grand */
+  color: var(--lead-color);   /* couleur frappante */
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.intro p { margin-bottom: 12px; color: #222; }
+.intro p.lead-small { font-weight: 600; font-size: 1.05rem; color: #111; }
+
+/* Container horizontal principal (gauche - centre - droite) */
+.main-flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto 56px;
+  padding: 60px 20px 20px; /* plus bas comme demandé précédemment */
+  gap: 20px;
+}
+
+/* Carrés latéraux : plus longs et "fixes" (sticky) */
+.left-section,
+.right-section {
+  border-radius: 12px;
+  padding: 18px;
+  width: 300px;               /* un peu plus large */
+  min-height: 560px;          /* un peu plus long */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  color: #5a2e00;
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  position: sticky;           /* reste visible en scroll */
+  top: 24px;
+  overflow: hidden;
+}
+
+/* LEFT: background image en bas + dégradé vers le haut pour fusionner avec le blanc */
+.left-section {
+  background:
+    linear-gradient(to top,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.98) 20%,
+      rgba(255,255,255,0.95) 35%,
+      rgba(255,255,255,0.9) 50%,
+      rgba(255,255,255,0.6) 70%,
+      rgba(255,255,255,0.25) 85%,
+      rgba(255,255,255,0) 100%),
+    url('https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/zen.png') no-repeat bottom center;
+  background-size: cover;
+  color: #5a2e00;
+}
+
+/* Centrer le verset à l'intérieur du carré (vertical + horizontal) */
+.left-section #daily-verse {
+  margin: 0;                  /* override du margin-bottom global */
+  flex: 1;                    /* prend l'espace disponible */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 18px;
+  background: transparent;    /* pas de jaune */
+  border-radius: 10px;
+}
+
+/* Image en bas du carré droit avec dégradé vers le haut (optionnel) */
+.side-image {
+  height: 200px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  margin-top: 12px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.side-image::after {
+  /* dégradé du bas vers le haut (léger) */
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 70%;
+  background: linear-gradient(to top, rgba(0,0,0,0.18), rgba(255,255,255,0));
+  pointer-events: none;
+}
+
+/* Flex central (3 blocs) */
+.flex-row {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.section-block {
+  background: var(--gray-light);
+  border-radius: 14px;
+  padding: 14px;
+  flex: 1 1 30%;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 220px;
+  transition: transform .22s ease, box-shadow .22s ease, opacity 1s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Fade-in trigger */
+.section-block.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-block h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  margin-bottom: 10px;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.section-block img {
+  width: 100%;
+  max-width: 320px; /* un peu plus grand */
+  border-radius: 10px;
+  object-fit: contain; /* pas coupé */
+  height: auto;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.section-block p {
+  font-size: 0.995rem;
+  color: #222;
+  text-align: center;
+  margin-top: auto;
+}
+
+/* Boutons */
+.btn-row {
+  max-width: 900px;
+  margin: 20px auto 56px;
+  padding: 0 20px;
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  animation: fadeInUp .8s ease both;
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: var(--gold-accent);
+  color: white;
+  font-weight: 400;
+  padding: 12px 28px;
+  border-radius: 28px;
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease;
+  box-shadow: 0 6px 16px rgba(245,166,35,0.25);
+}
+
+.btn-secondary {
+  background: #6fbf6f;
+  box-shadow: 0 6px 16px rgba(111,191,111,0.22);
+  color: white;
+  font-weight: 400;
+}
+
+footer {
+  text-align: center;
+  padding: 26px 16px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 1200px) {
+  .main-flex-container {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+  }
+  .left-section,
+  .right-section {
+    width: 100%;
+    max-width: 420px;
+    min-height: auto;
+    position: relative; /* sticky désactivé sur petits écrans */
+    top: auto;
+  }
+  .flex-row {
+    flex: 1 1 100%;
+    max-width: 900px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .section-block {
+    flex: 1 1 45%;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 640px) {
+  header h1 { font-size: 2.2rem; }
+  header img.logo { height: 72px; }
+  .section-block { flex: 1 1 100%; max-width: 100%; }
+  .section-block img { height: auto; object-fit: contain; }
+  .btn-row { flex-direction: column; gap: 12px; }
+}
+
+/* Simple fadeInUp animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
