@@ -1,115 +1,147 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plateforme Biblique & Coaching</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        nav {
-            background-color: #34495e;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 10px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        section {
-            padding: 20px;
-            max-width: 1000px;
-            margin: auto;
-            background: white;
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
-        }
-        h2 {
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 5px;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        input, textarea, button {
-            padding: 10px;
-            font-size: 1rem;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        button {
-            background-color: #27ae60;
-            color: white;
-            cursor: pointer;
-            border: none;
-        }
-        button:hover {
-            background-color: #2ecc71;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Coeur Ouvert</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Dancing+Script&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+
+<!-- Lien vers le fichier CSS externe -->
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <header>
-        <h1>📖 Plateforme Biblique & Coaching Spirituel</h1>
-        <p>Encourager, former et transformer des vies par la Parole de Dieu</p>
-    </header>
+  <!-- Header -->
+  <header>
+    <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/logo.coeur.ouvert.png" alt="Logo Coeur Ouvert" class="logo" />
+    <h1>Coeur Ouvert</h1>
+    <p class="slogan">Un espace pour parler, être écouté, et retrouver l’espoir</p>
+  </header>
 
-    <nav>
-        <a href="#verset">Verset du jour</a>
-        <a href="#coaching">Coaching Spirituel</a>
-        <a href="#ressources">Ressources</a>
-    </nav>
+  <!-- Menu -->
+  <nav>
+    <ul class="menu">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="coaching.html">Coaching Spirituel</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="temoignages.html">Témoignages</a></li>
+    </ul>
+  </nav>
 
-    <section id="verset">
-        <h2>📜 Verset du jour</h2>
-        <p><strong>Psaume 23:1</strong> — "L'Éternel est mon berger: je ne manquerai de rien."</p>
-        <img src="https://via.placeholder.com/800x400?text=Verset+du+jour" alt="Image biblique">
-    </section>
+  <!-- Main content -->
+  <main>
 
-    <section id="coaching">
-        <h2>🤝 Coaching Spirituel</h2>
-        <form action="mailto:tonemail@example.com" method="post" enctype="text/plain">
-            <input type="text" name="nom" placeholder="Votre nom" required>
-            <input type="email" name="email" placeholder="Votre email" required>
-            <textarea name="message" placeholder="Votre message" rows="5" required></textarea>
-            <button type="submit">Envoyer</button>
-        </form>
-    </section>
+    <div class="intro" role="region" aria-labelledby="intro-title">
+      <p class="lead"><strong>Tu es une personne de valeur.</strong></p>
+      <p>Nous savons que la vie peut être lourde, pleine de blessures, de doutes et de questions sans réponse. <strong>Coeur Ouvert</strong> est un espace où tu peux déposer tes fardeaux, partager ce que tu vis et trouver des réponses qui restaurent ton cœur.</p>
+      <p>Nous t’accompagnons grâce à l’écoute bienveillante de nos conseillers, la prière (si tu le souhaites), des paroles d’encouragement et des témoignages réels de transformation.</p>
+    </div>
 
-    <section id="ressources">
-        <h2>📂 Ressources</h2>
-        <ul>
-            <li><a href="support.pdf" target="_blank">📄 Télécharger PDF</a></li>
-            <li><a href="audio.mp3" target="_blank">🎧 Écouter l'audio</a></li>
-        </ul>
-        <img src="https://via.placeholder.com/800x400?text=Ressources" alt="Ressources chrétiennes">
-    </section>
+    <div class="main-flex-container" role="main" aria-label="Contenu principal">
+
+      <!-- Section verset à gauche (sticky) -->
+      <aside class="left-section" aria-labelledby="verse-title">
+        <h2 id="verse-title">Verset du jour</h2>
+
+        <!-- Le verset est centré verticalement -->
+        <div id="daily-verse">Chargement du verset...</div>
+
+        <!-- (remplacé : l'image est en background du left-section, donc pas d'élément image ici) -->
+      </aside>
+
+      <!-- Section centrale avec les images et textes -->
+      <div class="flex-row" aria-live="polite" aria-label="Nos valeurs et mission">
+
+        <section class="section-block" aria-labelledby="mission-title">
+          <h2 id="mission-title">Notre mission</h2>
+          <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/MIssoin.png" alt="Notre mission" />
+          <p>Faire découvrir l’amour de Dieu : pas pour imposer une religion, mais pour restaurer la relation entre Dieu et l’homme.</p>
+        </section>
+
+        <section class="section-block" aria-labelledby="comme-dieu-title">
+          <h2 id="comme-dieu-title">Comme Dieu te voit</h2>
+          <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/tigre.jpg" alt="Comme Dieu te voit" />
+          <p>Tu es précieux aux yeux de Dieu, créé avec amour et destiné à accomplir de grandes choses. Ne doute jamais de ta valeur.</p>
+        </section>
+
+        <section class="section-block" aria-labelledby="gratitude-title">
+          <h2 id="gratitude-title">Vivre avec gratitude</h2>
+          <img src="https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/grateful.png" alt="Vivre avec gratitude" />
+          <p>La gratitude transforme notre regard sur la vie, elle ouvre le cœur à la joie et à la paix. Chaque jour est une nouvelle occasion de remercier pour les bénédictions, grandes ou petites.</p>
+        </section>
+
+      </div>
+
+      <!-- Section encouragement à droite (sticky) -->
+      <aside class="right-section" aria-labelledby="encouragement-title">
+        <h2 id="encouragement-title">Encouragement du jour</h2>
+        <div id="daily-encouragement" style="flex:1; display:flex; align-items:center; justify-content:center; text-align:center; padding:12px;">
+          Chaque jour est une nouvelle chance de renaître, de marcher dans la lumière et d’avancer avec confiance.
+        </div>
+
+        <!-- image en bas du carré droit (optionnel) -->
+        <div class="side-image" style="background-image:url('https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/zen.png');"></div>
+      </aside>
+
+    </div>
+
+    <!-- Boutons -->
+    <div class="btn-row" role="region" aria-label="Actions">
+      <a href="coaching.html" class="btn-primary" role="button">Parler à un conseiller</a>
+      <a href="temoignages.html" class="btn-primary btn-secondary" role="button">Lire des témoignages</a>
+    </div>
+
+  </main>
+
+  <footer>
+    &copy; 2025 Coeur Ouvert — <a href="contact.html">Contact</a>
+  </footer>
+
+  <!-- Verset script (inchangé) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("verses.json")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Erreur lors du chargement du fichier JSON");
+          }
+          return response.json();
+        })
+        .then(data => {
+          let today = new Date();
+          let dayOfYear = Math.floor(
+            (today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24
+          );
+          let verseIndex = dayOfYear % data.length;
+          document.getElementById("daily-verse").textContent =
+            data[verseIndex].reference + " - " + data[verseIndex].texte;
+        })
+        .catch(error => {
+          console.error(error);
+          document.getElementById("daily-verse").textContent =
+            "Impossible de charger le verset du jour.";
+        });
+    });
+  </script>
+
+  <!-- Fade-in on scroll script (inchangé) -->
+  <script>
+    function onEntry(entry) {
+      entry.forEach(change => {
+        if (change.isIntersecting) {
+          change.target.classList.add('visible');
+        }
+      });
+    }
+
+    let options = { threshold: [0.2] };
+    let observer = new IntersectionObserver(onEntry, options);
+    document.querySelectorAll('.section-block').forEach(block => {
+      observer.observe(block);
+    });
+  </script>
 
 </body>
 </html>
