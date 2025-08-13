@@ -188,7 +188,7 @@ main {
 /* Image de fond pour la section gauche */
 .left-section {
   position: relative;
-  background: url('https://exemple.com/ton-image.jpg') no-repeat center center;
+  background: url('https://raw.github.com/allanbavajee/coeur-ouvert/blob/main/image/zen.png') no-repeat center center;
   background-size: cover;
 }
 
