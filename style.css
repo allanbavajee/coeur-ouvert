@@ -112,7 +112,6 @@ nav {
   font-weight: 400;
   font-size: 1.28rem;
   color: #5a2e00;
-  /* plus de background-image jaune ici */
   border-radius: 12px;
   font-family: Georgia, serif;
   text-align: center;
@@ -162,8 +161,8 @@ main {
 .intro p.lead {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-size: 2rem;            /* plus grand */
-  color: var(--lead-color);   /* couleur frappante */
+  font-size: 2rem;
+  color: var(--lead-color);
   margin-bottom: 12px;
   letter-spacing: 0.5px;
 }
@@ -187,9 +186,9 @@ main {
 .right-section {
   border-radius: 12px;
   padding: 18px;
-  width: 300px;               /* largeur fixe */
-  flex-shrink: 0;             /* empêche de grandir ou rétrécir */
-  min-height: 560px;          /* hauteur */
+  width: 300px;               
+  flex-shrink: 0;             
+  min-height: 560px;          
   box-shadow: 0 6px 20px rgba(0,0,0,0.05);
   font-family: Georgia, serif;
   font-size: 1.05rem;
@@ -200,75 +199,32 @@ main {
   position: sticky;
   top: 24px;
   overflow: hidden;
-}
-.right-section .side-image {
-  position: relative;
-}
-
-.right-section .side-image::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 70%; /* hauteur du dégradé */
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
-  pointer-events: none;
-  border-radius: 10px;
-  z-index: 1;
-}
-
-
-/* LEFT: background image en bas + dégradé vers le haut pour fusionner avec le blanc */
-.left-section {
-  background:
-    linear-gradient(to top,
-      rgba(255,255,255,1) 0%,
-      rgba(255,255,255,0.98) 20%,
-      rgba(255,255,255,0.95) 35%,
-      rgba(255,255,255,0.9) 50%,
-      rgba(255,255,255,0.6) 70%,
-      rgba(255,255,255,0.25) 85%,
-      rgba(255,255,255,0) 100%),
-    url('https://raw.githubusercontent.com/allanbavajee/coeur-ouvert/main/image/zen.png') no-repeat bottom center;
-  background-size: cover;
-  color: #5a2e00;
+  background: none !important; /* suppression background */
 }
 
 /* Centrer le verset à l'intérieur du carré (vertical + horizontal) */
 .left-section #daily-verse {
-  margin: 0;                  /* override du margin-bottom global */
-  flex: 1;                    /* prend l'espace disponible */
+  margin: 0;                  
+  flex: 1;                    
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 18px;
-  background: transparent;    /* pas de jaune */
+  background: transparent;    
   border-radius: 10px;
 }
 
-/* Image en bas du carré droit avec dégradé vers le haut (optionnel) */
+/* Suppression du background de l'image côté droit et du dégradé */
 .side-image {
-  height: 200px;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
-  margin-top: 12px;
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
+  background: none !important;
+  height: 0 !important;
+  margin-top: 0 !important;
+  display: none; /* on masque complètement */
 }
 
 .side-image::after {
-  /* dégradé du bas vers le haut (léger) */
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 70%;
-  background: linear-gradient(to top, rgba(0,0,0,0.18), rgba(255,255,255,0));
-  pointer-events: none;
+  display: none !important;
 }
 
 /* Flex central (3 blocs) */
@@ -278,7 +234,7 @@ main {
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  flex: 1 1 auto;  /* prend l'espace restant */
+  flex: 1 1 auto;
 }
 
 /* Les blocs centraux */
@@ -314,9 +270,9 @@ main {
 
 .section-block img {
   width: 100%;
-  max-width: 320px; /* un peu plus grand */
+  max-width: 320px;
   border-radius: 10px;
-  object-fit: contain; /* pas coupé */
+  object-fit: contain;
   height: auto;
   margin-bottom: 12px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.06);
@@ -327,6 +283,25 @@ main {
   color: #222;
   text-align: center;
   margin-top: auto;
+}
+
+/* Section encouragement droite - sans background d'image */
+/* On enlève les backgrounds dans right-section */
+
+.right-section {
+  background: none !important;
+}
+
+/* Styles encouragement du jour centré */
+#daily-encouragement {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+  font-style: italic;
+  color: #5a2e00;
 }
 
 /* Boutons */
@@ -378,7 +353,7 @@ footer {
     width: 100%;
     max-width: 420px;
     min-height: auto;
-    position: relative; /* sticky désactivé sur petits écrans */
+    position: relative;
     top: auto;
   }
   .flex-row {
@@ -416,10 +391,9 @@ footer {
     width: 100%;
     height: auto;
     display: block;
-    filter: brightness(0.8); /* assombrit l'image */
+    filter: brightness(0.8);
 }
 
-/* Overlay : blanc en haut vers transparent en bas */
 .hero::after {
     content: "";
     position: absolute;
@@ -429,18 +403,4 @@ footer {
     height: 100%;
     background: linear-gradient(to bottom, white 0%, rgba(255,255,255,0) 40%);
     pointer-events: none;
-}
-/* Correction de l'ordre des sections dans .main-flex-container */
-.main-flex-container > .left-section {
-  order: 1;
-}
-
-.main-flex-container > .flex-row {
-  order: 2;
-  flex: 1 1 auto;
-  min-width: 0; /* important pour éviter overflow */
-}
-
-.main-flex-container > .right-section {
-  order: 3;
 }
