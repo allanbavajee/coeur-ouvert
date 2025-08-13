@@ -413,3 +413,17 @@ footer {
     background: linear-gradient(to bottom, white 0%, rgba(255,255,255,0) 40%);
     pointer-events: none;
 }
+/* Correction de l'ordre des sections dans .main-flex-container */
+.main-flex-container > .left-section {
+  order: 1;
+}
+
+.main-flex-container > .flex-row {
+  order: 2;
+  flex: 1 1 auto;
+  min-width: 0; /* important pour éviter overflow */
+}
+
+.main-flex-container > .right-section {
+  order: 3;
+}
