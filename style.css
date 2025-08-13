@@ -1,18 +1,18 @@
 :root {
   --gold-accent: #f5a623;
   --blue-main: #2a6ebb;
-  --gray-light: #f7f7f7;
+  --gray-light: #ffffff; /* blanc partout */
   --text-color: #000000;
   --muted: #666666;
-  --slogan-color: #ff0000; /* slogan rouge */
-  --lead-color: #2a6ebb;   /* couleur pour "Tu es..." (frappante) */
+  --slogan-color: #ff0000; 
+  --lead-color: #2a6ebb; 
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
+  background: #ffffff; /* fond complètement blanc */
   color: var(--text-color);
   line-height: 1.6;
   -webkit-font-smoothing:antialiased;
@@ -32,11 +32,7 @@ header {
   animation: fadeInUp .6s ease both;
 }
 
-header img.logo {
-  height: 80px;
-  width: auto;
-  flex-shrink: 0;
-}
+header img.logo { height: 80px; width: auto; flex-shrink: 0; }
 
 header h1 {
   font-family: 'Playfair Display', serif;
@@ -47,13 +43,12 @@ header h1 {
   line-height: 1;
 }
 
-/* Slogan en rouge */
 header p.slogan {
   width: 100%;
   font-family: 'Dancing Script', cursive;
   font-size: 1.3rem;
   color: var(--slogan-color);
-  margin-top: -10px;  /* plus proche du titre */
+  margin-top: -10px;
   margin-bottom: 0;
 }
 
@@ -96,17 +91,10 @@ nav {
 }
 
 .menu li a:hover,
-.menu li a:focus {
-  color: var(--gold-accent);
-  outline: none;
-}
-
+.menu li a:focus { color: var(--gold-accent); outline: none; }
 .menu li a:hover::after,
-.menu li a:focus::after {
-  width: 60%;
-}
+.menu li a:focus::after { width: 60%; }
 
-/* Verset global (sans fond jaune) */
 #daily-verse {
   font-style: italic;
   font-weight: 400;
@@ -124,7 +112,6 @@ nav {
   background: transparent;
 }
 
-/* small shadow under the card (kept) */
 #daily-verse::after {
   content: "";
   position: absolute;
@@ -146,7 +133,6 @@ main {
   padding: 0 20px;
 }
 
-/* Intro : fond blanc (on a retiré le gris) */
 .intro {
   border-radius: 12px;
   padding: 22px;
@@ -154,10 +140,9 @@ main {
   text-align: center;
   box-shadow: 0 6px 20px rgba(0,0,0,0.03);
   animation: fadeInUp .75s ease both;
-  background: white;
+  background: #ffffff; /* blanc complet */
 }
 
-/* "Tu es..." en Playfair Display pour marquer l'attention */
 .intro p.lead {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
@@ -170,7 +155,6 @@ main {
 .intro p { margin-bottom: 12px; color: #222; }
 .intro p.lead-small { font-weight: 600; font-size: 1.05rem; color: #111; }
 
-/* Container horizontal principal (gauche - centre - droite) */
 .main-flex-container {
   display: flex;
   justify-content: space-between;
@@ -181,14 +165,14 @@ main {
   gap: 20px;
 }
 
-/* Carrés latéraux : plus longs et "fixes" (sticky) */
+/* Sections latérales - complètement blanches */
 .left-section,
 .right-section {
   border-radius: 12px;
   padding: 18px;
-  width: 300px;               
-  flex-shrink: 0;             
-  min-height: 560px;          
+  width: 300px;
+  flex-shrink: 0;
+  min-height: 560px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.05);
   font-family: Georgia, serif;
   font-size: 1.05rem;
@@ -199,35 +183,20 @@ main {
   position: sticky;
   top: 24px;
   overflow: hidden;
-  background: none !important; /* suppression background */
+  background: #ffffff; /* blanc complet */
 }
 
-/* Centrer le verset à l'intérieur du carré (vertical + horizontal) */
-.left-section #daily-verse {
-  margin: 0;                  
-  flex: 1;                    
+.left-section #daily-verse,
+.right-section #daily-encouragement {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 18px;
-  background: transparent;    
-  border-radius: 10px;
+  background: transparent;
 }
 
-/* Suppression du background de l'image côté droit et du dégradé */
-.side-image {
-  background: none !important;
-  height: 0 !important;
-  margin-top: 0 !important;
-  display: none; /* on masque complètement */
-}
-
-.side-image::after {
-  display: none !important;
-}
-
-/* Flex central (3 blocs) */
 .flex-row {
   display: flex;
   gap: 20px;
@@ -237,9 +206,8 @@ main {
   flex: 1 1 auto;
 }
 
-/* Les blocs centraux */
 .section-block {
-  background: var(--gray-light);
+  background: #ffffff; /* blanc complet */
   border-radius: 14px;
   padding: 14px;
   flex: 1 1 30%;
@@ -253,11 +221,7 @@ main {
   transform: translateY(10px);
 }
 
-/* Fade-in trigger */
-.section-block.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.section-block.visible { opacity: 1; transform: translateY(0); }
 
 .section-block h2 {
   font-family: 'Montserrat', sans-serif;
@@ -285,26 +249,6 @@ main {
   margin-top: auto;
 }
 
-/* Section encouragement droite - sans background d'image */
-/* On enlève les backgrounds dans right-section */
-
-.right-section {
-  background: none !important;
-}
-
-/* Styles encouragement du jour centré */
-#daily-encouragement {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 12px;
-  font-style: italic;
-  color: #5a2e00;
-}
-
-/* Boutons */
 .btn-row {
   max-width: 900px;
   margin: 20px auto 56px;
@@ -341,31 +285,11 @@ footer {
   font-size: 0.92rem;
 }
 
-/* Responsive tweaks */
 @media (max-width: 1200px) {
-  .main-flex-container {
-    flex-direction: column;
-    align-items: center;
-    padding-top: 40px;
-  }
-  .left-section,
-  .right-section {
-    width: 100%;
-    max-width: 420px;
-    min-height: auto;
-    position: relative;
-    top: auto;
-  }
-  .flex-row {
-    flex: 1 1 100%;
-    max-width: 900px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .section-block {
-    flex: 1 1 45%;
-    max-width: 400px;
-  }
+  .main-flex-container { flex-direction: column; align-items: center; padding-top: 40px; }
+  .left-section, .right-section { width: 100%; max-width: 420px; min-height: auto; position: relative; top: auto; }
+  .flex-row { flex: 1 1 100%; max-width: 900px; flex-wrap: wrap; justify-content: center; }
+  .section-block { flex: 1 1 45%; max-width: 400px; }
 }
 
 @media (max-width: 640px) {
@@ -376,31 +300,7 @@ footer {
   .btn-row { flex-direction: column; gap: 12px; }
 }
 
-/* Simple fadeInUp animation */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-/* HERO SECTION — dégradé blanc en haut + image assombrie */
-.hero {
-    position: relative;
-}
-
-.hero img {
-    width: 100%;
-    height: auto;
-    display: block;
-    filter: brightness(0.8);
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, white 0%, rgba(255,255,255,0) 40%);
-    pointer-events: none;
 }
